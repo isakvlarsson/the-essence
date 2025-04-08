@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfa1v2go21vmf"]
+
+[ext_resource type="Script" uid="uid://j52wpccqq12b" path="res://farming/farm_plot.gd" id="1_sc374"]
+[ext_resource type="Texture2D" uid="uid://dg5vdlle5jliu" path="res://assets/realm-1/plot/plot-empty.png" id="2_tu527"]
+[ext_resource type="Texture2D" uid="uid://bgrvdrqv4es5x" path="res://assets/realm-1/plant/crop-1.png" id="3_kchl1"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_kchl1"]
+size = Vector2(4, 4)
+
+[sub_resource type="QuadMesh" id="QuadMesh_xa51p"]
+size = Vector2(4, 4)
+
+[node name="FarmPlot" type="Node2D"]
+script = ExtResource("1_sc374")
+
+[node name="PlotMesh" type="MeshInstance2D" parent="."]
+mesh = SubResource("QuadMesh_kchl1")
+texture = ExtResource("2_tu527")
+
+[node name="Plant" type="MeshInstance2D" parent="."]
+mesh = SubResource("QuadMesh_xa51p")
+texture = ExtResource("3_kchl1")
