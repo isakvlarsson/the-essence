@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var plant: Node2D = $Wheat
+@onready var plant: Node2D = $Plant
 
 @export var growth_level: float = 0.0 # From 0-1
 @export var planted = false
@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if planted:
-		plant.scale.y = growth_level
+		plant.scale = Vector2(growth_level, growth_level)
 	else:
 		plant.visible = false
 		
