@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfa1v2go21vmf"]
+[gd_scene load_steps=3 format=3 uid="uid://dfa1v2go21vmf"]
 
 [ext_resource type="Script" uid="uid://j52wpccqq12b" path="res://farming/farm_plot.gd" id="1_sc374"]
 [ext_resource type="Texture2D" uid="uid://dg5vdlle5jliu" path="res://assets/realm-1/plot/plot-empty.png" id="2_tu527"]
