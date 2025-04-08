@@ -1,4 +1,4 @@
-extends Node3D
+extends Node2D
 
 signal new_hour(hour: int)
 signal new_day(day: int)

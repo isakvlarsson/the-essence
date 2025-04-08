@@ -1,71 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfa1v2go21vmf"]
+[gd_scene load_steps=3 format=3 uid="uid://dfa1v2go21vmf"]
 
 [ext_resource type="Script" uid="uid://j52wpccqq12b" path="res://farming/farm_plot.gd" id="1_sc374"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acml0"]
-albedo_color = Color(0.428114, 0.22975, 0.00354887, 1)
+[sub_resource type="QuadMesh" id="QuadMesh_sc374"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_sc374"]
-material = SubResource("StandardMaterial3D_acml0")
-size = Vector3(1, 0.1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sc374"]
-albedo_color = Color(0.909804, 0.65098, 0.109804, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_tu527"]
-material = SubResource("StandardMaterial3D_sc374")
-size = Vector3(0.1, 0.5, 0.1)
-
-[node name="FarmPlot" type="Node3D"]
+[node name="FarmPlot" type="Node2D"]
 script = ExtResource("1_sc374")
 
-[node name="PlotMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-mesh = SubResource("BoxMesh_sc374")
+[node name="PlotMesh" type="MeshInstance2D" parent="."]
+position = Vector2(0, 0.1)
+mesh = SubResource("QuadMesh_sc374")
 
-[node name="Wheat" type="Node3D" parent="."]
-
-[node name="WheatMesh" type="MeshInstance3D" parent="Wheat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.209934, 0.4, -0.250215)
-mesh = SubResource("BoxMesh_tu527")
-skeleton = NodePath("../../PlotMesh")
-
-[node name="WheatMesh9" type="MeshInstance3D" parent="Wheat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.369364, 0.4, -0.105999)
-mesh = SubResource("BoxMesh_tu527")
-skeleton = NodePath("../../PlotMesh")
-
-[node name="WheatMesh2" type="MeshInstance3D" parent="Wheat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.357467, 0.4, -0.194958)
-mesh = SubResource("BoxMesh_tu527")
-skeleton = NodePath("../../PlotMesh")
-
-[node name="WheatMesh3" type="MeshInstance3D" parent="Wheat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.288438, 0.4, 0.30999)
-mesh = SubResource("BoxMesh_tu527")
-skeleton = NodePath("../../PlotMesh")
-
-[node name="WheatMesh6" type="MeshInstance3D" parent="Wheat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0223024, 0.4, 0.064276)
-mesh = SubResource("BoxMesh_tu527")
-skeleton = NodePath("../../PlotMesh")
-
-[node name="WheatMesh7" type="MeshInstance3D" parent="Wheat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22591, 0.4, 0.064276)
-mesh = SubResource("BoxMesh_tu527")
-skeleton = NodePath("../../PlotMesh")
-
-[node name="WheatMesh8" type="MeshInstance3D" parent="Wheat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134298, 0.4, 0.429555)
-mesh = SubResource("BoxMesh_tu527")
-skeleton = NodePath("../../PlotMesh")
-
-[node name="WheatMesh4" type="MeshInstance3D" parent="Wheat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.209934, 0.4, 0.242452)
-mesh = SubResource("BoxMesh_tu527")
-skeleton = NodePath("../../PlotMesh")
-
-[node name="WheatMesh5" type="MeshInstance3D" parent="Wheat"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0967431, 0.4, -0.250215)
-mesh = SubResource("BoxMesh_tu527")
-skeleton = NodePath("../../PlotMesh")
+[node name="Wheat" type="Node2D" parent="."]

@@ -1,6 +1,6 @@
-extends Node3D
+extends Node2D
 
-@onready var plant: Node3D = $Wheat
+@onready var plant: Node2D = $Wheat
 
 @export var growth_level: float = 0.0 # From 0-1
 @export var planted = false
