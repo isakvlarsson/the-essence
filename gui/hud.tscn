@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://broy3nosynqvv"]
+
+[ext_resource type="Script" uid="uid://co7ya4dyvt6en" path="res://gui/hud.gd" id="1_350da"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
+outline_size = 3
+outline_color = Color(0.051971, 0.051971, 0.051971, 1)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_350da")
+
+[node name="TimeLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Hour 7 of Day 10"
+label_settings = SubResource("LabelSettings_h2yge")
+
+[node name="ColorRect" type="ColorRect" parent="TimeLabel"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.425711, 0.253569, 0.0761212, 1)
