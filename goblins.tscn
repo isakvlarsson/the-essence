@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://6js1tw6cy8uy"]
+
+[ext_resource type="Texture2D" uid="uid://cmby5co4ukfw8" path="res://icon.svg" id="2_37lli"]
+[ext_resource type="Script" uid="uid://dpm7qsrpg12a4" path="res://goblin_2.gd" id="3_jdof2"]
+
+[sub_resource type="GDScript" id="GDScript_uhbor"]
+script/source = "extends CharacterBody2D
+
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@export var target_to_chase: StaticBody2D
+
+const speed = 150.0
+
+func _physics_process(delta: float) -> void:
+	navigation_agent.target_position = target_to_chase.global_position
+	velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed
+	move_and_slide()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxhfx"]
+size = Vector2(130, 130)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Goblin1" type="CharacterBody2D" parent="."]
+position = Vector2(1302, -694)
+script = SubResource("GDScript_uhbor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin1"]
+scale = Vector2(0.608822, 0.626329)
+shape = SubResource("RectangleShape2D_vxhfx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goblin1"]
+scale = Vector2(0.608822, 0.626329)
+texture = ExtResource("2_37lli")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Goblin1"]
+
+[node name="Goblin2" type="CharacterBody2D" parent="."]
+position = Vector2(747, -464)
+script = ExtResource("3_jdof2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin2"]
+scale = Vector2(0.608822, 0.626329)
+shape = SubResource("RectangleShape2D_vxhfx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goblin2"]
+scale = Vector2(0.608822, 0.626329)
+texture = ExtResource("2_37lli")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Goblin2"]
+
+[node name="Goblin3" type="CharacterBody2D" parent="."]
+position = Vector2(1030, -573)
+script = ExtResource("3_jdof2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin3"]
+scale = Vector2(0.608822, 0.626329)
+shape = SubResource("RectangleShape2D_vxhfx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goblin3"]
+scale = Vector2(0.608822, 0.626329)
+texture = ExtResource("2_37lli")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Goblin3"]

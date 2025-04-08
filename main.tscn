@@ -1,26 +1,92 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckeis5nfy86a0"]
+[gd_scene load_steps=8 format=3 uid="uid://ckeis5nfy86a0"]
 
-[ext_resource type="PackedScene" uid="uid://dfa1v2go21vmf" path="res://farming/farm_plot.tscn" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://l31yybgu4784" path="res://day_night_handler.gd" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://broy3nosynqvv" path="res://gui/hud.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://mnhnr63qhtme" path="res://player.tscn" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://cmby5co4ukfw8" path="res://icon.svg" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://6js1tw6cy8uy" path="res://goblins.tscn" id="3_lquwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(180, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(7, 22)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4c57u"]
+vertices = PackedVector2Array(1467.2, -890.141, 1500.79, 723.141, -923.367, 756.852, -822.594, -924.852)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-832, -935, 1477, -900, 1511, 733, -934, 767)])
 
 [node name="Main" type="Node2D"]
 
-[node name="FarmPlot" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(578, 277)
-scale = Vector2(10, 10)
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(2, 2)
 
-[node name="DayNightHandler" type="Node2D" parent="."]
-script = ExtResource("2_0xm2m")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(251, 231)
+shape = SubResource("RectangleShape2D_h2yge")
 
-[node name="HUD" parent="." instance=ExtResource("3_h2yge")]
-offset_left = 582.0
-offset_top = -3.0
-offset_right = 582.0
-offset_bottom = -3.0
-size_flags_horizontal = 0
-size_flags_vertical = 4
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(251, 231)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_h2yge")
 
-[connection signal="new_day" from="DayNightHandler" to="FarmPlot" method="_on_new_day"]
-[connection signal="new_day" from="DayNightHandler" to="HUD" method="_on_new_day"]
-[connection signal="new_hour" from="DayNightHandler" to="HUD" method="_on_new_hour"]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -236)
+shape = SubResource("RectangleShape2D_kek77")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_h2yge")
+
+[node name="crop2" type="StaticBody2D" parent="."]
+position = Vector2(202, -162)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crop2"]
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="crop2"]
+scale = Vector2(0.0664065, 0.171875)
+texture = ExtResource("2_h2yge")
+
+[node name="crop3" type="StaticBody2D" parent="."]
+position = Vector2(220, -162)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crop3"]
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="crop3"]
+scale = Vector2(0.0664065, 0.171875)
+texture = ExtResource("2_h2yge")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_4c57u")
+
+[node name="crop1" type="StaticBody2D" parent="."]
+position = Vector2(185, -162)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crop1"]
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="crop1"]
+scale = Vector2(0.0664065, 0.171875)
+texture = ExtResource("2_h2yge")
+
+[node name="player" parent="." instance=ExtResource("2_1bvp3")]
+
+[node name="goblins" parent="." instance=ExtResource("3_lquwl")]
+
+[node name="Goblin1" parent="goblins" index="0" node_paths=PackedStringArray("target_to_chase")]
+target_to_chase = NodePath("../../crop1")
+
+[node name="Goblin2" parent="goblins" index="1" node_paths=PackedStringArray("target_to_chase")]
+target_to_chase = NodePath("../../crop2")
+
+[node name="Goblin3" parent="goblins" index="2" node_paths=PackedStringArray("target_to_chase")]
+target_to_chase = NodePath("../../crop3")
+
+[editable path="player"]
+[editable path="goblins"]
