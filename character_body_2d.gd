@@ -21,9 +21,14 @@ func dash():
 		velocity = dashDirection.normalized()*dashSpeed
 		canDash = false
 		dashing = true
-		await get_tree().create_timer(0.2).timeout
-		canDash = true
+		
+		#dash for 0.2 seconds
+		await get_tree().create_timer(0.2).timeout 
 		dashing = false
+		
+		#Able to dash again after 1 second
+		await get_tree().create_timer(1.0).timeout
+		canDash = true
 		
 func _physics_process(delta):
 	get_input()
