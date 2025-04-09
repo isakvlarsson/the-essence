@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://citmr6wsx6wg7"]
+
+[ext_resource type="Texture2D" uid="uid://btlrn5q0wmolc" path="res://2dvillageassetpackwithoutoutine/house1/village0001.png" id="1_ry4dl"]
+
+[node name="house" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0.75, -1.5)
+polygon = PackedVector2Array(-80.75, -50.5, -0.75, -103.5, 83.25, -60.5, 73.25, 103.5, -73.75, 102.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_ry4dl")
+region_enabled = true
+region_rect = Rect2(1288, 280, 544, 715.54)

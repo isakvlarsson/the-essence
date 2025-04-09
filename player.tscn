@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://barvws3nylw6o" path="res://farmerStick2.png" id="4_dw050"]
 [ext_resource type="Texture2D" uid="uid://lhxorc6rci0y" path="res://farmerStick3.png" id="5_b26j0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7ghd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sweqy"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_nvl01"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2hs0m"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -34,19 +34,17 @@ animations = [{
 "speed": 9.0
 }]
 
-[node name="Node2D" type="Node2D"]
-
-[node name="player" type="CharacterBody2D" parent="."]
+[node name="player" type="CharacterBody2D"]
 script = ExtResource("1_sweqy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 scale = Vector2(1.2, 1.35)
-shape = SubResource("RectangleShape2D_n7ghd")
+shape = SubResource("RectangleShape2D_sweqy")
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, 0)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player"]
-sprite_frames = SubResource("SpriteFrames_nvl01")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2hs0m")
 animation = &"whack"
