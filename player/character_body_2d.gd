@@ -40,6 +40,10 @@ func _physics_process(delta):
 	dash()
 	move_and_slide()
 
+func _on_stick_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Creature"):
+		body.queue_free() # Replace with function body.
+		
 func plant_crops():
 	var pos: Vector2 = global_position
 	var crop_instance: Node2D = crop_scene.instantiate()
