@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://6js1tw6cy8uy"]
+
+[ext_resource type="Texture2D" uid="uid://btcwhk6m83aso" path="res://goblin.png" id="1_dl46o"]
+
+[sub_resource type="GDScript" id="GDScript_ejdof"]
+script/source = "extends CharacterBody2D
+
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@export var target_to_chase: Node2D
+
+const speed = 200.0
+
+func _physics_process(delta: float) -> void:
+	navigation_agent.target_position = target_to_chase.global_position
+	velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed
+	move_and_slide()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhbor"]
+size = Vector2(44.3479, 54.2846)
+
+[node name="Goblin1" type="CharacterBody2D"]
+script = SubResource("GDScript_ejdof")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.500001, -2)
+scale = Vector2(0.608822, 0.626329)
+shape = SubResource("RectangleShape2D_uhbor")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.608822, 0.626329)
+texture = ExtResource("1_dl46o")
+region_enabled = true
+region_rect = Rect2(72, 72, 48, 56)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

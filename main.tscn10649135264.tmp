@@ -1,0 +1,122 @@
+[gd_scene load_steps=12 format=3 uid="uid://ckeis5nfy86a0"]
+
+[ext_resource type="Texture2D" uid="uid://cj74d5kuxpmfi" path="res://farmerA2.png" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://daupix0cgemad" path="res://character_body_2d.gd" id="1_h2yge"]
+[ext_resource type="Texture2D" uid="uid://cmby5co4ukfw8" path="res://icon.svg" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://w3i7rx1g1xdn" path="res://farmerStick.png" id="4_272bh"]
+[ext_resource type="Texture2D" uid="uid://barvws3nylw6o" path="res://farmerStick2.png" id="5_5vw27"]
+[ext_resource type="Texture2D" uid="uid://lhxorc6rci0y" path="res://farmerStick3.png" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://bw6dv3y82xrvi" path="res://rigid_body_2d.gd" id="7_272bh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kek77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0xm2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_272bh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5vw27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7mycd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7mycd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_0xm2m")
+}],
+"loop": false,
+"name": &"whack",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(180, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(7, 22)
+
+[node name="Main" type="Node3D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 0.5)
+scale = Vector2(1.2, 1.35)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(2, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"whack"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -236)
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_h2yge")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D"]
+position = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D"]
+position = Vector2(251, 231)
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/StaticBody2D/CollisionShape2D"]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_h2yge")
+
+[node name="RigidBody2D" type="StaticBody2D" parent="."]
+script = ExtResource("7_272bh")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(1345, -992)
+texture = ExtResource("2_h2yge")
+
+[node name="crop1" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crop1"]
+position = Vector2(239.5, -140)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="crop1"]
+position = Vector2(239.75, -140)
+scale = Vector2(0.0664065, 0.171875)
+texture = ExtResource("2_h2yge")
+
+[node name="crop2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crop2"]
+position = Vector2(255, -140)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="crop2"]
+position = Vector2(255.25, -140)
+scale = Vector2(0.0664065, 0.171875)
+texture = ExtResource("2_h2yge")
+
+[node name="crop3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crop3"]
+position = Vector2(270, -140)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="Sprite2D" type="Sprite2D" parent="crop3"]
+position = Vector2(270.25, -140)
+scale = Vector2(0.0664065, 0.171875)
+texture = ExtResource("2_h2yge")

@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckeis5nfy86a0"]
+
+[ext_resource type="Texture2D" uid="uid://cj74d5kuxpmfi" path="res://farmerA2.png" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://d0egfnddpb8oa" path="res://main.gd" id="1_7mycd"]
+[ext_resource type="Script" uid="uid://daupix0cgemad" path="res://character_body_2d.gd" id="1_h2yge"]
+[ext_resource type="Texture2D" uid="uid://cmby5co4ukfw8" path="res://icon.svg" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://w3i7rx1g1xdn" path="res://farmerStick.png" id="4_272bh"]
+[ext_resource type="Texture2D" uid="uid://barvws3nylw6o" path="res://farmerStick2.png" id="5_5vw27"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kek77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0xm2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_272bh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5vw27")
+}],
+"loop": true,
+"name": &"whack",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(186.25, 178)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_7mycd")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+visible = false
+position = Vector2(-1.90735e-06, -9)
+scale = Vector2(2.91935, 3.5)
+texture = ExtResource("1_0xm2m")
+flip_h = true
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(-173, -1)
+sprite_frames = SubResource("SpriteFrames_kek77")
+animation = &"whack"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -236)
+shape = SubResource("RectangleShape2D_h2yge")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
+position = Vector2(0, 3)
+texture = ExtResource("2_h2yge")

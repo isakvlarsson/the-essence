@@ -1,26 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckeis5nfy86a0"]
+[gd_scene load_steps=7 format=3 uid="uid://ckeis5nfy86a0"]
 
-[ext_resource type="PackedScene" uid="uid://dfa1v2go21vmf" path="res://farming/farm_plot.tscn" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://l31yybgu4784" path="res://day_night_handler.gd" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://broy3nosynqvv" path="res://gui/hud.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://b6cnlvelojeih" path="res://house.tscn" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://mnhnr63qhtme" path="res://player.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://citmr6wsx6wg7" path="res://house2.tscn" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://6js1tw6cy8uy" path="res://goblin.tscn" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dfa1v2go21vmf" path="res://farming/farm_plot.tscn" id="5_lquwl"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4c57u"]
+vertices = PackedVector2Array(1467.2, -890.141, 1500.79, 723.141, -923.367, 756.852, -822.594, -924.852)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-832, -935, 1477, -900, 1511, 733, -934, 767)])
 
 [node name="Main" type="Node2D"]
 
-[node name="FarmPlot" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(578, 277)
-scale = Vector2(10, 10)
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_4c57u")
 
-[node name="DayNightHandler" type="Node2D" parent="."]
-script = ExtResource("2_0xm2m")
+[node name="house" parent="." instance=ExtResource("1_lquwl")]
+position = Vector2(360, 222)
 
-[node name="HUD" parent="." instance=ExtResource("3_h2yge")]
-offset_left = 582.0
-offset_top = -3.0
-offset_right = 582.0
-offset_bottom = -3.0
-size_flags_horizontal = 0
-size_flags_vertical = 4
+[node name="house2" parent="." instance=ExtResource("2_7mycd")]
+position = Vector2(-5, -320)
 
-[connection signal="new_day" from="DayNightHandler" to="FarmPlot" method="_on_new_day"]
-[connection signal="new_day" from="DayNightHandler" to="HUD" method="_on_new_day"]
-[connection signal="new_hour" from="DayNightHandler" to="HUD" method="_on_new_hour"]
+[node name="player" parent="." instance=ExtResource("2_1bvp3")]
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(289, -199)
+rotation = -0.391392
+vertices = PackedVector2Array(-28, 0, -28, -72, 27, -72, 28, 64, -28, 64)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="FarmPlot" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(152, -157)
+scale = Vector2(5, 5)
+
+[node name="FarmPlot2" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(180, -157)
+scale = Vector2(5, 5)
+
+[node name="FarmPlot3" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(208, -157)
+scale = Vector2(5, 5)
+
+[node name="Goblin1" parent="." node_paths=PackedStringArray("target_to_chase") instance=ExtResource("3_lquwl")]
+position = Vector2(535, -339)
+target_to_chase = NodePath("../FarmPlot")
+
+[node name="Goblin2" parent="." node_paths=PackedStringArray("target_to_chase") instance=ExtResource("3_lquwl")]
+position = Vector2(772, -317)
+target_to_chase = NodePath("../FarmPlot2")
+
+[editable path="player"]
