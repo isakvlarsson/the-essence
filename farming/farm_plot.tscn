@@ -10,7 +10,7 @@ size = Vector2(4, 4)
 [sub_resource type="QuadMesh" id="QuadMesh_xa51p"]
 size = Vector2(4, 4)
 
-[node name="FarmPlot" type="Node2D"]
+[node name="FarmPlot" type="Node2D" groups=["farm_plot"]]
 script = ExtResource("1_sc374")
 
 [node name="PlotMesh" type="MeshInstance2D" parent="."]
