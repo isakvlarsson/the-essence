@@ -212,6 +212,9 @@ target_to_chase = NodePath("../FarmPlot2")
 [node name="DayNightHandler" type="Node2D" parent="."]
 script = ExtResource("6_7mycd")
 
+[node name="CreatureSpawnPoint" type="Node2D" parent="." groups=["creature_spawn_point"]]
+position = Vector2(683, -382)
+
 [connection signal="new_day" from="DayNightHandler" to="player/Camera2D/HUD" method="_on_new_day"]
 [connection signal="new_hour" from="DayNightHandler" to="player/Camera2D/HUD" method="_on_new_hour"]
 

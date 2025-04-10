@@ -22,6 +22,7 @@ project/assembly_name="The Essence"
 [global_group]
 
 farm_plot=""
+creature_spawn_point="Points in the world where creatures can spawn"
 
 [input]
 
