@@ -6,7 +6,7 @@
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0.75, -1.5)
-polygon = PackedVector2Array(-80.75, -50.5, -0.75, -103.5, 83.25, -60.5, 73.25, 103.5, -73.75, 102.5)
+polygon = PackedVector2Array(-81.75, -107.5, 0.25, -107.5, 82.25, -107.5, 82.25, 109.5, -82.75, 110.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
