@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://l31yybgu4784" path="res://day_night_handler.gd" id="6_7mycd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4c57u"]
-vertices = PackedVector2Array(1467.2, -890.141, 1500.79, 723.141, -923.367, 756.852, -822.594, -924.852)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+vertices = PackedVector2Array(1467.2, -890.141, 1500.79, 723.141, 339.297, -150.523, 286.492, -275.852, -923.367, 756.852, 287.531, -129.156, 263.117, -188.32, -822.594, -924.852, 235.648, -254.875)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 1, 4, 5), PackedInt32Array(6, 5, 4, 7, 8), PackedInt32Array(8, 7, 0, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-832, -935, 1477, -900, 1511, 733, -934, 767)])
 
 [node name="Main" type="Node2D"]
