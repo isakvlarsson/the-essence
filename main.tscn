@@ -1,16 +1,16 @@
 [gd_scene load_steps=11 format=4 uid="uid://ckeis5nfy86a0"]
 
 [ext_resource type="Texture2D" uid="uid://bl28wettwu71l" path="res://assets/realm-1/ground/ground-main.png" id="1_272bh"]
-[ext_resource type="PackedScene" path="res://house.tscn" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://b6cnlvelojeih" path="res://house.tscn" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://mnhnr63qhtme" path="res://player/player.tscn" id="2_1bvp3"]
-[ext_resource type="PackedScene" path="res://house2.tscn" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://citmr6wsx6wg7" path="res://house2.tscn" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://6js1tw6cy8uy" path="res://creatures/goblin/goblin.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dfa1v2go21vmf" path="res://farming/farm_plot.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://l31yybgu4784" path="res://day_night_handler.gd" id="6_7mycd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4c57u"]
-vertices = PackedVector2Array(1467.2, -890.141, 1500.79, 723.141, -923.367, 756.852, -822.594, -924.852)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+vertices = PackedVector2Array(1467.2, -890.141, 1500.79, 723.141, 339.297, -150.523, 286.492, -275.852, -923.367, 756.852, 287.531, -129.156, 263.117, -188.32, -822.594, -924.852, 235.648, -254.875)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 1, 4, 5), PackedInt32Array(6, 5, 4, 7, 8), PackedInt32Array(8, 7, 0, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-832, -935, 1477, -900, 1511, 733, -934, 767)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vw27"]
@@ -174,6 +174,14 @@ tile_map_data = PackedByteArray("AAAPAAwAAAAHAAIAAAAPAA0AAAAGAAgAAAAPAA4AAAAFAAY
 tile_set = SubResource("TileSet_kek77")
 rendering_quadrant_size = 20
 
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationRegion2D"]
+position = Vector2(289, -199)
+rotation = -0.391392
+scale = Vector2(1, 1)
+vertices = PackedVector2Array(-28, 0, -28, -72, 27, -72, 28, 64, -28, 64)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
 [node name="house" parent="." instance=ExtResource("1_lquwl")]
 position = Vector2(360, 222)
 
@@ -181,13 +189,6 @@ position = Vector2(360, 222)
 position = Vector2(-5, -320)
 
 [node name="player" parent="." instance=ExtResource("2_1bvp3")]
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-position = Vector2(289, -199)
-rotation = -0.391392
-vertices = PackedVector2Array(-28, 0, -28, -72, 27, -72, 28, 64, -28, 64)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
 
 [node name="FarmPlot" parent="." instance=ExtResource("5_lquwl")]
 position = Vector2(152, -157)

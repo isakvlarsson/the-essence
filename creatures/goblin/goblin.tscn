@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhbor"]
 size = Vector2(44.3479, 54.2846)
 
-[node name="Goblin1" type="CharacterBody2D"]
+[node name="Goblin1" type="CharacterBody2D" groups=["Creature"]]
 script = SubResource("GDScript_ejdof")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
