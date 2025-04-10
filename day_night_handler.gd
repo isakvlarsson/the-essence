@@ -18,6 +18,8 @@ func _process(delta: float) -> void:
 			hour %= 24
 			day += 1
 			new_day.emit(day)
+			# Find all farm plots and grow them
+			get_tree().call_group("farm_plot", "growth_tick")
 
 		new_hour.emit(hour) 
 		
