@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://6js1tw6cy8uy"]
 
-[ext_resource type="Texture2D" uid="uid://btcwhk6m83aso" path="res://goblin.png" id="1_dl46o"]
+[ext_resource type="Texture2D" uid="uid://btcwhk6m83aso" path="res://creatures/goblin/goblin.png" id="1_dl46o"]
 
 [sub_resource type="GDScript" id="GDScript_ejdof"]
 script/source = "extends CharacterBody2D

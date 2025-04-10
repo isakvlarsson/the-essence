@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lhxorc6rci0y"
-path="res://.godot/imported/farmerStick3.png-c3d41b8f68e4e7df85f342910d8ae0ba.ctex"
+uid="uid://btcwhk6m83aso"
+path="res://.godot/imported/goblin.png-e731677384877fe1c27a439ae9884ce5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://farmerStick3.png"
-dest_files=["res://.godot/imported/farmerStick3.png-c3d41b8f68e4e7df85f342910d8ae0ba.ctex"]
+source_file="res://creatures/goblin/goblin.png"
+dest_files=["res://.godot/imported/goblin.png-e731677384877fe1c27a439ae9884ce5.ctex"]
 
 [params]
 

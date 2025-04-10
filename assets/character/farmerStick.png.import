@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://w3i7rx1g1xdn"
-path="res://.godot/imported/farmerStick.png-4fcf13223bd31778b7b626711a893902.ctex"
+path="res://.godot/imported/farmerStick.png-75c77c6c1a81a576ad8212a44257aacd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://farmerStick.png"
-dest_files=["res://.godot/imported/farmerStick.png-4fcf13223bd31778b7b626711a893902.ctex"]
+source_file="res://assets/character/farmerStick.png"
+dest_files=["res://.godot/imported/farmerStick.png-75c77c6c1a81a576ad8212a44257aacd.ctex"]
 
 [params]
 
