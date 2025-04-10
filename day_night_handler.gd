@@ -32,7 +32,7 @@ func spawn_goblins():
 	var spawn_points: Array[Node] = get_tree().get_nodes_in_group("creature_spawn_point")
 	var farm_plots: Array[Node] = get_tree().get_nodes_in_group("farm_plot")
 	
-	if farm_plots.size() < 0:
+	if farm_plots.size() < 1:
 		pass
 		
 	for i in range(0, 5):
