@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var crop_scene = preload("res://farming/farm_plot.tscn") 
 @onready var fence_sceneLR = preload("res://defences/fence_lr.tscn") 
 @onready var fence_sceneUD = preload("res://defences/fence_ud.tscn") 
+@onready var interaction_area: Area2D = $InteractionBox
 
 var speed = 400
 var canDash = true
@@ -44,7 +45,6 @@ func _input(event):
 		plant_crops()
 	if Input.is_action_just_pressed("fence"):
 		place_fence()
-		
 
 		
 func dash():
@@ -100,12 +100,24 @@ func _on_stick_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Creature"):
 		body.queue_free() # Replace with function body.
 		
-func plant_crops():
+func create_soil():
 	var pos: Vector2 = global_position
 	var crop_instance: Node2D = crop_scene.instantiate()
 	get_tree().root.add_child(crop_instance)
 	crop_instance.global_position = pos + Vector2(0.0, 0.0)
 	crop_instance.scale = Vector2(1.0, 1.0)*10
+
+func plant_crops():
+	var areas = interaction_area.get_overlapping_areas()
+	if areas.size() == 0:
+		create_soil()
+		return
+	var sort_by_distance = func (a: Area2D, b: Area2D):
+		return a.global_position.distance_squared_to(self.global_position) < b.global_position.distance_squared_to(self.global_position)
+	areas.sort_custom(sort_by_distance)
+	var closest_area_parent = areas[0].get_parent()
+	if closest_area_parent.is_in_group("farm_plot") && !closest_area_parent.planted:
+		closest_area_parent.sow()
 
 func place_fence():
 	var pos: Vector2 = global_position

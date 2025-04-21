@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bgrvdrqv4es5x" path="res://assets/realm-1/plant/crop-1.png" id="3_kchl1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kchl1"]
-size = Vector2(4, 4)
+size = Vector2(6, 6)
 
 [sub_resource type="QuadMesh" id="QuadMesh_kchl1"]
 size = Vector2(4, 4)
@@ -32,3 +32,9 @@ mesh = SubResource("QuadMesh_xa51p")
 texture = ExtResource("3_kchl1")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_kchl1")

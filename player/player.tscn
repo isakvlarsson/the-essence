@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://mnhnr63qhtme"]
+[gd_scene load_steps=14 format=3 uid="uid://mnhnr63qhtme"]
 
 [ext_resource type="Script" uid="uid://daupix0cgemad" path="res://player/character_body_2d.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://cj74d5kuxpmfi" path="res://assets/character/farmerA2.png" id="2_2hs0m"]
@@ -122,6 +122,9 @@ animations = [{
 "speed": 9.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boad6"]
+size = Vector2(45, 42)
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_sweqy")
 
@@ -153,6 +156,14 @@ frame = 5
 [node name="stickShape" type="CollisionShape2D" parent="stick"]
 position = Vector2(16.5, 7)
 shape = SubResource("RectangleShape2D_g6k8r")
+
+[node name="InteractionBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_boad6")
 
 [connection signal="area_entered" from="stick" to="." method="_on_stick_area_entered"]
 [connection signal="body_entered" from="stick" to="." method="_on_stick_body_entered"]
