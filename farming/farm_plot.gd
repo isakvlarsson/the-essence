@@ -10,7 +10,7 @@ var min_size: float = 0.2
 var eating_creatures := []
 
 func _ready() -> void:
-	sow()
+	pass
 
 func _process(delta: float) -> void:
 	if planted:
@@ -21,11 +21,17 @@ func _process(delta: float) -> void:
 func growth_tick():
 	if planted:
 		growth_level += growth_per_day
-		clamp(growth_level, 0.0, 1.0)
+		growth_level = clamp(growth_level, 0.0, 1.0)
 
 func sow():
 	planted = true
 	plant.visible = true
+
+func is_harvestable():
+	if growth_level >= 1.0:
+		return true
+	else:
+		return false
 
 func _on_new_day(day: int) -> void:
 	growth_tick()
