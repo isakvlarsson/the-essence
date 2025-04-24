@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 			get_tree().call_group("farm_plot", "growth_tick")
 
 		new_hour.emit(hour) 
+		#if hour == 0 and day%3 == 0:
 		if hour == 0:
 			spawn_goblins()
 		
@@ -35,7 +36,7 @@ func spawn_goblins():
 	if farm_plots.size() < 1:
 		pass
 		
-	for i in range(0, 5):
+	for i in range(0, floor(farm_plots.size()/3)):
 		var goblin: CharacterBody2D = goblin_scene.instantiate()
 		goblin.target_to_chase = farm_plots.pick_random()
 		goblin.position = spawn_points.pick_random().position

@@ -28,26 +28,21 @@ func _ready():
 	add_child(eat_timer)
 
 func _on_area_entered(area):
-	var plant = area.get_parent()
-	if plant.is_in_group(\"Plant\") and plant.growth_level >= 0.2:
-			current_plant = plant
-			if not eat_timer.is_stopped():
-				eat_timer.start()
+	if area.is_in_group(\"Plant\"):
+		var plant = area as FarmPlot
+		if plant and plant.growth_level >= 0.2:
+			current_plant = area
+			eat_timer.start()
 
 func _on_area_exited(area):
-	if area.get_parent() == current_plant:
+	if area == current_plant:
 		current_plant = null
 		eat_timer.stop()
 
 func _on_eat_timeout():
 	if current_plant and current_plant.growth_level >= 0.2:
-		# Access plant properties safely
-		current_plant.growth_level = max(current_plant.growth_level - current_plant.growth_per_day, 0)
+		current_plant.growth_level -= current_plant.growth_per_day
 		current_plant.scale = Vector2(current_plant.growth_level, current_plant.growth_level)
-		
-		# Stop timer if plant is too small
-		if current_plant.growth_level < 0.2:
-			eat_timer.stop()
 	else:
 		eat_timer.stop()
 "
