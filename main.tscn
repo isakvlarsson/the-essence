@@ -10,18 +10,18 @@
 [ext_resource type="AudioStream" uid="uid://c3bntd3vy6scn" path="res://assets/sounds/WHACK1.wav" id="8_dg77c"]
 [ext_resource type="AudioStream" uid="uid://d2krogm0q4bbk" path="res://assets/sounds/WHACK2.wav" id="9_ycdy4"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_4c57u"]
-vertices = PackedVector2Array(1467.2, -890.141, 1500.79, 723.141, 339.297, -150.523, 286.492, -275.852, -923.367, 756.852, 287.531, -129.156, 263.117, -188.32, -822.594, -924.852, 235.648, -254.875)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 1, 4, 5), PackedInt32Array(6, 5, 4, 7, 8), PackedInt32Array(8, 7, 0, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-832, -935, 1477, -900, 1511, 733, -934, 767)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1bvp3"]
+vertices = PackedVector2Array(1543.99, 791, -937, 791, -937, -937, 1543.01, -937)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-947, -947, 1553, -947, 1554, 801, -947, 801)])
 
 [node name="Main" type="Node2D"]
 
 [node name="BackgroundStatic" parent="." instance=ExtResource("1_7mycd")]
 position = Vector2(15, 15)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_4c57u")
+[node name="NavigationRegion" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1bvp3")
 
 [node name="player" parent="." instance=ExtResource("2_1bvp3")]
 footstep_sounds = Array[AudioStream]([ExtResource("5_5vw27"), ExtResource("6_4c57u"), ExtResource("7_efxa6")])
