@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c343rmto2pgel"]
+[gd_scene load_steps=33 format=3 uid="uid://c343rmto2pgel"]
 
 [ext_resource type="Script" uid="uid://woq4a25e8jqk" path="res://portal/portal.gd" id="1_2e3pj"]
 [ext_resource type="Texture2D" uid="uid://dylgrbqo6fbsa" path="res://assets/portal/deactivated.png" id="2_2e3pj"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cbmrfdp2fg46b" path="res://assets/portal/realm_ice.png" id="3_2e3pj"]
 [ext_resource type="Texture2D" uid="uid://c4mwlx16khxqg" path="res://assets/portal/realm_swamp.png" id="4_vbfxp"]
 [ext_resource type="Texture2D" uid="uid://cni152flgs0i1" path="res://assets/portal/realm_water.png" id="5_m7om1"]
-[ext_resource type="Script" uid="uid://dstn1xrwlsohw" path="res://portal/state_machine.gd" id="7_vbfxp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbfxp"]
 atlas = ExtResource("2_2e3pj")
@@ -211,42 +210,6 @@ animations = [{
 "speed": 9.0
 }]
 
-[sub_resource type="Animation" id="Animation_5g2k2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-
-[sub_resource type="Animation" id="Animation_ueijv"]
-resource_name = "fire_portal"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(110.067, 445.433, 780.8, 1172.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [3, 3, 3, 3]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5g2k2"]
-_data = {
-&"RESET": SubResource("Animation_5g2k2"),
-&"fire_portal": SubResource("Animation_ueijv")
-}
-
 [node name="Portal" type="Node2D"]
 script = ExtResource("1_2e3pj")
 
@@ -257,16 +220,4 @@ polygon = PackedVector2Array(10, 65, 5, 65, -1, 65, -12, 61, -15, 57, -19, 53, -
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_de8xe")
-animation = &"swamp"
-
-[node name="Timer" type="Timer" parent="AnimatedSprite2D"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../AnimatedSprite2D")
-libraries = {
-&"": SubResource("AnimationLibrary_5g2k2")
-}
-autoplay = "fire_portal"
-
-[node name="State Machine" type="Node" parent="."]
-script = ExtResource("7_vbfxp")
+animation = &"fire"
