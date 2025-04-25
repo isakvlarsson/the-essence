@@ -25,15 +25,12 @@ var last_position := Vector2.ZERO
 # --- WHACK SOUND STUFF ---
 @export var whack_sounds: Array[AudioStream] = []  # Array for whack sounds
 @onready var whack_audio_player := $WhackPlayer  # WhackPlayer node for whack sounds
+var currentItem = "Stick"
 
 func _ready():
 	last_position = global_position
-
-var currentItem = "Stick"
-
-func _ready() -> void:
 	hud_toolbar.connect("update_selected_item", _on_update_selected_item)
-	
+
 func get_input():
 	if not dashing:
 		input_direction = Input.get_vector("left", "right", "up", "down")
