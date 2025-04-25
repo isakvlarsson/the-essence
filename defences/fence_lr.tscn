@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://epksci2ebp7d"]
+
+[ext_resource type="Texture2D" uid="uid://bsve8qqquasvb" path="res://2dvillageassetpackwithoutoutine/props/village0021.png" id="1_gbetf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upm4a"]
+size = Vector2(621, 142)
+
+[node name="FenceLR" type="Node2D"]
+scale = Vector2(0.1, 0.1)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_upm4a")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("1_gbetf")
+region_enabled = true
+region_rect = Rect2(1328.22, 199.334, 626.903, 149.366)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(-311, 70, -311, -72, 310, -72, 310, 70)
+affect_navigation_mesh = true
+carve_navigation_mesh = true

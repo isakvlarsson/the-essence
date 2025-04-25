@@ -13,7 +13,6 @@ var current_plant: Node = null
 var eat_timer: Timer
 
 func _physics_process(delta: float) -> void:
-	navigation_agent.avoidance_enabled = true
 	navigation_agent.target_position = target_to_chase.global_position
 	velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed
 	move_and_slide()
@@ -23,25 +22,27 @@ func _ready():
 	$PlantSensor.area_exited.connect(_on_area_exited)
 	
 	eat_timer = Timer.new()
-	eat_timer.wait_time = 2.0
+	eat_timer.wait_time = 1.0
 	eat_timer.one_shot = false
-	add_child(eat_timer)
 	eat_timer.timeout.connect(_on_eat_timeout)
+	add_child(eat_timer)
 
 func _on_area_entered(area):
-	var plant = area.get_parent()
-	if plant.is_in_group(\"Plant\") and plant.growth_level >= 0.2:
-			current_plant = plant
+	if area.is_in_group(\"Plant\"):
+		var plant = area as FarmPlot
+		if plant and plant.growth_level >= 0.2:
+			current_plant = area
 			eat_timer.start()
 
 func _on_area_exited(area):
-	if area.get_parent() == current_plant:
+	if area == current_plant:
 		current_plant = null
 		eat_timer.stop()
 
 func _on_eat_timeout():
-	if current_plant.growth_level >= 0.2:
-		current_plant.growth_level = max(current_plant.growth_level - current_plant.growth_per_day, 0.0)
+	if current_plant and current_plant.growth_level >= 0.2:
+		current_plant.growth_level -= current_plant.growth_per_day
+		current_plant.scale = Vector2(current_plant.growth_level, current_plant.growth_level)
 	else:
 		eat_timer.stop()
 "
@@ -67,11 +68,8 @@ region_enabled = true
 region_rect = Rect2(72, 72, 48, 56)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
-radius = 50.0
 
 [node name="PlantSensor" type="Area2D" parent="."]
-collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlantSensor"]
 position = Vector2(-0.5, -2)

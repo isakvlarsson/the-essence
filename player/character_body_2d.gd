@@ -1,12 +1,16 @@
 extends CharacterBody2D
 
 @onready var crop_scene = preload("res://farming/farm_plot.tscn") 
+@onready var fence_sceneLR = preload("res://defences/fence_lr.tscn") 
+@onready var fence_sceneUD = preload("res://defences/fence_ud.tscn") 
 
 var speed = 400
 var canDash = true
 var dashing = false
 var dashSpeed = 1200
 var dashDirection = Vector2.ZERO
+var input_direction = Vector2.ZERO
+var last_direction = Vector2.ZERO
 
 # --- FOOTSTEP STUFF ---
 @export var footstep_sounds: Array[AudioStream] = []
@@ -25,7 +29,9 @@ func _ready():
 
 func get_input():
 	if not dashing:
-		var input_direction = Input.get_vector("left", "right", "up", "down")
+		input_direction = Input.get_vector("left", "right", "up", "down")
+		if input_direction != Vector2.ZERO:
+			last_direction = input_direction
 		velocity = input_direction * speed
 		dashDirection = input_direction
 
@@ -36,6 +42,8 @@ func _input(event):
 
 	if Input.is_action_just_pressed("plant"):
 		plant_crops()
+	if Input.is_action_just_pressed("fence"):
+		place_fence()
 		
 
 		
@@ -98,5 +106,17 @@ func plant_crops():
 	get_tree().root.add_child(crop_instance)
 	crop_instance.global_position = pos + Vector2(0.0, 0.0)
 	crop_instance.scale = Vector2(1.0, 1.0)*10
-	
 
+func place_fence():
+	var pos: Vector2 = global_position
+	var fence: Node2D = fence_sceneLR.instantiate()
+	if last_direction.x != 0:
+		fence = fence_sceneLR.instantiate()
+	elif last_direction.y != 0:
+		fence = fence_sceneUD.instantiate()
+	else:
+		fence = fence_sceneLR.instantiate()
+	fence.global_position = pos + Vector2(0.0, 0.0)
+	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
+	nav_region.add_child(fence)
+	nav_region.bake_navigation_polygon(true)

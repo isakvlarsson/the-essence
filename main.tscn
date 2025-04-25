@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckeis5nfy86a0"]
+[gd_scene load_steps=12 format=3 uid="uid://ckeis5nfy86a0"]
 
 [ext_resource type="PackedScene" uid="uid://c5nl6472j43m2" path="res://static/background_static.tscn" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://mnhnr63qhtme" path="res://player/player.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://b812d52oig4gf" path="res://defences/fence_ud.tscn" id="2_lquwl"]
 [ext_resource type="AudioStream" uid="uid://bkxy54ux5romj" path="res://assets/sounds/FOOT1.wav" id="5_5vw27"]
 [ext_resource type="PackedScene" uid="uid://cjdudtwhqprol" path="res://static/foreground_static.tscn" id="5_272bh"]
 [ext_resource type="AudioStream" uid="uid://c434co4adp730" path="res://assets/sounds/FOOT2.wav" id="6_4c57u"]
@@ -10,18 +11,24 @@
 [ext_resource type="AudioStream" uid="uid://c3bntd3vy6scn" path="res://assets/sounds/WHACK1.wav" id="8_dg77c"]
 [ext_resource type="AudioStream" uid="uid://d2krogm0q4bbk" path="res://assets/sounds/WHACK2.wav" id="9_ycdy4"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_4c57u"]
-vertices = PackedVector2Array(1467.2, -890.141, 1500.79, 723.141, 339.297, -150.523, 286.492, -275.852, -923.367, 756.852, 287.531, -129.156, 263.117, -188.32, -822.594, -924.852, 235.648, -254.875)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 1, 4, 5), PackedInt32Array(6, 5, 4, 7, 8), PackedInt32Array(8, 7, 0, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-832, -935, 1477, -900, 1511, 733, -934, 767)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1bvp3"]
+vertices = PackedVector2Array(234, -117.898, 234, -180, 1543.01, -937, 1543.99, 791, -937, 791, 219.797, -117.898, -937, -937, 218.797, -178.898, 233, -180, 233, -241, 218.797, -241, 219.797, -178.898)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(1, 8, 9, 2), PackedInt32Array(6, 2, 9, 10), PackedInt32Array(7, 11, 5), PackedInt32Array(7, 6, 10)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-947, -947, 1553, -947, 1554, 801, -947, 801)])
 
 [node name="Main" type="Node2D"]
 
 [node name="BackgroundStatic" parent="." instance=ExtResource("1_7mycd")]
 position = Vector2(15, 15)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_4c57u")
+[node name="NavigationRegion" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1bvp3")
+
+[node name="FenceLR" parent="NavigationRegion" instance=ExtResource("2_lquwl")]
+position = Vector2(227, -149)
+
+[node name="FenceLR2" parent="NavigationRegion" instance=ExtResource("2_lquwl")]
+position = Vector2(226, -210)
 
 [node name="player" parent="." instance=ExtResource("2_1bvp3")]
 footstep_sounds = Array[AudioStream]([ExtResource("5_5vw27"), ExtResource("6_4c57u"), ExtResource("7_efxa6")])
