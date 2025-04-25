@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjnnrfr75vnbn"]
+
+[ext_resource type="PackedScene" uid="uid://c5bj045sjfx3a" path="res://gui/tool_bar_slot.tscn" id="1_wplw1"]
+[ext_resource type="Script" uid="uid://bg8vj1e3enyl1" path="res://gui/tool_bar.gd" id="1_xsriv"]
+
+[node name="ToolBar" type="HBoxContainer"]
+offset_right = 436.0
+offset_bottom = 40.0
+script = ExtResource("1_xsriv")
+
+[node name="Slot" parent="." instance=ExtResource("1_wplw1")]
+layout_mode = 2
+
+[node name="Slot2" parent="." instance=ExtResource("1_wplw1")]
+layout_mode = 2
+id = 1
+
+[node name="Slot3" parent="." instance=ExtResource("1_wplw1")]
+layout_mode = 2
+id = 2
+
+[node name="Slot4" parent="." instance=ExtResource("1_wplw1")]
+layout_mode = 2
+id = 3
+
+[node name="Slot5" parent="." instance=ExtResource("1_wplw1")]
+layout_mode = 2
+id = 4
+
+[node name="Slot6" parent="." instance=ExtResource("1_wplw1")]
+layout_mode = 2
+id = 5
+
+[node name="Slot7" parent="." instance=ExtResource("1_wplw1")]
+layout_mode = 2
+id = 6
+
+[node name="Slot8" parent="." instance=ExtResource("1_wplw1")]
+layout_mode = 2
+id = 7
+
+[node name="Slot9" parent="." instance=ExtResource("1_wplw1")]
+layout_mode = 2
+id = 8
+
+[node name="Slot10" parent="." instance=ExtResource("1_wplw1")]
+layout_mode = 2
+id = 9

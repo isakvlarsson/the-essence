@@ -53,11 +53,4 @@ position = Vector2(683, -382)
 [node name="HUD" parent="." instance=ExtResource("5_lquwl")]
 unique_name_in_owner = true
 
-[node name="Label" type="Label" parent="."]
-offset_left = 91.0
-offset_top = -193.0
-offset_right = 131.0
-offset_bottom = -170.0
-text = "E to enter"
-
 [editable path="player"]

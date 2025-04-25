@@ -29,6 +29,11 @@ var last_position := Vector2.ZERO
 func _ready():
 	last_position = global_position
 
+var currentItem = "Stick"
+
+func _ready() -> void:
+	hud_toolbar.connect("update_selected_item", _on_update_selected_item)
+	
 func get_input():
 	if not dashing:
 		input_direction = Input.get_vector("left", "right", "up", "down")
@@ -39,14 +44,17 @@ func get_input():
 
 func _input(event):
 	if Input.is_action_pressed("whack"):
-		get_node("AnimatedSprite2D").play("whack")
-		play_whack_sound()  # Play whack sound when whack animation is triggered
-
-	if Input.is_action_just_pressed("plant"):
-		plant_crops()
-	if Input.is_action_just_pressed("fence"):
-		place_fence()
-
+		match currentItem:
+			"stick": 
+				get_node("AnimatedSprite2D").play("whack")
+				play_whack_sound() # Play whack sound when whack animation is triggered
+			"seeds":
+				plant()
+			"shovel":
+				create_soil()
+			"fence":
+				place_fence()
+		
 		
 func dash():
 	if Input.is_action_just_pressed("dash") and canDash and dashDirection != Vector2.ZERO:
@@ -108,10 +116,9 @@ func create_soil():
 	crop_instance.global_position = pos + Vector2(0.0, 0.0)
 	crop_instance.scale = Vector2(1.0, 1.0)*10
 
-func plant_crops():
+func plant():
 	var areas = interaction_area.get_overlapping_areas()
 	if areas.size() == 0:
-		create_soil()
 		return
 	var sort_by_distance = func (a: Area2D, b: Area2D):
 		return a.global_position.distance_squared_to(self.global_position) < b.global_position.distance_squared_to(self.global_position)
@@ -133,3 +140,6 @@ func place_fence():
 	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
 	nav_region.add_child(fence)
 	nav_region.bake_navigation_polygon(true)
+			
+func _on_update_selected_item(item):
+	currentItem = item
