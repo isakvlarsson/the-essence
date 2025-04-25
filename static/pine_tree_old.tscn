@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://45teksbugpbb"]
-
-[ext_resource type="PackedScene" uid="uid://byg736om7kjd" path="res://static/pine_tree.tscn" id="1_1bmcb"]
-
-[node name="Area2D" type="Area2D"]
-
-[node name="StaticBody2D" parent="." instance=ExtResource("1_1bmcb")]
