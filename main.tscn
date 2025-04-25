@@ -1,16 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckeis5nfy86a0"]
+[gd_scene load_steps=11 format=3 uid="uid://ckeis5nfy86a0"]
 
 [ext_resource type="PackedScene" uid="uid://c5nl6472j43m2" path="res://static/background_static.tscn" id="1_7mycd"]
-[ext_resource type="PackedScene" uid="uid://cjdudtwhqprol" path="res://static/foreground_static.tscn" id="5_272bh"]
-[gd_scene load_steps=16 format=4 uid="uid://ckeis5nfy86a0"]
-
-[ext_resource type="Texture2D" uid="uid://bl28wettwu71l" path="res://assets/realm-1/ground/ground-main.png" id="1_272bh"]
-[ext_resource type="PackedScene" uid="uid://b6cnlvelojeih" path="res://house.tscn" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://mnhnr63qhtme" path="res://player/player.tscn" id="2_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://citmr6wsx6wg7" path="res://house2.tscn" id="2_7mycd"]
-[ext_resource type="PackedScene" uid="uid://6js1tw6cy8uy" path="res://creatures/goblin/goblin.tscn" id="3_lquwl"]
 [ext_resource type="AudioStream" uid="uid://bkxy54ux5romj" path="res://assets/sounds/FOOT1.wav" id="5_5vw27"]
-[ext_resource type="PackedScene" uid="uid://dfa1v2go21vmf" path="res://farming/farm_plot.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cjdudtwhqprol" path="res://static/foreground_static.tscn" id="5_272bh"]
 [ext_resource type="AudioStream" uid="uid://c434co4adp730" path="res://assets/sounds/FOOT2.wav" id="6_4c57u"]
 [ext_resource type="Script" uid="uid://l31yybgu4784" path="res://day_night_handler.gd" id="6_7mycd"]
 [ext_resource type="AudioStream" uid="uid://bt5g53x1qkr4t" path="res://assets/sounds/FOOT3.wav" id="7_efxa6"]
