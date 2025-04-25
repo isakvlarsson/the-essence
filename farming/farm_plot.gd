@@ -11,11 +11,6 @@ var eating_creatures := []
 
 func _ready() -> void:
 	sow()
-	eat_timer = Timer.new()
-	eat_timer.wait_time = 2.0
-	eat_timer.one_shot = false
-	add_child(eat_timer)
-	eat_timer.connect("timeout", Callable(self, "_on_eat_timeout"))
 
 func _process(delta: float) -> void:
 	if planted:

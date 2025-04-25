@@ -24,8 +24,7 @@ func _process(delta: float) -> void:
 			get_tree().call_group("farm_plot", "growth_tick")
 
 		new_hour.emit(hour) 
-		#if hour == 0 and day%3 == 0:
-		if hour == 0:
+		if hour == 0 and day%3 == 0:
 			spawn_goblins()
 		
 

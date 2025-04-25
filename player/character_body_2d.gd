@@ -116,7 +116,7 @@ func place_fence():
 		fence = fence_sceneUD.instantiate()
 	else:
 		fence = fence_sceneLR.instantiate()
-	get_tree().root.add_child(fence)
 	fence.global_position = pos + Vector2(0.0, 0.0)
 	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
 	nav_region.add_child(fence)
+	nav_region.bake_navigation_polygon(true)
