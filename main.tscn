@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckeis5nfy86a0"]
-[ext_resource type="AudioStream" uid="uid://bkxy54ux5romj" path="res://assets/sounds/FOOT1.wav" id="5_5vw27"]
+[gd_scene load_steps=12 format=3 uid="uid://ckeis5nfy86a0"]
 
 [ext_resource type="PackedScene" uid="uid://c5nl6472j43m2" path="res://static/background_static.tscn" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://mnhnr63qhtme" path="res://player/player.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://b812d52oig4gf" path="res://defences/fence_ud.tscn" id="2_lquwl"]
+[ext_resource type="AudioStream" uid="uid://bkxy54ux5romj" path="res://assets/sounds/FOOT1.wav" id="5_5vw27"]
 [ext_resource type="PackedScene" uid="uid://cjdudtwhqprol" path="res://static/foreground_static.tscn" id="5_272bh"]
 [ext_resource type="AudioStream" uid="uid://c434co4adp730" path="res://assets/sounds/FOOT2.wav" id="6_4c57u"]
 [ext_resource type="Script" uid="uid://l31yybgu4784" path="res://day_night_handler.gd" id="6_7mycd"]
