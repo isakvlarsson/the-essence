@@ -13,6 +13,7 @@ var current_plant: Node = null
 var eat_timer: Timer
 
 func _physics_process(delta: float) -> void:
+	navigation_agent.avoidance_enabled = true
 	navigation_agent.target_position = target_to_chase.global_position
 	velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed
 	move_and_slide()
@@ -41,7 +42,6 @@ func _on_area_exited(area):
 
 func _on_eat_timeout():
 	if current_plant and current_plant.growth_level >= 0.2:
-		# Access plant properties safely
 		current_plant.growth_level = max(current_plant.growth_level - current_plant.growth_per_day, 0)
 		current_plant.scale = Vector2(current_plant.growth_level, current_plant.growth_level)
 		
@@ -73,8 +73,10 @@ region_enabled = true
 region_rect = Rect2(72, 72, 48, 56)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
 
 [node name="PlantSensor" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlantSensor"]
 position = Vector2(-0.5, -2)
