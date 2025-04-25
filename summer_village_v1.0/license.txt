@@ -1,0 +1,27 @@
+Thank you for downloading Summer Village!
+
+All tiles are 32x32 pixels in size.
+NPC sprites are 30x48 pixels and have an 8-frame walking animation in four 
+directions and a 4-frame idle animation in four directions.
+
+
+LICENSE:
+
+You can use these assets in any commercial and non-commercial projects.  
+You can edit theses assets. 
+You can't redistribute or resell theses assets, even if they have been modified. 
+
+Please credit me if you use my assets.
+
+
+I'd love to see what you create. If you have questions or suggestions leave me a comment or let me know via e-mail
+schwarnhild@googlemail.com
+
+My profile on itch.io:
+schwarnhild.itch.io/
+
+Summer Village on itch.io:
+schwarnhild.itch.io/summer-village
+
+Summer Plains 32x32 on itch.io:
+https://schwarnhild.itch.io/summer-plains-tileset-and-asset-pack-32x32-pixels

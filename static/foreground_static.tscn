@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://b8hvgwpmqny4s" path="res://static/foreground_static.gd" id="1_jik1x"]
 [ext_resource type="PackedScene" path="res://house.tscn" id="2_ncxgu"]
 [ext_resource type="PackedScene" uid="uid://c0rawdo0ns3pp" path="res://house2.tscn" id="3_2a02c"]
-[ext_resource type="PackedScene" uid="uid://c343rmto2pgel" path="res://portal/portal.tscn" id="4_hw7ta"]
 [ext_resource type="PackedScene" uid="uid://byg736om7kjd" path="res://static/pine_tree.tscn" id="4_uvcg5"]
+[ext_resource type="PackedScene" uid="uid://c343rmto2pgel" path="res://portal/portal.tscn" id="5_mhjka"]
 
 [node name="ForegroundStatic" type="Node2D"]
 script = ExtResource("1_jik1x")
@@ -19,5 +19,8 @@ position = Vector2(175, 178)
 position = Vector2(-213, -180)
 scale = Vector2(0.22, 0.22)
 
-[node name="Portal" parent="." instance=ExtResource("4_hw7ta")]
-position = Vector2(-335, 176)
+[node name="Portal" parent="." instance=ExtResource("5_mhjka")]
+position = Vector2(-265, 159)
+
+[node name="Portal2" parent="." instance=ExtResource("5_mhjka")]
+position = Vector2(169, -542)
