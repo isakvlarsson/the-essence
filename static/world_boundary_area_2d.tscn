@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cvamx72lfqv5i"]
+
+[node name="WorldBoundaryArea2D" type="StaticBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -36.7658)
+scale = Vector2(1, 0.849752)
+polygon = PackedVector2Array(845, -441, 843, -291, -512, -290, -513, -440)

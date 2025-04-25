@@ -220,4 +220,4 @@ polygon = PackedVector2Array(10, 65, 5, 65, -1, 65, -12, 61, -15, 57, -19, 53, -
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_de8xe")
-animation = &"fire"
+animation = &"Default"

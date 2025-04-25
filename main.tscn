@@ -40,7 +40,7 @@ whack_sounds = Array[AudioStream]([ExtResource("8_dg77c"), ExtResource("9_ycdy4"
 
 [node name="ForegroundStatic" parent="." instance=ExtResource("5_272bh")]
 z_index = 2
-position = Vector2(162, -217)
+position = Vector2(1, 1)
 
 [node name="DayNightHandler" type="Node2D" parent="."]
 script = ExtResource("6_7mycd")
