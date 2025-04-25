@@ -22,3 +22,4 @@ region_rect = Rect2(1328.22, 199.334, 626.903, 149.366)
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 vertices = PackedVector2Array(-311, 70, -311, -72, 310, -72, 310, 70)
 affect_navigation_mesh = true
+carve_navigation_mesh = true
