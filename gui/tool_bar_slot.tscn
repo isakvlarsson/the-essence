@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5bj045sjfx3a"]
+
+[ext_resource type="Script" uid="uid://cvdvwqu3yq848" path="res://gui/tool_bar_slot.gd" id="1_q55tq"]
+
+[node name="Slot" type="Button"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(60, 60)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_q55tq")
+colorSelected = Color(0.538928, 0.390468, 0.175405, 1)
+colorUnSelected = Color(0.682353, 0.501961, 0.243137, 1)
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.68313, 0.500506, 0.242792, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "Item"
