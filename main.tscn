@@ -1,9 +1,21 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckeis5nfy86a0"]
 
 [ext_resource type="PackedScene" uid="uid://c5nl6472j43m2" path="res://static/background_static.tscn" id="1_7mycd"]
-[ext_resource type="PackedScene" uid="uid://mnhnr63qhtme" path="res://player/player.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cjdudtwhqprol" path="res://static/foreground_static.tscn" id="5_272bh"]
+[gd_scene load_steps=16 format=4 uid="uid://ckeis5nfy86a0"]
+
+[ext_resource type="Texture2D" uid="uid://bl28wettwu71l" path="res://assets/realm-1/ground/ground-main.png" id="1_272bh"]
+[ext_resource type="PackedScene" uid="uid://b6cnlvelojeih" path="res://house.tscn" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://mnhnr63qhtme" path="res://player/player.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://citmr6wsx6wg7" path="res://house2.tscn" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://6js1tw6cy8uy" path="res://creatures/goblin/goblin.tscn" id="3_lquwl"]
+[ext_resource type="AudioStream" uid="uid://bkxy54ux5romj" path="res://assets/sounds/FOOT1.wav" id="5_5vw27"]
+[ext_resource type="PackedScene" uid="uid://dfa1v2go21vmf" path="res://farming/farm_plot.tscn" id="5_lquwl"]
+[ext_resource type="AudioStream" uid="uid://c434co4adp730" path="res://assets/sounds/FOOT2.wav" id="6_4c57u"]
 [ext_resource type="Script" uid="uid://l31yybgu4784" path="res://day_night_handler.gd" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://bt5g53x1qkr4t" path="res://assets/sounds/FOOT3.wav" id="7_efxa6"]
+[ext_resource type="AudioStream" uid="uid://c3bntd3vy6scn" path="res://assets/sounds/WHACK1.wav" id="8_dg77c"]
+[ext_resource type="AudioStream" uid="uid://d2krogm0q4bbk" path="res://assets/sounds/WHACK2.wav" id="9_ycdy4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4c57u"]
 vertices = PackedVector2Array(1467.2, -890.141, 1500.79, 723.141, 339.297, -150.523, 286.492, -275.852, -923.367, 756.852, 287.531, -129.156, 263.117, -188.32, -822.594, -924.852, 235.648, -254.875)
@@ -19,6 +31,12 @@ position = Vector2(15, 15)
 navigation_polygon = SubResource("NavigationPolygon_4c57u")
 
 [node name="player" parent="." instance=ExtResource("2_1bvp3")]
+footstep_sounds = Array[AudioStream]([ExtResource("5_5vw27"), ExtResource("6_4c57u"), ExtResource("7_efxa6")])
+whack_sounds = Array[AudioStream]([ExtResource("8_dg77c"), ExtResource("9_ycdy4")])
+
+[node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="player"]
+
+[node name="WhackPlayer" type="AudioStreamPlayer2D" parent="player"]
 
 [node name="ForegroundStatic" parent="." instance=ExtResource("5_272bh")]
 z_index = 2
