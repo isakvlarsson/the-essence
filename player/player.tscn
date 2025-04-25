@@ -136,10 +136,6 @@ shape = SubResource("RectangleShape2D_sweqy")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, 0)
 
-[node name="HUD" parent="Camera2D" instance=ExtResource("2_g6k8r")]
-offset_top = -324.0
-offset_bottom = -324.0
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite2D")
 libraries = {

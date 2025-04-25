@@ -1,29 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://broy3nosynqvv"]
+[gd_scene load_steps=4 format=3 uid="uid://broy3nosynqvv"]
 
 [ext_resource type="Script" uid="uid://co7ya4dyvt6en" path="res://gui/hud.gd" id="1_350da"]
+[ext_resource type="PackedScene" uid="uid://cjnnrfr75vnbn" path="res://gui/tool_bar.tscn" id="2_u7rvv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 outline_size = 3
 outline_color = Color(0.051971, 0.051971, 0.051971, 1)
 
-[node name="HUD" type="Control"]
-z_index = 10
-z_as_relative = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_350da")
 
 [node name="TimeLabel" type="Label" parent="."]
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
+offset_left = -64.5
+offset_right = 64.5
 offset_bottom = 23.0
 grow_horizontal = 2
 text = "Hour 7 of Day 10"
@@ -40,3 +32,16 @@ offset_right = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.425711, 0.253569, 0.0761212, 1)
+
+[node name="ToolBar" parent="." instance=ExtResource("2_u7rvv")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -218.0
+offset_top = -40.0
+offset_right = 218.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0

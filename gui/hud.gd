@@ -1,11 +1,13 @@
-extends Control
+extends CanvasLayer
 
 @onready var time_label = $TimeLabel
-
+@onready var day_night_handler = %DayNightHandler
 var current_day = 1
 var current_hour = 0
 
 func _ready() -> void:
+	day_night_handler.connect("new_day", _on_new_day)
+	day_night_handler.connect("new_hour", _on_new_hour)
 	update_time_text()
 
 func _on_new_day(day: int) -> void:

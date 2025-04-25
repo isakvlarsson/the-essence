@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var fence_sceneLR = preload("res://defences/fence_lr.tscn") 
 @onready var fence_sceneUD = preload("res://defences/fence_ud.tscn") 
 @onready var interaction_area: Area2D = $InteractionBox
+@onready var hud_toolbar = %HUD/ToolBar
 
 var speed = 400
 var canDash = true
