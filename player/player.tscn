@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://mnhnr63qhtme"]
 
-[ext_resource type="Script" uid="uid://daupix0cgemad" path="res://player/character_body_2d.gd" id="1_sweqy"]
+[ext_resource type="Script" uid="uid://daupix0cgemad" path="res://player/player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://cj74d5kuxpmfi" path="res://assets/character/farmerA2.png" id="2_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://w3i7rx1g1xdn" path="res://assets/character/farmerStick.png" id="3_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://barvws3nylw6o" path="res://assets/character/farmerStick2.png" id="4_dw050"]

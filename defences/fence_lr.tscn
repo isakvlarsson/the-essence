@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bsve8qqquasvb" path="res://2dvillageassetpackwithoutoutine/props/village0021.png" id="1_gbetf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upm4a"]
-size = Vector2(621, 142)
+size = Vector2(32.625, 35.25)
 
 [node name="FenceLR" type="Node2D"]
 scale = Vector2(0.1, 0.1)

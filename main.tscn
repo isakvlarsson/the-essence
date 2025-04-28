@@ -48,7 +48,7 @@ unique_name_in_owner = true
 script = ExtResource("6_7mycd")
 
 [node name="CreatureSpawnPoint" type="Node2D" parent="." groups=["creature_spawn_point"]]
-position = Vector2(683, -382)
+position = Vector2(686, -148)
 
 [node name="HUD" parent="." instance=ExtResource("5_lquwl")]
 unique_name_in_owner = true
