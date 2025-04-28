@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5nl6472j43m2"]
+[gd_scene load_steps=8 format=3 uid="uid://c5nl6472j43m2"]
 
 [ext_resource type="Shader" uid="uid://cbxtbu8rghdue" path="res://static/background_static.gdshader" id="1_6v3yy"]
 [ext_resource type="PackedScene" uid="uid://dipoxbiuglrr2" path="res://static/realm_boudaries/swamp_boundary.tscn" id="2_8k1it"]
 [ext_resource type="PackedScene" uid="uid://qq3avks1ojpo" path="res://static/realm_boudaries/ice_boundary.tscn" id="3_85leu"]
 [ext_resource type="PackedScene" uid="uid://cvamx72lfqv5i" path="res://static/world_boundary_area_2d.tscn" id="4_s8m1h"]
 [ext_resource type="PackedScene" uid="uid://bw5t4s4eo6hbd" path="res://static/realm_boudaries/fire_boundary.tscn" id="5_s8m1h"]
+[ext_resource type="PackedScene" uid="uid://bhqt08pmxqc5n" path="res://static/realm_boudaries/water_boundary.tscn" id="6_i6mus"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_85leu"]
 shader = ExtResource("1_6v3yy")
@@ -33,4 +34,8 @@ polygon = PackedVector2Array(848, -280, 848, -48, 888, 0, 872, 704, 32, 704, 16,
 
 [node name="FireBoundary" parent="." instance=ExtResource("5_s8m1h")]
 position = Vector2(1751, -900)
+scale = Vector2(2, 2)
+
+[node name="WaterBoundary" parent="." instance=ExtResource("6_i6mus")]
+position = Vector2(2337, 830)
 scale = Vector2(2, 2)
