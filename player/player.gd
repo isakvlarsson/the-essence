@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var fence_sceneLR = preload("res://defences/fence_lr.tscn") 
 @onready var fence_sceneUD = preload("res://defences/fence_ud.tscn") 
 @onready var trap_scene = preload("res://defences/trap.tscn") 
+@onready var totem_scene = preload("res://defences/totem.tscn") 
 @onready var interaction_area: Area2D = $InteractionBox
 @onready var hud_toolbar = %HUD/ToolBar
 
@@ -54,6 +55,8 @@ func _input(event):
 				place_fence()
 			"trap":
 				place_trap()
+			"totem":
+				place_totem()
 		
 		
 func dash():
@@ -147,6 +150,13 @@ func place_trap():
 	get_tree().root.add_child(trap)
 	trap.global_position = pos + Vector2(0.0, 0.0)
 	trap.scale = Vector2(1.0, 1.0)	
+	
+func place_totem():
+	var pos: Vector2 = global_position
+	var totem: Node2D = totem_scene.instantiate()
+	get_tree().root.add_child(totem)
+	totem.global_position = pos + Vector2(0.0, 0.0)
+	totem.scale = Vector2(1.0, 1.0)*2
 	
 func _on_update_selected_item(item):
 	currentItem = item

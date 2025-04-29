@@ -29,17 +29,16 @@ animations = [{
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_cc8qx")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="TrapArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrapArea"]
 position = Vector2(2.38419e-07, 2.38419e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_upm4a")
 
-[node name="TrapSprite" type="AnimatedSprite2D" parent="Area2D"]
+[node name="TrapSprite" type="AnimatedSprite2D" parent="TrapArea"]
 position = Vector2(0, -4.76837e-07)
 scale = Vector2(1.12967, 1.07064)
 sprite_frames = SubResource("SpriteFrames_p4glb")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="TrapArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="TrapArea" to="." method="_on_area_2d_body_entered"]

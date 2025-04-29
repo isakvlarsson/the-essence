@@ -18,6 +18,7 @@ func _ready() -> void:
 	slots[2].set_item("seeds", 10)
 	slots[3].set_item("fence", 5)
 	slots[4].set_item("trap", 5)
+	slots[5].set_item("totem", 1)
 	
 func toolbar_slot_clicked(slot):
 	slots[selectedSlotID].selected = false

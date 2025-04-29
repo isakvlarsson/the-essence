@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://csktadoif1cgo"]
+
+[ext_resource type="Script" uid="uid://w63iuxoy0h8x" path="res://defences/totem.gd" id="1_bd1gk"]
+[ext_resource type="Texture2D" uid="uid://hahgge2baexm" path="res://defences/Buff Totem Sprite Sheet v1.1.png" id="1_wxapl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bd1gk"]
+radius = 50.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ghbi"]
+atlas = ExtResource("1_wxapl")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpwj6"]
+atlas = ExtResource("1_wxapl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uc6qx"]
+atlas = ExtResource("1_wxapl")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_to2r8"]
+atlas = ExtResource("1_wxapl")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d22ou"]
+atlas = ExtResource("1_wxapl")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deigq"]
+atlas = ExtResource("1_wxapl")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p4glb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ghbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpwj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uc6qx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to2r8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d22ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deigq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="totem" type="Node2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_bd1gk")
+
+[node name="TotemArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TotemArea"]
+position = Vector2(2.38419e-07, 2.38419e-07)
+shape = SubResource("CircleShape2D_bd1gk")
+
+[node name="TotemSprite" type="AnimatedSprite2D" parent="TotemArea"]
+position = Vector2(0, -10)
+scale = Vector2(1.12967, 1.07064)
+sprite_frames = SubResource("SpriteFrames_p4glb")
+animation = &"idle"
+
+[connection signal="area_entered" from="TotemArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="TotemArea" to="." method="_on_area_2d_body_entered"]
