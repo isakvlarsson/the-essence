@@ -60,7 +60,32 @@ func _input(event):
 				place_fence()
 		await get_tree().create_timer(0.1).timeout
 		can_interact = true
-		
+	if Input.is_action_pressed("increment_selected_slot"):
+		hud_toolbar.set_current_slot((hud_toolbar.selectedSlotID + 1)%10)
+	if Input.is_action_pressed("decrement_selected_slot"):
+		hud_toolbar.set_current_slot((hud_toolbar.selectedSlotID + -1)%10)
+	if Input.is_action_pressed("select_toolbar_slot"):
+		match event.keycode:
+			KEY_1:
+				hud_toolbar.set_current_slot(0)
+			KEY_2:
+				hud_toolbar.set_current_slot(1)
+			KEY_3:
+				hud_toolbar.set_current_slot(2)
+			KEY_4:
+				hud_toolbar.set_current_slot(3)
+			KEY_5:
+				hud_toolbar.set_current_slot(4)
+			KEY_6:
+				hud_toolbar.set_current_slot(5)
+			KEY_7:
+				hud_toolbar.set_current_slot(6)
+			KEY_8:
+				hud_toolbar.set_current_slot(7)
+			KEY_9:
+				hud_toolbar.set_current_slot(8)
+			KEY_0:
+				hud_toolbar.set_current_slot(9)
 		
 func dash():
 	if Input.is_action_just_pressed("dash") and canDash and dashDirection != Vector2.ZERO:

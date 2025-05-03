@@ -25,6 +25,12 @@ func toolbar_slot_clicked(slot):
 	slot.selected = true
 	selectedSlotID = slot.id
 	update_selected_item.emit(slot.item)
+
+func set_current_slot(id: int):
+	slots[selectedSlotID].selected = false
+	slots[id].selected = true
+	selectedSlotID = id
+	update_selected_item.emit(slots[id].item)
 	
 func get_current_item_amount():
 	return slots[selectedSlotID].amount
