@@ -124,7 +124,7 @@ func create_soil():
 	var crop_instance: Node2D = crop_scene.instantiate()
 	get_tree().root.add_child(crop_instance)
 	crop_instance.global_position = pos + Vector2(0.0, 0.0)
-	crop_instance.scale = Vector2(1.0, 1.0)*10
+	crop_instance.scale = Vector2(1.0, 1.0)*18
 
 func plant():
 	var current_amount = hud_toolbar.get_current_item_amount()
