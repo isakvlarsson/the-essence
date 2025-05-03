@@ -120,6 +120,10 @@ func create_soil():
 	crop_instance.scale = Vector2(1.0, 1.0)*10
 
 func plant():
+	var current_amount = hud_toolbar.get_current_item_amount()
+	if  current_amount< 1:
+		return
+	
 	var areas = interaction_area.get_overlapping_areas()
 	if areas.size() == 0:
 		return
@@ -129,6 +133,8 @@ func plant():
 	var closest_area_parent = areas[0].get_parent()
 	if closest_area_parent.is_in_group("farm_plot") && !closest_area_parent.planted:
 		closest_area_parent.sow()
+		hud_toolbar.set_current_item_amount(current_amount-1)
+	
 
 func place_fence():
 	var pos: Vector2 = global_position

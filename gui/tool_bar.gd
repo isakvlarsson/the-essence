@@ -13,16 +13,21 @@ func _ready() -> void:
 	for s: Button in slots:
 		s.connect("clicked", toolbar_slot_clicked)
 	
-	slots[0].set_item("stick", 1)
-	slots[1].set_item("shovel", 1)
-	slots[2].set_item("seeds", 10)
-	slots[3].set_item("fence", 5)
-	slots[4].set_item("trap", 5)
-	slots[5].set_item("totem", 1)
-	
+	slots[0].set_item("stick", 1, false)
+	slots[1].set_item("shovel", 1, false)
+	slots[2].set_item("seeds", 10, true)
+	slots[3].set_item("fence", 5, true)
+	slots[4].set_item("trap", 5, true)
+	slots[5].set_item("totem", 1, true)
+
 func toolbar_slot_clicked(slot):
 	slots[selectedSlotID].selected = false
 	slot.selected = true
 	selectedSlotID = slot.id
 	update_selected_item.emit(slot.item)
 	
+func get_current_item_amount():
+	return slots[selectedSlotID].amount
+
+func set_current_item_amount(amount: int):
+	slots[selectedSlotID].set_amount(amount)
