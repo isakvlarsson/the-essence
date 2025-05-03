@@ -60,7 +60,7 @@ animations = [{
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_bd1gk")
 
-[node name="TotemArea" type="Area2D" parent="."]
+[node name="TotemArea" type="Area2D" parent="." groups=["totem"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TotemArea"]
 position = Vector2(2.38419e-07, 2.38419e-07)
@@ -72,5 +72,14 @@ scale = Vector2(1.12967, 1.07064)
 sprite_frames = SubResource("SpriteFrames_p4glb")
 animation = &"idle"
 
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(0, -50, 30, -40, 40, -30, 50, -10, 50, 0, 40, 30, 30, 40, 10, 50, -10, 50, -30, 40, -40, 30, -50, 10, -50, 0, -40, -30, -30, -40, -10, -50)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
 [connection signal="area_entered" from="TotemArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="TotemArea" to="." method="_on_totem_area_area_entered"]
+[connection signal="area_exited" from="TotemArea" to="." method="_on_totem_area_area_exited"]
 [connection signal="body_entered" from="TotemArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="TotemArea" to="." method="_on_totem_area_body_entered"]
+[connection signal="body_exited" from="TotemArea" to="." method="_on_totem_area_body_exited"]

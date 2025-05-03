@@ -13,7 +13,7 @@ size = Vector2(4, 4)
 [sub_resource type="QuadMesh" id="QuadMesh_xa51p"]
 size = Vector2(4, 4)
 
-[node name="FarmPlot" type="Node2D" groups=["Plant", "farm_plot"]]
+[node name="FarmPlot" type="Node2D" groups=["farm_plot"]]
 script = ExtResource("1_sc374")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -31,10 +31,11 @@ texture = ExtResource("2_kchl1")
 mesh = SubResource("QuadMesh_xa51p")
 texture = ExtResource("3_kchl1")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_kchl1")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

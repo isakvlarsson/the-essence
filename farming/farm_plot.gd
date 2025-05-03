@@ -7,10 +7,14 @@ extends Node2D
 @export var planted = false
 var growth_per_day: float = 0.2 
 var min_size: float = 0.2
-var eating_creatures := []
+var is_protected := false
 
 func _ready() -> void:
-	pass
+	print(get_tree())
+	for totem in get_tree().get_nodes_in_group("totem"):
+		for body in totem.get_overlapping_bodies():
+			if body == self:
+				totem.check_overlapping()
 
 func _process(delta: float) -> void:
 	if planted:

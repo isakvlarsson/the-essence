@@ -30,8 +30,11 @@ func _process(delta: float) -> void:
 
 func spawn_goblins():
 	var spawn_points: Array[Node] = get_tree().get_nodes_in_group("creature_spawn_point")
-	var farm_plots: Array[Node] = get_tree().get_nodes_in_group("farm_plot")
 	
+	var farm_plots = get_tree().get_nodes_in_group("farm_plot").filter(
+	func(plant): 
+		return not plant.is_protected
+	)
 	if farm_plots.size() < 1:
 		pass
 		

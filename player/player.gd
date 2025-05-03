@@ -157,6 +157,9 @@ func place_totem():
 	get_tree().root.add_child(totem)
 	totem.global_position = pos + Vector2(0.0, 0.0)
 	totem.scale = Vector2(1.0, 1.0)*2
+	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
+	nav_region.add_child(totem)
+	nav_region.bake_navigation_polygon(true)
 	
 func _on_update_selected_item(item):
 	currentItem = item
