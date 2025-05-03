@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if planted:
-		plant.scale = Vector2(growth_level, growth_level)
+		plant.scale = Vector2(growth_level + 0.2, growth_level + 0.2)
 	else:
 		plant.visible = false
 		
