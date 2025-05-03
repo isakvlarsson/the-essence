@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var interaction_area: Area2D = $InteractionBox
 @onready var hud_toolbar = %HUD/ToolBar
 
+var can_interact = true
+
 var speed = 400
 var canDash = true
 var dashing = false
@@ -43,6 +45,9 @@ func get_input():
 
 func _input(event):
 	if Input.is_action_pressed("whack"):
+		if !can_interact:
+			return
+		can_interact = false
 		match currentItem:
 			"stick": 
 				get_node("AnimatedSprite2D").play("whack")
@@ -53,10 +58,8 @@ func _input(event):
 				create_soil()
 			"fence":
 				place_fence()
-			"trap":
-				place_trap()
-			"totem":
-				place_totem()
+		await get_tree().create_timer(0.1).timeout
+		can_interact = true
 		
 		
 func dash():
@@ -113,6 +116,10 @@ func _on_stick_body_entered(body: Node2D) -> void:
 		body.queue_free()
 		
 func create_soil():
+	var areas = interaction_area.get_overlapping_areas()
+	if areas.size() > 0:
+		return # No planting on interaction objects
+	
 	var pos: Vector2 = global_position
 	var crop_instance: Node2D = crop_scene.instantiate()
 	get_tree().root.add_child(crop_instance)
