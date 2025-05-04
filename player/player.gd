@@ -58,6 +58,8 @@ func _input(event):
 				create_soil()
 			"fence":
 				place_fence()
+			"bucket":
+				water_plant()
 		await get_tree().create_timer(0.1).timeout
 		can_interact = true
 	if Input.is_action_pressed("increment_selected_slot"):
@@ -156,13 +158,10 @@ func plant():
 	if  current_amount< 1:
 		return
 	
-	var areas = interaction_area.get_overlapping_areas()
-	if areas.size() == 0:
+	var closest_area = get_closest_area()
+	if closest_area == null:
 		return
-	var sort_by_distance = func (a: Area2D, b: Area2D):
-		return a.global_position.distance_squared_to(self.global_position) < b.global_position.distance_squared_to(self.global_position)
-	areas.sort_custom(sort_by_distance)
-	var closest_area_parent = areas[0].get_parent()
+	var closest_area_parent = closest_area.get_parent()
 	if closest_area_parent.is_in_group("farm_plot") && !closest_area_parent.planted:
 		closest_area_parent.sow()
 		hud_toolbar.set_current_item_amount(current_amount-1)
@@ -198,6 +197,23 @@ func place_totem():
 	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
 	nav_region.add_child(totem)
 	nav_region.bake_navigation_polygon(true)
+
+func water_plant():
+	var closest_area = get_closest_area()
+	if closest_area == null:
+		return
+	var closest_area_parent = closest_area.get_parent()
+	if closest_area_parent.is_in_group("farm_plot"):
+		closest_area_parent.water()
 	
 func _on_update_selected_item(item):
 	currentItem = item
+
+func get_closest_area() -> Area2D:
+	var areas = interaction_area.get_overlapping_areas()
+	if areas.size() == 0:
+		return null
+	var sort_by_distance = func (a: Area2D, b: Area2D):
+		return a.global_position.distance_squared_to(self.global_position) < b.global_position.distance_squared_to(self.global_position)
+	areas.sort_custom(sort_by_distance)
+	return areas[0]
