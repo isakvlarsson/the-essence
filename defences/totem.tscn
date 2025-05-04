@@ -56,11 +56,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="totem" type="Node2D"]
+[node name="totem" type="Node2D" groups=["totem"]]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_bd1gk")
 
-[node name="TotemArea" type="Area2D" parent="." groups=["totem"]]
+[node name="TotemArea" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TotemArea"]
 position = Vector2(2.38419e-07, 2.38419e-07)

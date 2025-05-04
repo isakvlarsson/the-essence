@@ -16,10 +16,10 @@ size = Vector2(4, 4)
 [node name="FarmPlot" type="Node2D" groups=["farm_plot"]]
 script = ExtResource("1_sc374")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CollisionArea" type="Area2D" parent="."]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
 scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_kchl1")
 
@@ -38,4 +38,4 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_kchl1")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="CollisionArea" to="." method="_on_area_2d_body_entered"]
