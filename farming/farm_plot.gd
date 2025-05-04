@@ -41,10 +41,11 @@ func water():
 	watered = true
 	
 func is_harvestable():
-	if growth_level >= 1.0:
-		return true
-	else:
-		return false
+	return growth_level >= 1.0
+
+func harvest():
+	planted = false
+	plant.visible = false
 
 func _on_new_day(day: int) -> void:
 	growth_tick()

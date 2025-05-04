@@ -88,7 +88,8 @@ func _input(event):
 				hud_toolbar.set_current_slot(8)
 			KEY_0:
 				hud_toolbar.set_current_slot(9)
-		
+	if Input.is_action_just_pressed("interact"):
+		interact()
 func dash():
 	if Input.is_action_just_pressed("dash") and canDash and dashDirection != Vector2.ZERO:
 		velocity = dashDirection.normalized()*dashSpeed
@@ -217,3 +218,27 @@ func get_closest_area() -> Area2D:
 		return a.global_position.distance_squared_to(self.global_position) < b.global_position.distance_squared_to(self.global_position)
 	areas.sort_custom(sort_by_distance)
 	return areas[0]
+
+func get_current_areas_by_distance():
+	var areas = interaction_area.get_overlapping_areas()
+	if areas.size() == 0:
+		return []
+	var sort_by_distance = func (a: Area2D, b: Area2D):
+		return a.global_position.distance_squared_to(self.global_position) < b.global_position.distance_squared_to(self.global_position)
+	areas.sort_custom(sort_by_distance)
+	return areas
+	
+func interact():
+	var areas = get_current_areas_by_distance()
+	if areas.size() == 0:
+		return
+	for a in areas:
+		var parent = a.get_parent()
+		if parent.is_in_group("farm_plot") && parent.is_harvestable():
+			harvest_plant(parent)
+			return
+
+func harvest_plant(node: Node2D):
+	var plant_amount = hud_toolbar.get_item_amount("plant")
+	hud_toolbar.set_item_amount("plant", plant_amount + 1)
+	node.harvest()
