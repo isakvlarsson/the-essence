@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://r575h8g86c54"]
+
+[ext_resource type="Texture2D" uid="uid://bumo65j5puh0n" path="res://summer_village_v1.0/assets/houses.png" id="1_tmt7c"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="HouseSprite" type="Sprite2D" parent="."]
+z_index = 10
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("1_tmt7c")
+region_enabled = true
+region_rect = Rect2(3.70248, 274.155, 276.234, 297.845)
+region_filter_clip_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+scale = Vector2(0.9, 0.9)
+
+[node name="BaseCollision" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(1.19209e-07, -3.33333)
+scale = Vector2(3.21492, 3.34596)
+polygon = PackedVector2Array(-34, 14, -34, 33, -19, 33, -19, 18, -17, 17, -11, 17, -9, 19, -9, 33, 6, 33, 6, 19, 35, 19, 35, 0, 36, 0, 36, -22, -14, -22, -34, -20)
+
+[node name="FrontCollision" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-1.11111, 1.11111)
+scale = Vector2(3.12517, 3.13612)
+polygon = PackedVector2Array(-19, 33, -9, 33, -9, 18, -11, 17, -17, 17, -19, 18, -19, 23.616)

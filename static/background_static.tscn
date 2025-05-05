@@ -1,21 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5nl6472j43m2"]
+[gd_scene load_steps=7 format=3 uid="uid://c5nl6472j43m2"]
 
 [ext_resource type="Shader" uid="uid://cbxtbu8rghdue" path="res://static/background_static.gdshader" id="1_6v3yy"]
 [ext_resource type="PackedScene" uid="uid://dipoxbiuglrr2" path="res://static/realm_boudaries/swamp_boundary.tscn" id="2_8k1it"]
 [ext_resource type="PackedScene" uid="uid://qq3avks1ojpo" path="res://static/realm_boudaries/ice_boundary.tscn" id="3_85leu"]
-[ext_resource type="PackedScene" uid="uid://cvamx72lfqv5i" path="res://static/world_boundary_area_2d.tscn" id="4_s8m1h"]
 [ext_resource type="PackedScene" uid="uid://bw5t4s4eo6hbd" path="res://static/realm_boudaries/fire_boundary.tscn" id="5_s8m1h"]
 [ext_resource type="PackedScene" uid="uid://bhqt08pmxqc5n" path="res://static/realm_boudaries/water_boundary.tscn" id="6_i6mus"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_85leu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6mus"]
 shader = ExtResource("1_6v3yy")
 
 [node name="BackgroundStatic" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-material = SubResource("ShaderMaterial_85leu")
+z_index = -1
+texture_repeat = 3
+material = SubResource("ShaderMaterial_i6mus")
 
 [node name="SwampBoundary" parent="." instance=ExtResource("2_8k1it")]
 position = Vector2(195, -42)
@@ -24,13 +26,6 @@ scale = Vector2(2, 2)
 [node name="Ice Boundary" parent="." instance=ExtResource("3_85leu")]
 position = Vector2(344, -952)
 scale = Vector2(2, 2)
-
-[node name="WorldBoundaryArea2D" parent="." instance=ExtResource("4_s8m1h")]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(848, -280, 848, -48, 888, 0, 872, 704, 32, 704, 16, 608, -512, 584, -528, -272, -592, -288, -584, 656, -48, 664, -56, 824, 960, 816, 944, -288)
 
 [node name="FireBoundary" parent="." instance=ExtResource("5_s8m1h")]
 position = Vector2(1751, -900)

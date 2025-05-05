@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://doiouqckanyn4"]
+
+[ext_resource type="Texture2D" uid="uid://c81qmqabgkyvb" path="res://summer_village_v1.0/assets/market_assets.png" id="1_yd7ry"]
+
+[node name="Barrel" type="Node2D"]
+
+[node name="MarketAssets" type="Sprite2D" parent="."]
+position = Vector2(235, 136)
+texture = ExtResource("1_yd7ry")
+region_enabled = true
+region_rect = Rect2(4.06617, 200.637, 27.2728, 38.4298)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(222, 130, 223, 142, 224, 146, 228, 153, 240, 153, 245, 146, 246, 139, 246, 129, 240, 124, 234, 123, 228, 124)

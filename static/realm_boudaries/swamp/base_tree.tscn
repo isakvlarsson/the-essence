@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://byg736om7kjd"]
+
+[ext_resource type="Texture2D" uid="uid://5hgy2sre0m3h" path="res://summer_village_v1.0/assets/nature_assets.png" id="1_miwkx"]
+
+[node name="Tree" type="StaticBody2D"]
+
+[node name="NatureAssets" type="Sprite2D" parent="."]
+z_index = 1000
+position = Vector2(-3.99994, 2.99998)
+scale = Vector2(12.28, 12.28)
+texture = ExtResource("1_miwkx")
+region_enabled = true
+region_rect = Rect2(0, 0, 107.5, 147.75)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(45, 586, 74, 643, 89, 640, 99, 646, 107, 656, 104, 664, 92, 668, 88, 677, 93, 685, 107, 699, 110, 710, 119, 718, 127, 723, 119, 735, 69, 737, 40, 742, 17, 724, -8, 714, -38, 703, -51, 692, -60, 714, -83, 709, -91, 718, -104, 723, -118, 717, -130, 728, -143, 738, -159, 734, -175, 738, -189, 744, -209, 754, -222, 751, -208, 732, -191, 719, -175, 702, -163, 678, -163, 666, -159, 656, -175, 647, -185, 637, -171, 627, -152, 614, -137, 606, -126, 609, -118, 600, -110, 589)
