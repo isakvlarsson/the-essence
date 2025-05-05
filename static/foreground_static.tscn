@@ -8,11 +8,11 @@
 script = ExtResource("1_jik1x")
 
 [node name="Portal" parent="." instance=ExtResource("5_mhjka")]
-position = Vector2(-265, 159)
+position = Vector2(-548, 730)
 
 [node name="Portal2" parent="." instance=ExtResource("5_mhjka")]
 position = Vector2(169, -542)
 
 [node name="Altar" parent="." instance=ExtResource("3_763xc")]
-position = Vector2(-333, 236)
+position = Vector2(-623, 792)
 scale = Vector2(2.02, 2.02)
