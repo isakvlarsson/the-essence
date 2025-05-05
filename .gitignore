@@ -3,4 +3,4 @@
 /android/
 *.DS_Store
 
-.tmp
+*.tmp
