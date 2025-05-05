@@ -15,6 +15,7 @@ size = Vector2(4, 4)
 
 [node name="FarmPlot" type="Node2D" groups=["farm_plot"]]
 script = ExtResource("1_sc374")
+watered_modulate_color = Color(0.409507, 0.269851, 0, 1)
 
 [node name="CollisionArea" type="Area2D" parent="."]
 collision_mask = 2
@@ -24,6 +25,7 @@ scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_kchl1")
 
 [node name="PlotMesh" type="MeshInstance2D" parent="."]
+self_modulate = Color(0.690131, 0.407269, 0.256825, 1)
 mesh = SubResource("QuadMesh_kchl1")
 texture = ExtResource("2_kchl1")
 

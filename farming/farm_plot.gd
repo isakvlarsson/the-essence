@@ -5,6 +5,9 @@ extends Node2D
 
 @export var growth_level: float = 0.0 # From 0-1
 @export var planted = false
+@export var watered = false
+@export var watered_modulate_color: Color = Color("b06841")
+
 var growth_per_day: float = 0.2 
 var min_size: float = 0.2
 var is_protected := false
@@ -15,24 +18,34 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if planted:
-		plant.scale = Vector2(growth_level, growth_level)
+		plant.scale = Vector2(growth_level + 0.2, growth_level + 0.2)
 	else:
 		plant.visible = false
+	
+	if watered:
+		$PlotMesh.self_modulate = watered_modulate_color
+	else:
+		$PlotMesh.self_modulate = Color("ffffff")
 		
 func growth_tick():
-	if planted:
+	if planted and watered:
 		growth_level += growth_per_day
 		growth_level = clamp(growth_level, 0.0, 1.0)
+		watered = false
 
 func sow():
 	planted = true
 	plant.visible = true
 
+func water():
+	watered = true
+	
 func is_harvestable():
-	if growth_level >= 1.0:
-		return true
-	else:
-		return false
+	return growth_level >= 1.0
+
+func harvest():
+	planted = false
+	plant.visible = false
 
 func _on_new_day(day: int) -> void:
 	growth_tick()

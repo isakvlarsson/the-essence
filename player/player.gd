@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var interaction_area: Area2D = $InteractionBox
 @onready var hud_toolbar = %HUD/ToolBar
 
+var can_interact = true
+
 var speed = 400
 var canDash = true
 var dashing = false
@@ -43,6 +45,9 @@ func get_input():
 
 func _input(event):
 	if Input.is_action_pressed("whack"):
+		if !can_interact:
+			return
+		can_interact = false
 		match currentItem:
 			"stick": 
 				get_node("AnimatedSprite2D").play("whack")
@@ -53,12 +58,42 @@ func _input(event):
 				create_soil()
 			"fence":
 				place_fence()
-			"trap":
-				place_trap()
+			"bucket":
+				water_plant()
 			"totem":
 				place_totem()
-		
-		
+			"trap":
+				place_trap()
+		await get_tree().create_timer(0.1).timeout
+		can_interact = true
+	if Input.is_action_pressed("increment_selected_slot"):
+		hud_toolbar.set_current_slot((hud_toolbar.selectedSlotID + 1)%10)
+	if Input.is_action_pressed("decrement_selected_slot"):
+		hud_toolbar.set_current_slot((hud_toolbar.selectedSlotID + -1)%10)
+	if Input.is_action_pressed("select_toolbar_slot"):
+		match event.keycode:
+			KEY_1:
+				hud_toolbar.set_current_slot(0)
+			KEY_2:
+				hud_toolbar.set_current_slot(1)
+			KEY_3:
+				hud_toolbar.set_current_slot(2)
+			KEY_4:
+				hud_toolbar.set_current_slot(3)
+			KEY_5:
+				hud_toolbar.set_current_slot(4)
+			KEY_6:
+				hud_toolbar.set_current_slot(5)
+			KEY_7:
+				hud_toolbar.set_current_slot(6)
+			KEY_8:
+				hud_toolbar.set_current_slot(7)
+			KEY_9:
+				hud_toolbar.set_current_slot(8)
+			KEY_0:
+				hud_toolbar.set_current_slot(9)
+	if Input.is_action_just_pressed("interact"):
+		interact()
 func dash():
 	if Input.is_action_just_pressed("dash") and canDash and dashDirection != Vector2.ZERO:
 		velocity = dashDirection.normalized()*dashSpeed
@@ -113,22 +148,29 @@ func _on_stick_body_entered(body: Node2D) -> void:
 		body.queue_free()
 		
 func create_soil():
+	var areas = interaction_area.get_overlapping_areas()
+	if areas.size() > 0:
+		return # No planting on interaction objects
+	
 	var pos: Vector2 = global_position
 	var crop_instance: Node2D = crop_scene.instantiate()
 	get_tree().root.add_child(crop_instance)
 	crop_instance.global_position = pos + Vector2(0.0, 0.0)
-	crop_instance.scale = Vector2(1.0, 1.0)*10
+	crop_instance.scale = Vector2(1.0, 1.0)*18
 
 func plant():
-	var areas = interaction_area.get_overlapping_areas()
-	if areas.size() == 0:
+	var current_amount = hud_toolbar.get_current_item_amount()
+	if  current_amount< 1:
 		return
-	var sort_by_distance = func (a: Area2D, b: Area2D):
-		return a.global_position.distance_squared_to(self.global_position) < b.global_position.distance_squared_to(self.global_position)
-	areas.sort_custom(sort_by_distance)
-	var closest_area_parent = areas[0].get_parent()
+	
+	var closest_area = get_closest_area()
+	if closest_area == null:
+		return
+	var closest_area_parent = closest_area.get_parent()
 	if closest_area_parent.is_in_group("farm_plot") && !closest_area_parent.planted:
 		closest_area_parent.sow()
+		hud_toolbar.set_current_item_amount(current_amount-1)
+	
 
 func place_fence():
 	var pos: Vector2 = global_position
@@ -160,6 +202,47 @@ func place_totem():
 	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
 	nav_region.add_child(totem)
 	nav_region.bake_navigation_polygon(true)
+
+func water_plant():
+	var closest_area = get_closest_area()
+	if closest_area == null:
+		return
+	var closest_area_parent = closest_area.get_parent()
+	if closest_area_parent.is_in_group("farm_plot"):
+		closest_area_parent.water()
 	
 func _on_update_selected_item(item):
 	currentItem = item
+
+func get_closest_area() -> Area2D:
+	var areas = interaction_area.get_overlapping_areas()
+	if areas.size() == 0:
+		return null
+	var sort_by_distance = func (a: Area2D, b: Area2D):
+		return a.global_position.distance_squared_to(self.global_position) < b.global_position.distance_squared_to(self.global_position)
+	areas.sort_custom(sort_by_distance)
+	return areas[0]
+
+func get_current_areas_by_distance():
+	var areas = interaction_area.get_overlapping_areas()
+	if areas.size() == 0:
+		return []
+	var sort_by_distance = func (a: Area2D, b: Area2D):
+		return a.global_position.distance_squared_to(self.global_position) < b.global_position.distance_squared_to(self.global_position)
+	areas.sort_custom(sort_by_distance)
+	return areas
+	
+func interact():
+	var areas = get_current_areas_by_distance()
+	if areas.size() == 0:
+		return
+	for a in areas:
+		var parent = a.get_parent()
+		if parent.is_in_group("farm_plot") && parent.is_harvestable():
+			harvest_plant(parent)
+			return
+
+func harvest_plant(node: Node2D):
+	var plant_amount = hud_toolbar.get_item_amount("plant")
+	hud_toolbar.set_item_amount("plant", plant_amount + 1)
+	node.harvest()

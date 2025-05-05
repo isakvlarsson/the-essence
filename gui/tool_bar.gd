@@ -13,16 +13,41 @@ func _ready() -> void:
 	for s: Button in slots:
 		s.connect("clicked", toolbar_slot_clicked)
 	
-	slots[0].set_item("stick", 1)
-	slots[1].set_item("shovel", 1)
-	slots[2].set_item("seeds", 10)
-	slots[3].set_item("fence", 5)
-	slots[4].set_item("trap", 5)
-	slots[5].set_item("totem", 1)
-	
+	slots[0].set_item("stick", 1, false)
+	slots[1].set_item("shovel", 1, false)
+	slots[2].set_item("bucket", 1, false)
+	slots[3].set_item("seeds", 10, true)
+	slots[4].set_item("fence", 5, true)
+	slots[5].set_item("trap", 5, true)
+	slots[6].set_item("totem", 1, true)
+	slots[7].set_item("plant", 0, true)
+
 func toolbar_slot_clicked(slot):
 	slots[selectedSlotID].selected = false
 	slot.selected = true
 	selectedSlotID = slot.id
 	update_selected_item.emit(slot.item)
+
+func set_current_slot(id: int):
+	slots[selectedSlotID].selected = false
+	slots[id].selected = true
+	selectedSlotID = id
+	update_selected_item.emit(slots[id].item)
 	
+func get_current_item_amount():
+	return slots[selectedSlotID].amount
+
+func set_current_item_amount(amount: int):
+	slots[selectedSlotID].set_amount(amount)
+
+func get_item_amount(item_name: String) -> int:
+	var is_item = func (i):
+		return i.item == item_name
+	var index = slots.find_custom(is_item)
+	return slots[index].amount
+
+func set_item_amount(item_name: String, amount: int):
+	var is_item = func (i):
+		return i.item == item_name
+	var index = slots.find_custom(is_item)
+	slots[index].set_amount(amount)
