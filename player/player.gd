@@ -70,7 +70,7 @@ func _input(event):
 		hud_toolbar.set_current_slot((hud_toolbar.selectedSlotID + 1)%10)
 	if Input.is_action_pressed("decrement_selected_slot"):
 		hud_toolbar.set_current_slot((hud_toolbar.selectedSlotID + -1)%10)
-	if Input.is_action_pressed("select_toolbar_slot"):
+	if event.is_action_pressed("select_toolbar_slot"):
 		match event.keycode:
 			KEY_1:
 				hud_toolbar.set_current_slot(0)
