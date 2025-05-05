@@ -60,6 +60,10 @@ func _input(event):
 				place_fence()
 			"bucket":
 				water_plant()
+			"totem":
+				place_totem()
+			"trap":
+				place_trap()
 		await get_tree().create_timer(0.1).timeout
 		can_interact = true
 	if Input.is_action_pressed("increment_selected_slot"):
