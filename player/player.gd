@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var crop_scene = preload("res://farming/farm_plot.tscn") 
 @onready var fence_sceneLR = preload("res://defences/fence_lr.tscn") 
 @onready var fence_sceneUD = preload("res://defences/fence_ud.tscn") 
+@onready var trap_scene = preload("res://defences/trap.tscn") 
+@onready var totem_scene = preload("res://defences/totem.tscn") 
 @onready var interaction_area: Area2D = $InteractionBox
 @onready var hud_toolbar = %HUD/ToolBar
 
@@ -51,6 +53,10 @@ func _input(event):
 				create_soil()
 			"fence":
 				place_fence()
+			"trap":
+				place_trap()
+			"totem":
+				place_totem()
 		
 		
 func dash():
@@ -104,7 +110,7 @@ func _physics_process(delta):
 
 func _on_stick_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Creature"):
-		body.queue_free() # Replace with function body.
+		body.queue_free()
 		
 func create_soil():
 	var pos: Vector2 = global_position
@@ -137,6 +143,23 @@ func place_fence():
 	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
 	nav_region.add_child(fence)
 	nav_region.bake_navigation_polygon(true)
-			
+	
+func place_trap():
+	var pos: Vector2 = global_position
+	var trap: Node2D = trap_scene.instantiate()
+	get_tree().root.add_child(trap)
+	trap.global_position = pos + Vector2(0.0, 0.0)
+	trap.scale = Vector2(1.0, 1.0)	
+	
+func place_totem():
+	var pos: Vector2 = global_position
+	var totem: Node2D = totem_scene.instantiate()
+	get_tree().root.add_child(totem)
+	totem.global_position = pos + Vector2(0.0, 0.0)
+	totem.scale = Vector2(1.0, 1.0)*2
+	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
+	nav_region.add_child(totem)
+	nav_region.bake_navigation_polygon(true)
+	
 func _on_update_selected_item(item):
 	currentItem = item

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://djfrhnfnqsa40"]
+
+[ext_resource type="Texture2D" uid="uid://buunrd3r17psm" path="res://summer_village_v1.0/tiles/cobblestone_tiles_grey.png" id="1_4thds"]
+[ext_resource type="Script" uid="uid://cyfhab0xk3tor" path="res://defences/trap.gd" id="1_cc8qx"]
+[ext_resource type="Texture2D" uid="uid://vtwsn1ndiwup" path="res://defences/open_trap.png" id="3_btkpl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upm4a"]
+size = Vector2(32.625, 35.25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rus52"]
+atlas = ExtResource("1_4thds")
+region = Rect2(193, 0, 30, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p4glb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rus52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_btkpl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="trap" type="Node2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_cc8qx")
+
+[node name="TrapArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrapArea"]
+position = Vector2(2.38419e-07, 2.38419e-07)
+shape = SubResource("RectangleShape2D_upm4a")
+
+[node name="TrapSprite" type="AnimatedSprite2D" parent="TrapArea"]
+position = Vector2(0, -4.76837e-07)
+scale = Vector2(1.12967, 1.07064)
+sprite_frames = SubResource("SpriteFrames_p4glb")
+
+[connection signal="area_entered" from="TrapArea" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="TrapArea" to="." method="_on_area_2d_body_entered"]
