@@ -2,6 +2,7 @@ extends Node2D
 
 enum PortalStates {IDLE, FIRE, ICE, SWAMP, WATER}
 var current_state = PortalStates.IDLE
+var destination
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _ready():
@@ -32,3 +33,6 @@ func activate_swamp_portal():
 
 func activate_water_portal():
 	current_state = PortalStates.WATER
+
+func assign_destination(destNode):
+	destination = destNode;

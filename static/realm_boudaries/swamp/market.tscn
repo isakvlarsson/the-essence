@@ -1,0 +1,114 @@
+[gd_scene load_steps=17 format=3 uid="uid://vyi8l6qe57f3"]
+
+[ext_resource type="Texture2D" uid="uid://c81qmqabgkyvb" path="res://summer_village_v1.0/assets/market_assets.png" id="1_hco2a"]
+[ext_resource type="Script" uid="uid://bxnunl8apyfxt" path="res://static/realm_boudaries/swamp/market.gd" id="2_fors5"]
+[ext_resource type="Texture2D" uid="uid://cntcl4xmgwkrn" path="res://summer_village_v1.0/characters/food_merchant_spritesheet.png" id="3_8dm6e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjo0i"]
+atlas = ExtResource("3_8dm6e")
+region = Rect2(0, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ommpj"]
+atlas = ExtResource("3_8dm6e")
+region = Rect2(30, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcehy"]
+atlas = ExtResource("3_8dm6e")
+region = Rect2(60, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkaxb"]
+atlas = ExtResource("3_8dm6e")
+region = Rect2(90, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4qp5"]
+atlas = ExtResource("3_8dm6e")
+region = Rect2(0, 30, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i4as"]
+atlas = ExtResource("3_8dm6e")
+region = Rect2(30, 30, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mtt5"]
+atlas = ExtResource("3_8dm6e")
+region = Rect2(60, 30, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrvrn"]
+atlas = ExtResource("3_8dm6e")
+region = Rect2(90, 30, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jut0v"]
+atlas = ExtResource("3_8dm6e")
+region = Rect2(0, 60, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok65u"]
+atlas = ExtResource("3_8dm6e")
+region = Rect2(30, 60, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hc5to"]
+atlas = ExtResource("3_8dm6e")
+region = Rect2(60, 60, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdul3"]
+atlas = ExtResource("3_8dm6e")
+region = Rect2(90, 60, 30, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y4fgs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjo0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ommpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcehy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkaxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4qp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i4as")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mtt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrvrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jut0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok65u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hc5to")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdul3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="Market" type="Sprite2D" parent="."]
+z_index = 10
+texture = ExtResource("1_hco2a")
+region_enabled = true
+region_rect = Rect2(96.1161, 3.07906, 87.1805, 102.487)
+script = ExtResource("2_fors5")
+
+[node name="MerchantSprite" type="AnimatedSprite2D" parent="Market"]
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_y4fgs")
+frame_progress = 0.181386
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-33, 15, -32, 13, 31, 13, 33, 20, 33, 29, 32, 38, 31, 46, -34, 46, -36, 28)

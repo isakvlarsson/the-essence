@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://8aqrg2wjctqa"]
+
+[ext_resource type="Texture2D" uid="uid://c81qmqabgkyvb" path="res://summer_village_v1.0/assets/market_assets.png" id="1_tm8k8"]
+
+[node name="Altar" type="Node2D"]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-8.6, -0.599998)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+position = Vector2(75.6, 12.6)
+polygon = PackedVector2Array(-18, 21, -5, 21, 2, 14, 2, -7, -26, -7, -26, 15)
+
+[node name="CropsPanel" type="Sprite2D" parent="."]
+position = Vector2(55, 19)
+scale = Vector2(2, 2)
+texture = ExtResource("1_tm8k8")
+region_enabled = true
+region_rect = Rect2(367.15, 56.8071, 14.7729, 16.5109)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(35, 35)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-3, -22)
+polygon = PackedVector2Array(-18, 21, -5, 21, 2, 14, 2, -7, -26, -7, -26, 15)
+
+[node name="EssencePanel" type="Sprite2D" parent="."]
+position = Vector2(21, 19)
+scale = Vector2(2, 2)
+texture = ExtResource("1_tm8k8")
+region_enabled = true
+region_rect = Rect2(366.876, 74.5128, 16.4732, 18.4009)

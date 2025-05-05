@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://xnwbmpwqxoll"]
+
+[ext_resource type="Texture2D" uid="uid://5hgy2sre0m3h" path="res://summer_village_v1.0/assets/nature_assets.png" id="1_b0kt7"]
+
+[node name="Bushes" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(7, -7, 4, -10, 2, -10, 0, -8, -6, -8, -7, -6, -9, -5, -12, -2, -13, 2, -12, 7, -10, 10, -8, 11, -6, 11, -3, 12, 1, 12, 4, 11, 8, 11, 11, 8, 13, 4, 11, -1, 9, -5)
+
+[node name="BushesSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("1_b0kt7")
+region_enabled = true
+region_rect = Rect2(255.334, 13.3879, 40.5955, 39.93)
+
+[node name="NatureAssets" type="Sprite2D" parent="."]
+position = Vector2(-3, -3)
+texture = ExtResource("1_b0kt7")
+region_enabled = true
+region_rect = Rect2(426.689, 9.66978, 10.6836, 8.01271)
+
+[node name="NatureAssets" type="Sprite2D" parent="NatureAssets"]
+position = Vector2(8, 5)
+texture = ExtResource("1_b0kt7")
+region_enabled = true
+region_rect = Rect2(426.015, 20.7815, 11.1916, 10.4016)
