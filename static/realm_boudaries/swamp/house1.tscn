@@ -5,6 +5,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="HouseSprite" type="Sprite2D" parent="."]
+z_index = 10
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("1_tmt7c")
 region_enabled = true
