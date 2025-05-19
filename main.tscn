@@ -36,6 +36,9 @@ z_index = 1
 footstep_sounds = Array[AudioStream]([ExtResource("5_5vw27"), ExtResource("6_4c57u"), ExtResource("7_efxa6")])
 whack_sounds = Array[AudioStream]([ExtResource("8_dg77c"), ExtResource("9_ycdy4")])
 
+[node name="Camera2D" parent="player" index="1"]
+zoom = Vector2(1.5, 1.5)
+
 [node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="player"]
 
 [node name="WhackPlayer" type="AudioStreamPlayer2D" parent="player"]
