@@ -7,6 +7,7 @@ extends Node2D
 @export var planted = false
 @export var watered = false
 @export var watered_modulate_color: Color = Color("b06841")
+@export var plant_green_color: Color
 
 var growth_per_day: float = 0.2 
 var min_size: float = 0.2
@@ -18,6 +19,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if planted:
+		plant_green_color.s = 1-growth_level
+		plant.modulate = plant_green_color
 		plant.scale = Vector2(growth_level + 0.2, growth_level + 0.2)
 	else:
 		plant.visible = false
