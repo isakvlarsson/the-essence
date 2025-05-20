@@ -168,7 +168,7 @@ func plant():
 		return
 	var closest_area_parent = closest_area.get_parent()
 	if closest_area_parent.is_in_group("farm_plot") && !closest_area_parent.planted:
-		closest_area_parent.sow()
+		closest_area_parent.sow("pumpkin")
 		hud_toolbar.set_current_item_amount(current_amount-1)
 	
 
@@ -243,6 +243,7 @@ func interact():
 			return
 
 func harvest_plant(node: Node2D):
-	var plant_amount = hud_toolbar.get_item_amount("plant")
-	hud_toolbar.set_item_amount("plant", plant_amount + 1)
+	var plant_type = node.plant_type
+	var plant_amount = hud_toolbar.get_item_amount(plant_type)
+	hud_toolbar.set_item_amount(plant_type, plant_amount + 1)
 	node.harvest()
