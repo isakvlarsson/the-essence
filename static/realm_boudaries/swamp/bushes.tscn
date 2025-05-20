@@ -26,3 +26,6 @@ position = Vector2(8, 5)
 texture = ExtResource("1_b0kt7")
 region_enabled = true
 region_rect = Rect2(426.015, 20.7815, 11.1916, 10.4016)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(-9, 11, -5, 11, -3, 12, -1, 12, 2, 12, 4, 11, 8, 11, 11, 8, 13, 4, 9, -5, 4, -10, 2, -10, 0, -8, -6, -8, -7, -6, -10, -4, -10, -3, -12, -2, -13, 2, -12, 7)
