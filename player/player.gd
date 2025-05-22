@@ -70,7 +70,7 @@ func _input(event):
 		hud_toolbar.set_current_slot((hud_toolbar.selectedSlotID + 1)%10)
 	if Input.is_action_pressed("decrement_selected_slot"):
 		hud_toolbar.set_current_slot((hud_toolbar.selectedSlotID + -1)%10)
-	if Input.is_action_pressed("select_toolbar_slot"):
+	if event.is_action_pressed("select_toolbar_slot"):
 		match event.keycode:
 			KEY_1:
 				hud_toolbar.set_current_slot(0)
@@ -168,7 +168,7 @@ func plant():
 		return
 	var closest_area_parent = closest_area.get_parent()
 	if closest_area_parent.is_in_group("farm_plot") && !closest_area_parent.planted:
-		closest_area_parent.sow()
+		closest_area_parent.sow("pumpkin")
 		hud_toolbar.set_current_item_amount(current_amount-1)
 	
 
@@ -243,6 +243,7 @@ func interact():
 			return
 
 func harvest_plant(node: Node2D):
-	var plant_amount = hud_toolbar.get_item_amount("plant")
-	hud_toolbar.set_item_amount("plant", plant_amount + 1)
+	var plant_type = node.plant_type
+	var plant_amount = hud_toolbar.get_item_amount(plant_type)
+	hud_toolbar.set_item_amount(plant_type, plant_amount + 1)
 	node.harvest()

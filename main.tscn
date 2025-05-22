@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ckeis5nfy86a0"]
+[gd_scene load_steps=14 format=3 uid="uid://ckeis5nfy86a0"]
 
 [ext_resource type="PackedScene" uid="uid://c5nl6472j43m2" path="res://static/background_static.tscn" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://mnhnr63qhtme" path="res://player/player.tscn" id="2_1bvp3"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bt5g53x1qkr4t" path="res://assets/sounds/FOOT3.wav" id="7_efxa6"]
 [ext_resource type="AudioStream" uid="uid://c3bntd3vy6scn" path="res://assets/sounds/WHACK1.wav" id="8_dg77c"]
 [ext_resource type="AudioStream" uid="uid://d2krogm0q4bbk" path="res://assets/sounds/WHACK2.wav" id="9_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://dfa1v2go21vmf" path="res://farming/farm_plot.tscn" id="12_dg77c"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1bvp3"]
 vertices = PackedVector2Array(234, -117.898, 234, -180, 1543.01, -937, 1543.99, 791, -937, 791, 219.797, -117.898, -937, -937, 218.797, -178.898, 233, -180, 233, -241, 218.797, -241, 219.797, -178.898)
@@ -56,5 +57,19 @@ position = Vector2(686, -148)
 
 [node name="HUD" parent="." instance=ExtResource("5_lquwl")]
 unique_name_in_owner = true
+
+[node name="FarmPlot" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(92, 224)
+scale = Vector2(18, 18)
+growth_level = 0.8
+planted = true
+plant_type = "pumpkin"
+
+[node name="FarmPlot2" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(-20, 226)
+scale = Vector2(18, 18)
+growth_level = 1.0
+planted = true
+plant_type = "ice essence"
 
 [editable path="player"]
