@@ -28,8 +28,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if planted:
-		plant_green_color.s = 1-growth_level
-		plant.modulate = plant_green_color
+		var color = plant_green_color
+		color.s = 1-growth_level
+		plant.modulate = color
 		plant.scale = Vector2(growth_level + 0.2, growth_level + 0.2)
 	else:
 		plant.visible = false
@@ -63,6 +64,8 @@ func is_harvestable():
 
 func harvest():
 	planted = false
+	growth_level = 0.0
+	plant_green_color.s = 1.0
 	plant.visible = false
 	plant_type = ""
 	plant.get_children().map(func(c): c.visible = false)
