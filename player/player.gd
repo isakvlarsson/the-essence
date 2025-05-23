@@ -17,6 +17,7 @@ var dashSpeed = 1200
 var dashDirection = Vector2.ZERO
 var input_direction = Vector2.ZERO
 var last_direction = Vector2.ZERO
+var current_realm = "ice"
 
 # --- FOOTSTEP STUFF ---
 @export var footstep_sounds: Array[AudioStream] = []
@@ -99,7 +100,7 @@ func dash():
 		velocity = dashDirection.normalized()*dashSpeed
 		canDash = false
 		dashing = true
-		
+		get_node("AnimationPlayer").play("dash")
 		#dash for 0.2 seconds
 		await get_tree().create_timer(0.2).timeout 
 		dashing = false
@@ -168,7 +169,11 @@ func plant():
 		return
 	var closest_area_parent = closest_area.get_parent()
 	if closest_area_parent.is_in_group("farm_plot") && !closest_area_parent.planted:
-		closest_area_parent.sow("pumpkin")
+		if current_realm == "swamp":
+			closest_area_parent.sow("pumpkin")
+		elif current_realm == "ice":
+			closest_area_parent.sow("iceberg lettuce")
+			
 		hud_toolbar.set_current_item_amount(current_amount-1)
 	
 
@@ -247,3 +252,9 @@ func harvest_plant(node: Node2D):
 	var plant_amount = hud_toolbar.get_item_amount(plant_type)
 	hud_toolbar.set_item_amount(plant_type, plant_amount + 1)
 	node.harvest()
+
+func step_through_portal():
+	if current_realm != "swamp":
+		current_realm = "ice"
+	else:
+		current_realm = "swamp"

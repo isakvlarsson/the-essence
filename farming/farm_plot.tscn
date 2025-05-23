@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfa1v2go21vmf"]
+[gd_scene load_steps=10 format=3 uid="uid://dfa1v2go21vmf"]
 
 [ext_resource type="Script" uid="uid://j52wpccqq12b" path="res://farming/farm_plot.gd" id="1_sc374"]
 [ext_resource type="Texture2D" uid="uid://ciuop6jkdr720" path="res://assets/realm-1/plot/plot-raised.png" id="2_kchl1"]
 [ext_resource type="Texture2D" uid="uid://wbwo13ksvpju" path="res://assets/realm-1/plant/pumpkin.png" id="3_5x6sv"]
 [ext_resource type="Texture2D" uid="uid://bgrvdrqv4es5x" path="res://assets/realm-1/plant/crop-1.png" id="3_kchl1"]
 [ext_resource type="Texture2D" uid="uid://fxhb0f4sdv7c" path="res://assets/realm-1/plant/ice deity crop.png" id="4_5x6sv"]
+[ext_resource type="Texture2D" uid="uid://c81qmqabgkyvb" path="res://summer_village_v1.0/assets/market_assets.png" id="5_qgx74"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kchl1"]
 size = Vector2(6, 6)
@@ -47,6 +48,14 @@ visible = false
 position = Vector2(0, -1)
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("4_5x6sv")
+
+[node name="IcebergSprite" type="Sprite2D" parent="Plant"]
+visible = false
+position = Vector2(0, -1.49012e-07)
+scale = Vector2(0.1, 0.114)
+texture = ExtResource("5_qgx74")
+region_enabled = true
+region_rect = Rect2(354.056, 217.145, 17.5364, 15.7599)
 
 [node name="Plant3" type="MeshInstance2D" parent="." groups=["Plant"]]
 visible = false
