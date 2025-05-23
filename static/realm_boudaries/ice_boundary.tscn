@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=4 uid="uid://qq3avks1ojpo"]
+[gd_scene load_steps=3 format=4 uid="uid://qq3avks1ojpo"]
 
 [ext_resource type="TileSet" uid="uid://c3a5jd3ep11dj" path="res://static/realm_boudaries/environment_tile.tres" id="1_l153j"]
+[ext_resource type="PackedScene" uid="uid://86jwf8rpwitv" path="res://static/realm_boudaries/ice/pine_tree.tscn" id="2_bl6fg"]
 
 [node name="Ice Boundary" type="Node2D"]
 
@@ -13,3 +14,14 @@ rendering_quadrant_size = 32
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-152, 205, -148, 212, -146, 278, -134, 281, 126, 281, 145, 272, 144, 245, 156, 230, 170, 239, 176, 257, 184, 263, 245, 265, 256, 255, 257, -392, -794, -390, -797, -157, -790, -142, -791, -133, -786, -124, -773, -116, -761, -106, -757, -87, -765, -71, -780, -57, -812, -50, -812, 249, -807, 266, -190, 264, -177, 253, -174, 208, -165, 219, -164, 277, -829, 281, -830, -57, -791, -73, -808, -103, -811, -401, 271, -404, 269, 279, 255, 282, 170, 281, 162, 251, 155, 259, 153, 295, 119, 300, -123, 299, -152, 298, -153, 217, -161, 214, -165, 219, -174, 208, -162, 200, -156, 201)
+
+[node name="Tree" parent="." instance=ExtResource("2_bl6fg")]
+position = Vector2(-643, -188)
+
+[node name="Tree2" parent="." instance=ExtResource("2_bl6fg")]
+position = Vector2(-559, -160)
+scale = Vector2(0.85, 0.85)
+
+[node name="Tree3" parent="." instance=ExtResource("2_bl6fg")]
+position = Vector2(-594, -188)
+scale = Vector2(1.51, 1.51)
