@@ -24,9 +24,11 @@ func _process(delta: float) -> void:
 			get_tree().call_group("farm_plot", "growth_tick")
 
 		new_hour.emit(hour) 
-		if hour == 0 and day%3 == 0:
+		if hour == 0:# and day%3 == 0:
 			spawn_goblins()
-		
+		#if hour == 20:
+			#var tween = create_tween()
+			#tween.tween_property($"../CanvasModulate", "color", Color.BLACK, 3)
 
 func spawn_goblins():
 	var swamp_spawn_point = $"../CreatureSpawnPointSwamp"
@@ -41,18 +43,22 @@ func spawn_goblins():
 	func(plant): 
 		return not plant.is_protected and (plant.realm == "ice")
 	)
-		
+
 	for i in range(0, floor(swamp_plots.size()/3)):
 		var goblin: CharacterBody2D = goblin_scene.instantiate()
 		goblin.target_to_chase = swamp_plots.pick_random()
 		goblin.position = swamp_spawn_point.position
+		goblin.scale = Vector2(1.0, 1.0)*1.7
 		get_tree().root.add_child(goblin)
+		#print(goblin.target_to_chase.realm)
 	
 	for i in range(0, floor(ice_plots.size()/3)):
 		var goblin: CharacterBody2D = goblin_scene.instantiate()
 		goblin.target_to_chase = ice_plots.pick_random()
 		goblin.position = ice_spawn_point.position
+		goblin.scale = Vector2(1.0, 1.0)*1.7
 		get_tree().root.add_child(goblin)
+		#print(goblin.target_to_chase.realm)
 		
 		
 

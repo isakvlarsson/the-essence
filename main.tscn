@@ -34,7 +34,6 @@ position = Vector2(226, -210)
 
 [node name="player" parent="." instance=ExtResource("2_1bvp3")]
 z_index = 1
-position = Vector2(0, -700)
 footstep_sounds = Array[AudioStream]([ExtResource("5_5vw27"), ExtResource("6_4c57u"), ExtResource("7_efxa6")])
 whack_sounds = Array[AudioStream]([ExtResource("8_dg77c"), ExtResource("9_ycdy4")])
 

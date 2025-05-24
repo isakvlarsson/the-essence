@@ -19,7 +19,7 @@ var dashSpeed = 1200
 var dashDirection = Vector2.ZERO
 var input_direction = Vector2.ZERO
 var last_direction = Vector2.ZERO
-var current_realm = "swamp"
+var current_realm: String
 
 # --- FOOTSTEP STUFF ---
 @export var footstep_sounds: Array[AudioStream] = []
@@ -37,6 +37,7 @@ var currentItem = "Stick"
 func _ready():
 	last_position = global_position
 	hud_toolbar.connect("update_selected_item", _on_update_selected_item)
+	current_realm = "ice"
 
 func get_input():
 	if not dashing and not whacking:
@@ -56,30 +57,12 @@ func get_input():
 
 func _input(event):
 	if Input.is_action_pressed("whack"):
-		if !can_interact:
+		if !can_interact or dashing or whacking:
 			return
 		can_interact = false
 		match currentItem:
 			"stick": 
-				whacking = true
-				if(last_direction.x > 0 or last_direction.y > 0):
-					$Animations.flip_h = false
-					facing = "R"
-				else:
-					$Animations.flip_h = true
-					facing = "L"
-				velocity = Vector2.ZERO
-				$Animations.play("whack")
-				await get_tree().create_timer(0.3).timeout
-				if facing == "R":
-					$stick/stickShapeR.disabled = false
-				else:
-					$stick/stickShapeL.disabled = false
-				await get_tree().create_timer(0.2).timeout
-				$stick/stickShapeR.disabled = true
-				$stick/stickShapeL.disabled = true
-				whacking = false
-				play_whack_sound() # Play whack sound when whack animation is triggered
+				whack()
 			"seeds":
 				plant()
 			"shovel":
@@ -135,6 +118,27 @@ func dash():
 		#Able to dash again after 1 second
 		await get_tree().create_timer(1.0).timeout
 		canDash = true
+		
+func whack():
+	whacking = true
+	if(last_direction.x > 0 or last_direction.y > 0):
+		$Animations.flip_h = false
+		facing = "R"
+	else:
+		$Animations.flip_h = true
+		facing = "L"
+	velocity = Vector2.ZERO
+	$Animations.play("whack")
+	await get_tree().create_timer(0.3).timeout
+	if facing == "R":
+		$stick/stickShapeR.disabled = false
+	else:
+		$stick/stickShapeL.disabled = false
+	await get_tree().create_timer(0.2).timeout
+	$stick/stickShapeR.disabled = true
+	$stick/stickShapeL.disabled = true
+	whacking = false
+	play_whack_sound() # Play whack sound when whack animation is triggered
 
 func play_footstep():
 	if footstep_sounds.size() == 0:
@@ -185,8 +189,7 @@ func create_soil():
 	get_tree().root.add_child(crop_instance)
 	crop_instance.global_position = pos + Vector2(0.0, 0.0)
 	crop_instance.scale = Vector2(1.0, 1.0)*18
-	current_realm = crop_instance
-
+	crop_instance.realm = current_realm
 
 func plant():
 	var current_amount = hud_toolbar.get_current_item_amount()
@@ -202,7 +205,7 @@ func plant():
 			closest_area_parent.sow("pumpkin")
 		elif current_realm == "ice":
 			closest_area_parent.sow("iceberg lettuce")
-			
+		
 		hud_toolbar.set_current_item_amount(current_amount-1)
 	
 
@@ -294,3 +297,4 @@ func walk():
 	if(velocity.x > 0 or velocity.y > 0):
 		$Animations.flip_h = true
 	$Animations.play("walk")
+	

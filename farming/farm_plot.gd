@@ -77,7 +77,6 @@ func harvest():
 	plant_type = ""
 	plant.get_children().map(func(c): c.visible = false)
 
-
 func _on_new_day(day: int) -> void:
 	growth_tick()
 	
