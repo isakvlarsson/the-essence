@@ -13,7 +13,7 @@ func _ready():
 	animated_sprite.play(current_state)
 
 func _process(delta):
-	$AnimatedSprite2D.play(current_state)
+	animated_sprite.play(current_state)
 
 func start_deity_talk():
 	current_state = DeityStates.TALK

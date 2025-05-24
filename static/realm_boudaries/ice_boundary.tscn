@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://qq3avks1ojpo"]
+[gd_scene load_steps=6 format=4 uid="uid://qq3avks1ojpo"]
 
 [ext_resource type="TileSet" uid="uid://c3a5jd3ep11dj" path="res://static/realm_boudaries/environment_tile.tres" id="1_l153j"]
 [ext_resource type="PackedScene" uid="uid://86jwf8rpwitv" path="res://static/realm_boudaries/ice/pine_tree.tscn" id="2_bl6fg"]
 [ext_resource type="Texture2D" uid="uid://5hgy2sre0m3h" path="res://summer_village_v1.0/assets/nature_assets.png" id="3_f1soq"]
+[ext_resource type="PackedScene" uid="uid://cc045e77knejf" path="res://deity/ice_deity.tscn" id="4_0kev5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bl6fg"]
 vertices = PackedVector2Array(-742.297, -101.602, -773.062, -131.297, -776.844, -376.031, 242.977, -379.961, 242, 238.922, 147.891, 208.867, -201.531, 251.992, -795, 251.008, -795, -40.6562, -759.094, -57.6797, 122.406, 263.969, -132, 263.031, -132, 200.461, 134.922, 234.789, -192.258, 241.391, -182.688, 194.578, 239.898, 248.867, 188.594, 248.094, 179.891, 228.07, -156.891, 184.898)
@@ -37,6 +38,10 @@ scale = Vector2(1.51, 1.51)
 
 [node name="NatureAssets" type="Sprite2D" parent="."]
 position = Vector2(-617, 56)
+scale = Vector2(1.56, 1.56)
 texture = ExtResource("3_f1soq")
 region_enabled = true
 region_rect = Rect2(0, 195.75, 114, 83.25)
+
+[node name="IceDeitySprite" parent="." instance=ExtResource("4_0kev5")]
+position = Vector2(-617, 40)

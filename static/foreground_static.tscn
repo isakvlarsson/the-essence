@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjdudtwhqprol"]
+[gd_scene load_steps=4 format=3 uid="uid://cjdudtwhqprol"]
 
 [ext_resource type="Script" uid="uid://b8hvgwpmqny4s" path="res://static/foreground_static.gd" id="1_jik1x"]
 [ext_resource type="PackedScene" uid="uid://8aqrg2wjctqa" path="res://static/realm_boudaries/swamp/altar.tscn" id="3_763xc"]
-[ext_resource type="PackedScene" uid="uid://cc045e77knejf" path="res://deity/ice_deity.tscn" id="4_hw7ta"]
 [ext_resource type="PackedScene" uid="uid://c343rmto2pgel" path="res://portal/portal.tscn" id="5_mhjka"]
 
 [node name="ForegroundStatic" type="Node2D"]
@@ -17,6 +16,3 @@ position = Vector2(169, -542)
 [node name="Altar" parent="." instance=ExtResource("3_763xc")]
 position = Vector2(-623, 792)
 scale = Vector2(2.02, 2.02)
-
-[node name="IceDeitySprite" parent="." instance=ExtResource("4_hw7ta")]
-position = Vector2(-272, 993)
