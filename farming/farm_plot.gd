@@ -10,6 +10,7 @@ extends Node2D
 @export var plant_green_color: Color
 
 @export var plant_type: String
+@export var realm := "swamp"
 
 var growth_per_day: float = 0.2 
 var min_size: float = 0.2
@@ -55,7 +56,7 @@ func sow(seed_type: String):
 	planted = true
 	plant.visible = true
 	match seed_type:
-		"pumpkin": 
+		"pumpkin":
 			$Plant/PumpkinSprite.visible = true
 		"ice essence":
 			$Plant/IceEssenceSprite.visible = true

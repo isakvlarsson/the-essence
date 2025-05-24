@@ -29,19 +29,29 @@ func _process(delta: float) -> void:
 		
 
 func spawn_goblins():
-	var spawn_points: Array[Node] = get_tree().get_nodes_in_group("creature_spawn_point")
+	var swamp_spawn_point = $"../CreatureSpawnPointSwamp"
+	var ice_spawn_point = $"../CreatureSpawnPointIce"
 	
-	var farm_plots = get_tree().get_nodes_in_group("farm_plot").filter(
+	var swamp_plots = get_tree().get_nodes_in_group("farm_plot").filter(
 	func(plant): 
-		return not plant.is_protected
+		return not plant.is_protected and (plant.realm == "swamp")
 	)
-	if farm_plots.size() < 1:
-		pass
+	
+	var ice_plots = get_tree().get_nodes_in_group("farm_plot").filter(
+	func(plant): 
+		return not plant.is_protected and (plant.realm == "ice")
+	)
 		
-	for i in range(0, floor(farm_plots.size()/3)):
+	for i in range(0, floor(swamp_plots.size()/3)):
 		var goblin: CharacterBody2D = goblin_scene.instantiate()
-		goblin.target_to_chase = farm_plots.pick_random()
-		goblin.position = spawn_points.pick_random().position
+		goblin.target_to_chase = swamp_plots.pick_random()
+		goblin.position = swamp_spawn_point.position
+		get_tree().root.add_child(goblin)
+	
+	for i in range(0, floor(ice_plots.size()/3)):
+		var goblin: CharacterBody2D = goblin_scene.instantiate()
+		goblin.target_to_chase = ice_plots.pick_random()
+		goblin.position = ice_spawn_point.position
 		get_tree().root.add_child(goblin)
 		
 		

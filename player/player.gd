@@ -14,11 +14,12 @@ var speed = 400
 var canDash = true
 var dashing = false
 var whacking = false
+var facing
 var dashSpeed = 1200
 var dashDirection = Vector2.ZERO
 var input_direction = Vector2.ZERO
 var last_direction = Vector2.ZERO
-var current_realm = "ice"
+var current_realm = "swamp"
 
 # --- FOOTSTEP STUFF ---
 @export var footstep_sounds: Array[AudioStream] = []
@@ -63,11 +64,20 @@ func _input(event):
 				whacking = true
 				if(last_direction.x > 0 or last_direction.y > 0):
 					$Animations.flip_h = false
+					facing = "R"
 				else:
 					$Animations.flip_h = true
+					facing = "L"
 				velocity = Vector2.ZERO
 				$Animations.play("whack")
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.3).timeout
+				if facing == "R":
+					$stick/stickShapeR.disabled = false
+				else:
+					$stick/stickShapeL.disabled = false
+				await get_tree().create_timer(0.2).timeout
+				$stick/stickShapeR.disabled = true
+				$stick/stickShapeL.disabled = true
 				whacking = false
 				play_whack_sound() # Play whack sound when whack animation is triggered
 			"seeds":
@@ -175,6 +185,8 @@ func create_soil():
 	get_tree().root.add_child(crop_instance)
 	crop_instance.global_position = pos + Vector2(0.0, 0.0)
 	crop_instance.scale = Vector2(1.0, 1.0)*18
+	current_realm = crop_instance
+
 
 func plant():
 	var current_amount = hud_toolbar.get_current_item_amount()
