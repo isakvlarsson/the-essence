@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://86jwf8rpwitv"]
+
+[ext_resource type="Texture2D" uid="uid://1ckoh5ug165x" path="res://assets/realm-2/obstacles/tree.png" id="1_f3bsi"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Tree" type="Sprite2D" parent="."]
+z_index = 1000
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("1_f3bsi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="StaticBody2D"]
+vertices = PackedVector2Array(-3, 77, -3, 78, -3, 79, -1, 79, 0, 78, 0, 77, 0, 74, -3, 75)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-2, 75, -3, 75, -3, 76, -3, 79, -2, 79, -1, 79, 0, 78, 0, 74)
