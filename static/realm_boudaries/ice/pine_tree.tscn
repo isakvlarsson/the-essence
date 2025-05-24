@@ -5,6 +5,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Tree" type="Sprite2D" parent="."]
+z_index = 1000
 scale = Vector2(0.31, 0.31)
 texture = ExtResource("1_f3bsi")
 
