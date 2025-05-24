@@ -13,6 +13,7 @@ var can_interact = true
 var speed = 400
 var canDash = true
 var dashing = false
+var whacking = false
 var dashSpeed = 1200
 var dashDirection = Vector2.ZERO
 var input_direction = Vector2.ZERO
@@ -37,12 +38,20 @@ func _ready():
 	hud_toolbar.connect("update_selected_item", _on_update_selected_item)
 
 func get_input():
-	if not dashing:
+	if not dashing and not whacking:
 		input_direction = Input.get_vector("left", "right", "up", "down")
 		if input_direction != Vector2.ZERO:
 			last_direction = input_direction
 		velocity = input_direction * speed
 		dashDirection = input_direction
+		walk()
+		if(velocity.length() == 0 and not whacking):
+			$Animations.play("default")
+			if(last_direction.x > 0  or last_direction.y > 0):
+				$Animations.flip_h = false
+			else:
+				$Animations.flip_h = true
+			$AnimationPlayer.stop()
 
 func _input(event):
 	if Input.is_action_pressed("whack"):
@@ -51,7 +60,15 @@ func _input(event):
 		can_interact = false
 		match currentItem:
 			"stick": 
-				get_node("AnimatedSprite2D").play("whack")
+				whacking = true
+				if(last_direction.x > 0 or last_direction.y > 0):
+					$Animations.flip_h = false
+				else:
+					$Animations.flip_h = true
+				velocity = Vector2.ZERO
+				$Animations.play("whack")
+				await get_tree().create_timer(0.5).timeout
+				whacking = false
 				play_whack_sound() # Play whack sound when whack animation is triggered
 			"seeds":
 				plant()
@@ -100,7 +117,7 @@ func dash():
 		velocity = dashDirection.normalized()*dashSpeed
 		canDash = false
 		dashing = true
-		get_node("AnimationPlayer").play("dash")
+		$Animations.play("dash")
 		#dash for 0.2 seconds
 		await get_tree().create_timer(0.2).timeout 
 		dashing = false
@@ -258,3 +275,10 @@ func step_through_portal():
 		current_realm = "ice"
 	else:
 		current_realm = "swamp"
+		
+func walk():
+	if(velocity.x < 0 or velocity.y < 0):
+		$Animations.flip_h = false
+	if(velocity.x > 0 or velocity.y > 0):
+		$Animations.flip_h = true
+	$Animations.play("walk")
