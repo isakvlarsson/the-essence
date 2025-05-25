@@ -13,10 +13,13 @@ var can_interact = true
 var speed = 400
 var canDash = true
 var dashing = false
+var whacking = false
+var facing
 var dashSpeed = 1200
 var dashDirection = Vector2.ZERO
 var input_direction = Vector2.ZERO
 var last_direction = Vector2.ZERO
+var current_realm: String
 
 # --- FOOTSTEP STUFF ---
 @export var footstep_sounds: Array[AudioStream] = []
@@ -34,24 +37,32 @@ var currentItem = "Stick"
 func _ready():
 	last_position = global_position
 	hud_toolbar.connect("update_selected_item", _on_update_selected_item)
+	current_realm = "swamp"
 
 func get_input():
-	if not dashing:
+	if not dashing and not whacking:
 		input_direction = Input.get_vector("left", "right", "up", "down")
 		if input_direction != Vector2.ZERO:
 			last_direction = input_direction
 		velocity = input_direction * speed
 		dashDirection = input_direction
+		walk()
+		if(velocity.length() == 0 and not whacking):
+			$Animations.play("default")
+			if(last_direction.x > 0  or last_direction.y > 0):
+				$Animations.flip_h = false
+			else:
+				$Animations.flip_h = true
+			$AnimationPlayer.stop()
 
 func _input(event):
 	if Input.is_action_pressed("whack"):
-		if !can_interact:
+		if !can_interact or dashing or whacking:
 			return
 		can_interact = false
 		match currentItem:
 			"stick": 
-				get_node("AnimatedSprite2D").play("whack")
-				play_whack_sound() # Play whack sound when whack animation is triggered
+				whack()
 			"seeds":
 				plant()
 			"shovel":
@@ -99,7 +110,7 @@ func dash():
 		velocity = dashDirection.normalized()*dashSpeed
 		canDash = false
 		dashing = true
-		
+		$Animations.play("dash")
 		#dash for 0.2 seconds
 		await get_tree().create_timer(0.2).timeout 
 		dashing = false
@@ -107,6 +118,27 @@ func dash():
 		#Able to dash again after 1 second
 		await get_tree().create_timer(1.0).timeout
 		canDash = true
+		
+func whack():
+	whacking = true
+	if(last_direction.x > 0 or last_direction.y > 0):
+		$Animations.flip_h = false
+		facing = "R"
+	else:
+		$Animations.flip_h = true
+		facing = "L"
+	velocity = Vector2.ZERO
+	$Animations.play("whack")
+	await get_tree().create_timer(0.3).timeout
+	if facing == "R":
+		$stick/stickShapeR.disabled = false
+	else:
+		$stick/stickShapeL.disabled = false
+	await get_tree().create_timer(0.2).timeout
+	$stick/stickShapeR.disabled = true
+	$stick/stickShapeL.disabled = true
+	whacking = false
+	play_whack_sound() # Play whack sound when whack animation is triggered
 
 func play_footstep():
 	if footstep_sounds.size() == 0:
@@ -157,6 +189,7 @@ func create_soil():
 	get_tree().root.add_child(crop_instance)
 	crop_instance.global_position = pos + Vector2(0.0, 0.0)
 	crop_instance.scale = Vector2(1.0, 1.0)*18
+	crop_instance.realm = current_realm
 
 func plant():
 	var current_amount = hud_toolbar.get_current_item_amount()
@@ -168,7 +201,11 @@ func plant():
 		return
 	var closest_area_parent = closest_area.get_parent()
 	if closest_area_parent.is_in_group("farm_plot") && !closest_area_parent.planted:
-		closest_area_parent.sow("pumpkin")
+		if closest_area_parent.realm == "swamp":
+			closest_area_parent.sow("pumpkin")
+		elif closest_area_parent.realm == "ice":
+			closest_area_parent.sow("iceberg lettuce")
+		
 		hud_toolbar.set_current_item_amount(current_amount-1)
 	
 
@@ -191,14 +228,14 @@ func place_trap():
 	var trap: Node2D = trap_scene.instantiate()
 	get_tree().root.add_child(trap)
 	trap.global_position = pos + Vector2(0.0, 0.0)
-	trap.scale = Vector2(1.0, 1.0)	
+	trap.scale = Vector2(1.0, 1.0) * 2
 	
 func place_totem():
 	var pos: Vector2 = global_position
 	var totem: Node2D = totem_scene.instantiate()
 	get_tree().root.add_child(totem)
 	totem.global_position = pos + Vector2(0.0, 0.0)
-	totem.scale = Vector2(1.0, 1.0)*2
+	totem.scale = Vector2(1.0, 1.0) * 3
 	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
 	nav_region.add_child(totem)
 	nav_region.bake_navigation_polygon(true)
@@ -247,3 +284,11 @@ func harvest_plant(node: Node2D):
 	var plant_amount = hud_toolbar.get_item_amount(plant_type)
 	hud_toolbar.set_item_amount(plant_type, plant_amount + 1)
 	node.harvest()
+		
+func walk():
+	if(velocity.x < 0 or velocity.y < 0):
+		$Animations.flip_h = false
+	if(velocity.x > 0 or velocity.y > 0):
+		$Animations.flip_h = true
+	$Animations.play("walk")
+	

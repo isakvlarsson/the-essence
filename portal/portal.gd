@@ -54,6 +54,10 @@ func on_body_entered(body: Node2D):
 	# Teleport player
 	body.global_position = destination.global_position
 	destination.just_teleported = true
+	if body.current_realm == "swamp":
+		body.current_realm = "ice"
+	else:
+		body.current_realm = "swamp"
 	
 func on_body_exited(body: Node2D):
 	if !body.is_in_group("player") or !activated:

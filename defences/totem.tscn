@@ -57,7 +57,7 @@ animations = [{
 }]
 
 [node name="totem" type="Node2D" groups=["totem"]]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.18, 0.18)
 script = ExtResource("1_bd1gk")
 
 [node name="TotemArea" type="Area2D" parent="."]

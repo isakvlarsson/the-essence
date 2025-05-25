@@ -22,6 +22,7 @@ func _ready() -> void:
 	slots[6].set_item("totem", 1, true)
 	slots[7].set_item("pumpkin", 0, true)
 	slots[8].set_item("ice essence", 0, true)
+	slots[9].set_item("iceberg lettuce", 0, true)
 
 func toolbar_slot_clicked(slot):
 	slots[selectedSlotID].selected = false
