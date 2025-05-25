@@ -9,7 +9,6 @@ var current_state = DeityStates.TALK
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _ready():
-	# Start with the inactive animation or first frame
 	animated_sprite.play(current_state)
 
 func _process(delta):

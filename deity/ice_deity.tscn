@@ -1,7 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://cc045e77knejf"]
+[gd_scene load_steps=35 format=3 uid="uid://cc045e77knejf"]
 
 [ext_resource type="Script" uid="uid://cqpgxt3ljfl8j" path="res://deity/ice_deity.gd" id="1_j5cdl"]
 [ext_resource type="Texture2D" uid="uid://raywg7qyh76" path="res://assets/deity/ice_deity_sheets.png" id="2_j5cdl"]
+[ext_resource type="PackedScene" uid="uid://ec0ituvmeavt" path="res://dialogue/talkable.tscn" id="3_mhx68"]
+[ext_resource type="Resource" uid="uid://bgq0blanydl4c" path="res://dialogue/ice_deity.dialogue" id="4_32vuc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mhx68"]
 atlas = ExtResource("2_j5cdl")
@@ -229,6 +231,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_32vuc"]
+radius = 88.084
+
 [node name="IceDeitySprite" type="Sprite2D"]
 script = ExtResource("1_j5cdl")
 
@@ -248,3 +253,11 @@ polygon = PackedVector2Array(-8, -46, 12, -46, 12, -41, 20, -42, 20, -38, 24, -3
 vertices = PackedVector2Array(36, -2, 33, 6, 29, 10, 22, 15, 13, 22, 0, 24, -14, 22, -19, 23, -27, 18, -28, 7, -32, -10, -31, -26, -24, -32, -16, -41, -6, -46, 13, -46, 13, -42, 19, -42, 20, -39, 24, -37, 24, -34, 27, -33, 28, -30, 32, -30, 33, -22, 35, -22)
 affect_navigation_mesh = true
 carve_navigation_mesh = true
+
+[node name="Talkable" parent="." instance=ExtResource("3_mhx68")]
+dialogue_resource = ExtResource("4_32vuc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Talkable"]
+position = Vector2(0, 11)
+scale = Vector2(1, -0.26)
+shape = SubResource("CircleShape2D_32vuc")
