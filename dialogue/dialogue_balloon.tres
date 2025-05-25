@@ -51,7 +51,7 @@ corner_radius_bottom_left = 5
 
 [resource]
 default_font = ExtResource("1_vt6ne")
-default_font_size = 20
+default_font_size = 40
 Button/colors/font_color = Color(0.163386, 0.378679, 0.319247, 1)
 Button/fonts/font = ExtResource("1_vt6ne")
 Button/styles/disabled = SubResource("StyleBoxFlat_spyqn")
