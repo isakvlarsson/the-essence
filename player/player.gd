@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var totem_scene = preload("res://defences/totem.tscn") 
 @onready var interaction_area: Area2D = $InteractionBox
 @onready var hud_toolbar = %HUD/ToolBar
+@onready var day_night_handler = %DayNightHandler
 
 var can_interact = true
 
@@ -293,7 +294,8 @@ func interact():
 		elif parent.is_in_group("altar"):
 			if parent.try_sacrifice(hud_toolbar.get_current_item_name(), hud_toolbar.get_current_item_amount()):
 				hud_toolbar.set_current_item_amount(hud_toolbar.get_current_item_amount() - parent.current_sacrifice_amount)
-				
+		elif parent.is_in_group("interactible"):
+			parent.interact(self)
 			
 
 func harvest_plant(node: Node2D):

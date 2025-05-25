@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [dialogue_manager]
@@ -35,7 +36,7 @@ project/assembly_name="The Essence"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/controller_icons/plugin.cfg")
 
 [global_group]
 
@@ -44,6 +45,7 @@ creature_spawn_point="Points in the world where creatures can spawn"
 totem="group for totems"
 player="the player character"
 altar="Altars where sacrifices are made"
+interactible="has \"interact\" function"
 
 [input]
 

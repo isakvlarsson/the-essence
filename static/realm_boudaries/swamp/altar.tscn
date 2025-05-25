@@ -52,9 +52,8 @@ affect_navigation_mesh = true
 carve_navigation_mesh = true
 
 [node name="NavigationObstacle2D2" type="NavigationObstacle2D" parent="."]
-vertices = PackedVector2Array(43, 8, 42, 24, 50, 32, 60, 32, 68, 25, 69, 8, 66, 5, 44, 5)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
 position = Vector2(0, -10)
 radius = 34.16
 vertices = PackedVector2Array(-25, -8, -25, 9, 26, 10, 26, -8)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
