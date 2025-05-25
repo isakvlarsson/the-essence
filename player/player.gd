@@ -22,7 +22,7 @@ var last_direction = Vector2.ZERO
 @export var footstep_sounds: Array[AudioStream] = []
 var last_index := -1
 @onready var audio_player := $FootstepPlayer
-var step_distance := 20.0
+var step_distance := 30.0
 var distance_traveled := 0.0
 var last_position := Vector2.ZERO
 
@@ -30,6 +30,30 @@ var last_position := Vector2.ZERO
 @export var whack_sounds: Array[AudioStream] = []  # Array for whack sounds
 @onready var whack_audio_player := $WhackPlayer  # WhackPlayer node for whack sounds
 var currentItem = "Stick"
+
+# --- PLANT SOUND STUFF ---
+@export var plant_sound: AudioStream  # Declaring AudioStream for the plant to player
+@onready var plant_audio_player := $PlantPlayer  # Audio player for planting
+
+# --- SHOVELING SOUND STUFF ---
+@export var shoveling_sound: AudioStream  # Declaring AudioStream for the shoveling to player
+@onready var shoveling_audio_player := $ShovelingPlayer  # Audio player for shoveling
+
+# --- HARVESTING SOUND STUFF ---
+@export var harvesting_sound: AudioStream  # Declaring AudioStream for the harvesting to player
+@onready var harvesting_audio_player := $HarvestingPlayer  # Audio player for harvesting
+
+# --- WATERING SOUND STUFF ---
+@export var watering_sound: AudioStream  # Declaring AudioStream for the watering to player
+@onready var watering_audio_player := $WateringPlayer  # Audio player for watering
+
+# --- FENCE SOUND STUFF ---
+@export var fence_sound: AudioStream  # Declaring AudioStream for the fence to player
+@onready var fence_audio_player := $FencePlayer  # Audio player for fence
+
+# --- TOTEM SOUND STUFF ---
+@export var totem_sound: AudioStream  # Declaring AudioStream for the totem to player
+@onready var totem_audio_player := $TotemPlayer  # Audio player for totem
 
 func _ready():
 	last_position = global_position
@@ -54,16 +78,22 @@ func _input(event):
 				play_whack_sound() # Play whack sound when whack animation is triggered
 			"seeds":
 				plant()
+				play_plant_sound()  # Play the plant sound after planting
 			"shovel":
 				create_soil()
+				play_shoveling_sound()
 			"fence":
 				place_fence()
+				play_fence_sound()
 			"bucket":
 				water_plant()
+				play_watering_sound()
 			"totem":
 				place_totem()
+				play_totem_sound()
 			"trap":
 				place_trap()
+				play_totem_sound()
 		await get_tree().create_timer(0.1).timeout
 		can_interact = true
 	if Input.is_action_pressed("increment_selected_slot"):
@@ -128,6 +158,48 @@ func play_whack_sound():
 	var index = randi() % whack_sounds.size()
 	whack_audio_player.stream = whack_sounds[index]
 	whack_audio_player.play()
+
+func play_plant_sound():
+	if plant_sound == null:
+		return
+	plant_audio_player.stream = plant_sound
+	plant_audio_player.pitch_scale = randf_range(0.95, 1.05)  # A small pitch variation
+	plant_audio_player.play()
+
+func play_shoveling_sound():
+	if shoveling_sound == null:
+		return
+	shoveling_audio_player.stream = shoveling_sound
+	shoveling_audio_player.pitch_scale = randf_range(0.95, 1.05)  # A small pitch variation
+	shoveling_audio_player.play()
+
+func play_harvesting_sound():
+	if harvesting_sound == null:
+		return
+	harvesting_audio_player.stream = harvesting_sound
+	harvesting_audio_player.pitch_scale = randf_range(0.95, 1.05)  # A small pitch variation
+	harvesting_audio_player.play()
+
+func play_watering_sound():
+	if watering_sound == null:
+		return
+	watering_audio_player.stream = watering_sound
+	watering_audio_player.pitch_scale = randf_range(0.95, 1.05)  # A small pitch variation
+	watering_audio_player.play()
+
+func play_fence_sound():
+	if fence_sound == null:
+		return
+	fence_audio_player.stream = fence_sound
+	fence_audio_player.pitch_scale = randf_range(0.95, 1.05)  # A small pitch variation
+	fence_audio_player.play()
+
+func play_totem_sound():
+	if totem_sound == null:
+		return
+	totem_audio_player.stream = totem_sound
+	totem_audio_player.pitch_scale = randf_range(0.95, 1.05)  # A small pitch variation
+	totem_audio_player.play()
 		
 func _physics_process(delta):
 	get_input()
@@ -145,7 +217,8 @@ func _physics_process(delta):
 
 func _on_stick_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Creature"):
-		body.queue_free()
+		if body.has_method("play_hit_sound_and_die"):
+			body.play_hit_sound_and_die()
 		
 func create_soil():
 	var areas = interaction_area.get_overlapping_areas()
@@ -246,3 +319,4 @@ func harvest_plant(node: Node2D):
 	var plant_amount = hud_toolbar.get_item_amount("plant")
 	hud_toolbar.set_item_amount("plant", plant_amount + 1)
 	node.harvest()
+	play_harvesting_sound()

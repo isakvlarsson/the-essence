@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://ckeis5nfy86a0"]
+[gd_scene load_steps=21 format=3 uid="uid://ckeis5nfy86a0"]
 
+[ext_resource type="Script" uid="uid://d0egfnddpb8oa" path="res://main.gd" id="1_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://c5nl6472j43m2" path="res://static/background_static.tscn" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://mnhnr63qhtme" path="res://player/player.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://b812d52oig4gf" path="res://defences/fence_ud.tscn" id="2_lquwl"]
@@ -10,7 +11,14 @@
 [ext_resource type="Script" uid="uid://l31yybgu4784" path="res://day_night_handler.gd" id="6_7mycd"]
 [ext_resource type="AudioStream" uid="uid://bt5g53x1qkr4t" path="res://assets/sounds/FOOT3.wav" id="7_efxa6"]
 [ext_resource type="AudioStream" uid="uid://c3bntd3vy6scn" path="res://assets/sounds/WHACK1.wav" id="8_dg77c"]
+[ext_resource type="AudioStream" uid="uid://u5ug33nvv30i" path="res://assets/sounds/SEED.wav" id="9_dg77c"]
 [ext_resource type="AudioStream" uid="uid://d2krogm0q4bbk" path="res://assets/sounds/WHACK2.wav" id="9_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://syw1f3h0b4kp" path="res://assets/sounds/RAKING.wav" id="10_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://dkcg83jfqwpj2" path="res://assets/sounds/HARVESTING.wav" id="11_w48qg"]
+[ext_resource type="AudioStream" uid="uid://c3unp3dypcvtq" path="res://assets/sounds/WATERING.wav" id="13_cegan"]
+[ext_resource type="AudioStream" uid="uid://defcsh0jkm2n3" path="res://assets/sounds/FENCE.wav" id="14_82xsv"]
+[ext_resource type="AudioStream" uid="uid://cqdyctm2mc7e3" path="res://assets/sounds/TOTEM.wav" id="15_getpj"]
+[ext_resource type="AudioStream" uid="uid://c6r0jw00mdo7x" path="res://assets/sounds/The Essence - Main Theme.ogg" id="15_vivmo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1bvp3"]
 vertices = PackedVector2Array(234, -117.898, 234, -180, 1543.01, -937, 1543.99, 791, -937, 791, 219.797, -117.898, -937, -937, 218.797, -178.898, 233, -180, 233, -241, 218.797, -241, 219.797, -178.898)
@@ -18,6 +26,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(-947, -947, 1553, -947, 1554, 801, -947, 801)])
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_2cqfq")
 
 [node name="BackgroundStatic" parent="." instance=ExtResource("1_7mycd")]
 position = Vector2(15, 15)
@@ -35,10 +44,32 @@ position = Vector2(226, -210)
 z_index = 1
 footstep_sounds = Array[AudioStream]([ExtResource("5_5vw27"), ExtResource("6_4c57u"), ExtResource("7_efxa6")])
 whack_sounds = Array[AudioStream]([ExtResource("8_dg77c"), ExtResource("9_ycdy4")])
+plant_sound = ExtResource("9_dg77c")
+shoveling_sound = ExtResource("10_ycdy4")
+harvesting_sound = ExtResource("11_w48qg")
+watering_sound = ExtResource("13_cegan")
+fence_sound = ExtResource("14_82xsv")
+totem_sound = ExtResource("15_getpj")
 
 [node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="player"]
+volume_db = 10.306
 
 [node name="WhackPlayer" type="AudioStreamPlayer2D" parent="player"]
+volume_db = -7.811
+
+[node name="PlantPlayer" type="AudioStreamPlayer2D" parent="player"]
+
+[node name="ShovelingPlayer" type="AudioStreamPlayer2D" parent="player"]
+
+[node name="HarvestingPlayer" type="AudioStreamPlayer2D" parent="player"]
+volume_db = 3.748
+
+[node name="WateringPlayer" type="AudioStreamPlayer2D" parent="player"]
+
+[node name="FencePlayer" type="AudioStreamPlayer2D" parent="player"]
+
+[node name="TotemPlayer" type="AudioStreamPlayer2D" parent="player"]
+volume_db = 2.811
 
 [node name="ForegroundStatic" parent="." instance=ExtResource("5_272bh")]
 z_index = 2
@@ -53,5 +84,9 @@ position = Vector2(686, -148)
 
 [node name="HUD" parent="." instance=ExtResource("5_lquwl")]
 unique_name_in_owner = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_vivmo")
+volume_db = -23.423
 
 [editable path="player"]
