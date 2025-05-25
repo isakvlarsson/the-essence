@@ -1,6 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://6js1tw6cy8uy"]
+[gd_scene load_steps=11 format=3 uid="uid://6js1tw6cy8uy"]
 
 [ext_resource type="Texture2D" uid="uid://btcwhk6m83aso" path="res://creatures/goblin/goblin.png" id="1_dl46o"]
+[ext_resource type="AudioStream" uid="uid://pr32umplyw0e" path="res://assets/sounds/GOBLINSTEP1.wav" id="1_fi6qw"]
+[ext_resource type="AudioStream" uid="uid://0mvyjnkh56h5" path="res://assets/sounds/GOBLINSTEP2.wav" id="2_i3cwm"]
+[ext_resource type="AudioStream" uid="uid://giekrs1nfeof" path="res://assets/sounds/GOBLINSTEP3.wav" id="3_5wsy1"]
+[ext_resource type="AudioStream" uid="uid://c5tj2fw1fa4jc" path="res://assets/sounds/GOBLINHIT.wav" id="4_5wsy1"]
+[ext_resource type="AudioStream" uid="uid://du4dhqsw1u7dc" path="res://assets/sounds/GOBLINHIT2.wav" id="5_66n1m"]
+[ext_resource type="AudioStream" uid="uid://dw5rrhtvnt83r" path="res://assets/sounds/GOBLIN PIG.wav" id="6_66n1m"]
 
 [sub_resource type="GDScript" id="GDScript_ejdof"]
 script/source = "extends CharacterBody2D
@@ -8,9 +14,28 @@ script/source = "extends CharacterBody2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @export var target_to_chase: Node2D
 
+# --- FOOTSTEP STUFF ---
+@onready var footstep_player := $FootstepPlayer
+@export var footstep_sounds: Array[AudioStream] = []
+
+# --- GOBLIN HIT STUFF ---
+@export var hit_sounds: Array[AudioStream] = []
+@onready var hit_sound_player: AudioStreamPlayer2D = $HitSoundPlayer
+
+# --- PIG SOUND STUFF ---
+@onready var pig_sound_player: AudioStreamPlayer2D = $PigSoundPlayer
+@export var pig_sound: AudioStream
+
 const speed = 200.0
 var current_plant: Node = null
 var eat_timer: Timer
+
+# For footstep timing
+var last_position: Vector2 = Vector2.ZERO
+var distance_traveled := 0.0
+var step_distance := 30.0
+var last_index := -1
+var step_count: int = 0
 
 func _physics_process(delta: float) -> void:
 	navigation_agent.avoidance_enabled = true
@@ -18,15 +43,63 @@ func _physics_process(delta: float) -> void:
 	velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * speed
 	move_and_slide()
 
+	# Footstep logic
+	var moved = global_position.distance_to(last_position)
+	distance_traveled += moved
+	last_position = global_position
+
+	if distance_traveled >= step_distance:
+		play_footstep()
+		distance_traveled = 0.0
+
 func _ready():
 	$PlantSensor.area_entered.connect(_on_area_entered)
 	$PlantSensor.area_exited.connect(_on_area_exited)
 	
+	last_position = global_position
+
 	eat_timer = Timer.new()
 	eat_timer.wait_time = 2.0
 	eat_timer.one_shot = false
 	add_child(eat_timer)
 	eat_timer.timeout.connect(_on_eat_timeout)
+
+func play_footstep():
+	if footstep_sounds.size() == 0:
+		return
+	var index = randi() % footstep_sounds.size()
+	while index == last_index and footstep_sounds.size() > 1:
+		index = randi() % footstep_sounds.size()
+	last_index = index
+
+	footstep_player.stream = footstep_sounds[index]
+	footstep_player.pitch_scale = randf_range(0.9, 1.1)
+	footstep_player.play()
+
+	step_count += 1
+	if step_count % 30 == 0:
+		play_pig_sound()
+
+func play_pig_sound():
+	if pig_sound == null:
+		return
+	pig_sound_player.stream = pig_sound
+	pig_sound_player.pitch_scale = randf_range(0.95, 1.05)
+	pig_sound_player.play()
+
+func play_hit_sound_and_die():
+	if hit_sounds.size() == 0:
+		queue_free()
+		return
+
+	var index = randi() % hit_sounds.size()
+	hit_sound_player.stream = hit_sounds[index]
+	hit_sound_player.pitch_scale = randf_range(0.95, 1.05)
+	hit_sound_player.play()
+
+	# Wait until hit sound finishes, then de-spawn goblin
+	await hit_sound_player.finished
+	queue_free()
 
 func _on_area_entered(area):
 	var plant = area.get_parent()
@@ -54,6 +127,9 @@ size = Vector2(27, 34)
 
 [node name="Goblin" type="CharacterBody2D" groups=["Creature"]]
 script = SubResource("GDScript_ejdof")
+footstep_sounds = Array[AudioStream]([ExtResource("1_fi6qw"), ExtResource("2_i3cwm"), ExtResource("3_5wsy1")])
+hit_sounds = Array[AudioStream]([ExtResource("4_5wsy1"), ExtResource("5_66n1m")])
+pig_sound = ExtResource("6_66n1m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.500001, -2)
@@ -77,3 +153,10 @@ collision_layer = 2
 position = Vector2(-0.5, -2)
 shape = SubResource("RectangleShape2D_clvlb")
 debug_color = Color(0, 0.648589, 0.175709, 0.42)
+
+[node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="HitSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = 3.0
+
+[node name="PigSoundPlayer" type="AudioStreamPlayer2D" parent="."]

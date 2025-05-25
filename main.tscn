@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://ckeis5nfy86a0"]
+[gd_scene load_steps=21 format=3 uid="uid://ckeis5nfy86a0"]
 
+[ext_resource type="Script" uid="uid://d0egfnddpb8oa" path="res://main.gd" id="1_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://c5nl6472j43m2" path="res://static/background_static.tscn" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://mnhnr63qhtme" path="res://player/player.tscn" id="2_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://bkxy54ux5romj" path="res://assets/sounds/FOOT1.wav" id="5_5vw27"]
@@ -9,8 +10,15 @@
 [ext_resource type="Script" uid="uid://l31yybgu4784" path="res://day_night_handler.gd" id="6_7mycd"]
 [ext_resource type="AudioStream" uid="uid://bt5g53x1qkr4t" path="res://assets/sounds/FOOT3.wav" id="7_efxa6"]
 [ext_resource type="AudioStream" uid="uid://c3bntd3vy6scn" path="res://assets/sounds/WHACK1.wav" id="8_dg77c"]
+[ext_resource type="AudioStream" uid="uid://u5ug33nvv30i" path="res://assets/sounds/SEED.wav" id="9_dg77c"]
 [ext_resource type="AudioStream" uid="uid://d2krogm0q4bbk" path="res://assets/sounds/WHACK2.wav" id="9_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://syw1f3h0b4kp" path="res://assets/sounds/RAKING.wav" id="10_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://dkcg83jfqwpj2" path="res://assets/sounds/HARVESTING.wav" id="11_w48qg"]
 [ext_resource type="PackedScene" uid="uid://dfa1v2go21vmf" path="res://farming/farm_plot.tscn" id="12_dg77c"]
+[ext_resource type="AudioStream" uid="uid://c3unp3dypcvtq" path="res://assets/sounds/WATERING.wav" id="13_cegan"]
+[ext_resource type="AudioStream" uid="uid://defcsh0jkm2n3" path="res://assets/sounds/FENCE.wav" id="14_82xsv"]
+[ext_resource type="AudioStream" uid="uid://cqdyctm2mc7e3" path="res://assets/sounds/TOTEM.wav" id="15_getpj"]
+[ext_resource type="AudioStream" uid="uid://c6r0jw00mdo7x" path="res://assets/sounds/The Essence - Main Theme.ogg" id="15_vivmo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dg77c"]
 vertices = PackedVector2Array(861, -245.602, 861, -36.5625, -512.242, 270.617, 234, -117.898, 830.102, -274, 234, -180, 233, -180, 233, -241, -476.961, -274, 218.797, -241, 218.797, -178.898, 219.797, -178.898, 219.797, -117.898, -155.906, 1502, -162.898, 2237.9, -688.977, 2233.09, -686.008, 277.602, 899.969, 13.4063, 888.07, 1632, 139.773, 1632, 136.773, 1502, -499.102, -252.648)
@@ -18,6 +26,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32
 outlines = Array[PackedVector2Array]([PackedVector2Array(834, -284, 871, -250, 871, -40, 910, 10, 898, 1642, 130, 1642, 127, 1512, -146, 1512, -153, 2248, -699, 2243, -696, 268, -522, 261, -509, -257, -481, -284)])
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_2cqfq")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
@@ -31,6 +40,12 @@ navigation_polygon = SubResource("NavigationPolygon_dg77c")
 z_index = 1
 footstep_sounds = Array[AudioStream]([ExtResource("5_5vw27"), ExtResource("6_4c57u"), ExtResource("7_efxa6")])
 whack_sounds = Array[AudioStream]([ExtResource("8_dg77c"), ExtResource("9_ycdy4")])
+plant_sound = ExtResource("9_dg77c")
+shoveling_sound = ExtResource("10_ycdy4")
+harvesting_sound = ExtResource("11_w48qg")
+watering_sound = ExtResource("13_cegan")
+fence_sound = ExtResource("14_82xsv")
+totem_sound = ExtResource("15_getpj")
 
 [node name="Camera2D" parent="player" index="1"]
 zoom = Vector2(1.5, 1.5)
@@ -40,8 +55,24 @@ animation = &"whack"
 frame = 3
 
 [node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="player"]
+volume_db = 10.306
 
 [node name="WhackPlayer" type="AudioStreamPlayer2D" parent="player"]
+volume_db = -7.811
+
+[node name="PlantPlayer" type="AudioStreamPlayer2D" parent="player"]
+
+[node name="ShovelingPlayer" type="AudioStreamPlayer2D" parent="player"]
+
+[node name="HarvestingPlayer" type="AudioStreamPlayer2D" parent="player"]
+volume_db = 3.748
+
+[node name="WateringPlayer" type="AudioStreamPlayer2D" parent="player"]
+
+[node name="FencePlayer" type="AudioStreamPlayer2D" parent="player"]
+
+[node name="TotemPlayer" type="AudioStreamPlayer2D" parent="player"]
+volume_db = 2.811
 
 [node name="ForegroundStatic" parent="." instance=ExtResource("5_272bh")]
 z_index = 2
@@ -59,6 +90,10 @@ position = Vector2(-1097, -1613)
 
 [node name="HUD" parent="." instance=ExtResource("5_lquwl")]
 unique_name_in_owner = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_vivmo")
+volume_db = -23.423
 
 [node name="FarmPlot" parent="." instance=ExtResource("12_dg77c")]
 position = Vector2(92, 224)
