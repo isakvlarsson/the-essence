@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckeis5nfy86a0"]
+[gd_scene load_steps=13 format=3 uid="uid://ckeis5nfy86a0"]
 
 [ext_resource type="PackedScene" uid="uid://c5nl6472j43m2" path="res://static/background_static.tscn" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://mnhnr63qhtme" path="res://player/player.tscn" id="2_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://b812d52oig4gf" path="res://defences/fence_ud.tscn" id="2_lquwl"]
 [ext_resource type="AudioStream" uid="uid://bkxy54ux5romj" path="res://assets/sounds/FOOT1.wav" id="5_5vw27"]
 [ext_resource type="PackedScene" uid="uid://cjdudtwhqprol" path="res://static/foreground_static.tscn" id="5_272bh"]
 [ext_resource type="PackedScene" uid="uid://broy3nosynqvv" path="res://gui/hud.tscn" id="5_lquwl"]
@@ -27,12 +26,6 @@ position = Vector2(17, 9)
 
 [node name="NavigationRegion" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_dg77c")
-
-[node name="FenceLR" parent="NavigationRegion" instance=ExtResource("2_lquwl")]
-position = Vector2(227, -149)
-
-[node name="FenceLR2" parent="NavigationRegion" instance=ExtResource("2_lquwl")]
-position = Vector2(226, -210)
 
 [node name="player" parent="." groups=["player"] instance=ExtResource("2_1bvp3")]
 z_index = 1
@@ -59,7 +52,7 @@ unique_name_in_owner = true
 script = ExtResource("6_7mycd")
 
 [node name="CreatureSpawnPointSwamp" type="Node2D" parent="." groups=["creature_spawn_point"]]
-position = Vector2(-451, 1700)
+position = Vector2(-613, 1565)
 
 [node name="CreatureSpawnPointIce" type="Node2D" parent="." groups=["creature_spawn_point"]]
 position = Vector2(-1097, -1613)
