@@ -20,6 +20,8 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(834, -284, 871, -250, 8
 
 [node name="Main" type="Node2D"]
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
 [node name="BackgroundStatic" parent="." instance=ExtResource("1_7mycd")]
 position = Vector2(17, 9)
 

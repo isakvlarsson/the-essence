@@ -37,7 +37,7 @@ var currentItem = "Stick"
 func _ready():
 	last_position = global_position
 	hud_toolbar.connect("update_selected_item", _on_update_selected_item)
-	current_realm = "ice"
+	current_realm = "swamp"
 
 func get_input():
 	if not dashing and not whacking:
@@ -201,9 +201,9 @@ func plant():
 		return
 	var closest_area_parent = closest_area.get_parent()
 	if closest_area_parent.is_in_group("farm_plot") && !closest_area_parent.planted:
-		if current_realm == "swamp":
+		if closest_area_parent.realm == "swamp":
 			closest_area_parent.sow("pumpkin")
-		elif current_realm == "ice":
+		elif closest_area_parent.realm == "ice":
 			closest_area_parent.sow("iceberg lettuce")
 		
 		hud_toolbar.set_current_item_amount(current_amount-1)
@@ -228,14 +228,14 @@ func place_trap():
 	var trap: Node2D = trap_scene.instantiate()
 	get_tree().root.add_child(trap)
 	trap.global_position = pos + Vector2(0.0, 0.0)
-	trap.scale = Vector2(1.0, 1.0)	
+	trap.scale = Vector2(1.0, 1.0) * 2
 	
 func place_totem():
 	var pos: Vector2 = global_position
 	var totem: Node2D = totem_scene.instantiate()
 	get_tree().root.add_child(totem)
 	totem.global_position = pos + Vector2(0.0, 0.0)
-	totem.scale = Vector2(1.0, 1.0)*2
+	totem.scale = Vector2(1.0, 1.0) * 3
 	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
 	nav_region.add_child(totem)
 	nav_region.bake_navigation_polygon(true)
@@ -284,12 +284,6 @@ func harvest_plant(node: Node2D):
 	var plant_amount = hud_toolbar.get_item_amount(plant_type)
 	hud_toolbar.set_item_amount(plant_type, plant_amount + 1)
 	node.harvest()
-
-func step_through_portal():
-	if current_realm != "swamp":
-		current_realm = "ice"
-	else:
-		current_realm = "swamp"
 		
 func walk():
 	if(velocity.x < 0 or velocity.y < 0):

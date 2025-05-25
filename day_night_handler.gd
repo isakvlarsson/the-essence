@@ -24,11 +24,22 @@ func _process(delta: float) -> void:
 			get_tree().call_group("farm_plot", "growth_tick")
 
 		new_hour.emit(hour) 
-		if hour == 0:# and day%3 == 0:
+		if hour == 0 and day%3 == 0:
 			spawn_goblins()
-		#if hour == 20:
-			#var tween = create_tween()
-			#tween.tween_property($"../CanvasModulate", "color", Color.BLACK, 3)
+		
+		if hour == 18:
+			var tween = create_tween()
+			tween.tween_property($"../CanvasModulate", "color", Color.BLACK, 16)
+			await get_tree().create_timer(8).timeout
+			if tween:
+				tween.kill()
+		if hour == 3:
+			var tween2 = create_tween()
+			tween2.tween_property($"../CanvasModulate", "color", Color.WHITE, 8)
+			await get_tree().create_timer(8).timeout
+			if tween2:
+				tween2.kill()
+			
 
 func spawn_goblins():
 	var swamp_spawn_point = $"../CreatureSpawnPointSwamp"
@@ -50,7 +61,6 @@ func spawn_goblins():
 		goblin.position = swamp_spawn_point.position
 		goblin.scale = Vector2(1.0, 1.0)*1.7
 		get_tree().root.add_child(goblin)
-		#print(goblin.target_to_chase.realm)
 	
 	for i in range(0, floor(ice_plots.size()/3)):
 		var goblin: CharacterBody2D = goblin_scene.instantiate()
@@ -58,7 +68,6 @@ func spawn_goblins():
 		goblin.position = ice_spawn_point.position
 		goblin.scale = Vector2(1.0, 1.0)*1.7
 		get_tree().root.add_child(goblin)
-		#print(goblin.target_to_chase.realm)
 		
 		
 
