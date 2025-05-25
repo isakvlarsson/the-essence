@@ -52,3 +52,6 @@ func set_item_amount(item_name: String, amount: int):
 		return i.item == item_name
 	var index = slots.find_custom(is_item)
 	slots[index].set_amount(amount)
+	
+func get_current_item_name() -> String:
+	return slots[selectedSlotID].item

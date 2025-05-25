@@ -30,6 +30,8 @@ project/assembly_name="The Essence"
 farm_plot=""
 creature_spawn_point="Points in the world where creatures can spawn"
 totem="group for totems"
+player="the player character"
+altar="Altars where sacrifices are made"
 
 [input]
 
