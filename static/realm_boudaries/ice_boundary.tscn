@@ -85,6 +85,14 @@ position = Vector2(63, -223)
 position = Vector2(-557, -179)
 scale = Vector2(0.85, 0.85)
 
+[node name="Tree15" parent="PineTreeGroup" instance=ExtResource("2_bl6fg")]
+position = Vector2(-414, 96)
+scale = Vector2(1.03, 1.03)
+
+[node name="Tree16" parent="PineTreeGroup" instance=ExtResource("2_bl6fg")]
+position = Vector2(-336, 48)
+scale = Vector2(0.85, 0.85)
+
 [node name="Tree13" parent="PineTreeGroup" instance=ExtResource("2_bl6fg")]
 position = Vector2(-569, -342)
 scale = Vector2(0.85, 0.85)
@@ -121,6 +129,10 @@ scale = Vector2(1.51, 1.51)
 position = Vector2(-772, 59)
 scale = Vector2(1.51, 1.51)
 
+[node name="Tree14" parent="PineTreeGroup" instance=ExtResource("2_bl6fg")]
+position = Vector2(-377, 116)
+scale = Vector2(1.7, 1.7)
+
 [node name="Tree6" parent="PineTreeGroup" instance=ExtResource("2_bl6fg")]
 position = Vector2(223, -219)
 scale = Vector2(1.51, 1.51)
@@ -141,9 +153,17 @@ scale = Vector2(1.17, 1.17)
 position = Vector2(-248, 199)
 scale = Vector2(0.67, 0.67)
 
+[node name="FrozenRock23" parent="FrozenRockGroup" instance=ExtResource("6_sdsqa")]
+position = Vector2(-431, 239)
+scale = Vector2(0.67, 0.67)
+
 [node name="FrozenRock20" parent="FrozenRockGroup" instance=ExtResource("6_sdsqa")]
 position = Vector2(-219, 187)
 scale = Vector2(0.84, 0.84)
+
+[node name="FrozenRock22" parent="FrozenRockGroup" instance=ExtResource("6_sdsqa")]
+position = Vector2(-405, 234)
+scale = Vector2(1.17, 1.17)
 
 [node name="FrozenRock3" parent="FrozenRockGroup" instance=ExtResource("6_sdsqa")]
 position = Vector2(228, -52)
