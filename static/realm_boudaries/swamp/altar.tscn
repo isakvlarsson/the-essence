@@ -38,13 +38,6 @@ shape = SubResource("RectangleShape2D_6dmti")
 position = Vector2(0.5, -9)
 shape = SubResource("RectangleShape2D_5jtje")
 
-[node name="EssencePanel" type="Sprite2D" parent="."]
-position = Vector2(21, 19)
-scale = Vector2(2, 2)
-texture = ExtResource("1_tm8k8")
-region_enabled = true
-region_rect = Rect2(366.876, 74.5128, 16.4732, 18.4009)
-
 [node name="KeyboardIcon" type="TextureRect" parent="."]
 offset_left = -13.0
 offset_top = -76.0
@@ -53,3 +46,7 @@ offset_bottom = 24.0
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_6dmti")
 
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(0, -10)
+radius = 34.16
+vertices = PackedVector2Array(-25, -8, -25, 9, 26, 10, 26, -8)
