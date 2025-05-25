@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=4 uid="uid://qq3avks1ojpo"]
+[gd_scene load_steps=6 format=4 uid="uid://qq3avks1ojpo"]
 
 [ext_resource type="TileSet" uid="uid://c3a5jd3ep11dj" path="res://static/realm_boudaries/environment_tile.tres" id="1_l153j"]
+[ext_resource type="PackedScene" uid="uid://86jwf8rpwitv" path="res://static/realm_boudaries/ice/pine_tree.tscn" id="2_bl6fg"]
+[ext_resource type="Texture2D" uid="uid://5hgy2sre0m3h" path="res://summer_village_v1.0/assets/nature_assets.png" id="3_f1soq"]
+[ext_resource type="PackedScene" uid="uid://cc045e77knejf" path="res://deity/ice_deity.tscn" id="4_0kev5"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_bl6fg"]
+vertices = PackedVector2Array(-742.297, -101.602, -773.062, -131.297, -776.844, -376.031, 242.977, -379.961, 242, 238.922, 147.891, 208.867, -201.531, 251.992, -795, 251.008, -795, -40.6562, -759.094, -57.6797, 122.406, 263.969, -132, 263.031, -132, 200.461, 134.922, 234.789, -192.258, 241.391, -182.688, 194.578, 239.898, 248.867, 188.594, 248.094, 179.891, 228.07, -156.891, 184.898)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(10, 11, 12, 13), PackedInt32Array(14, 6, 9, 0, 15), PackedInt32Array(4, 16, 17, 18), PackedInt32Array(5, 13, 12, 19), PackedInt32Array(19, 15, 0), PackedInt32Array(5, 19, 0), PackedInt32Array(5, 4, 18)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-787, -386, -783, -127, -754, -99, -767, -65, -805, -47, -805, 261, -197, 262, -183, 246, -174, 202, -158, 196, -142, 206, -142, 273, 129, 274, 144, 239, 152, 223, 172, 235, 182, 258, 248, 259, 252, 240, 253, -390)])
 
 [node name="Ice Boundary" type="Node2D"]
 
@@ -9,7 +17,31 @@ tile_map_data = PackedByteArray("AADt//v/AQADAAEAAADt//z/AQADAAEAAADt//3/AQADAAE
 tile_set = ExtResource("1_l153j")
 rendering_quadrant_size = 32
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-152, 205, -148, 212, -146, 278, -134, 281, 126, 281, 145, 272, 144, 245, 156, 230, 170, 239, 176, 257, 184, 263, 245, 265, 256, 255, 257, -392, -794, -390, -797, -157, -790, -142, -791, -133, -786, -124, -773, -116, -761, -106, -757, -87, -765, -71, -780, -57, -812, -50, -812, 249, -807, 266, -190, 264, -177, 253, -174, 208, -165, 219, -164, 277, -829, 281, -830, -57, -791, -73, -808, -103, -811, -401, 271, -404, 269, 279, 255, 282, 170, 281, 162, 251, 155, 259, 153, 295, 119, 300, -123, 299, -152, 298, -153, 217, -161, 214, -165, 219, -174, 208, -162, 200, -156, 201)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="StaticBody2D"]
+navigation_polygon = SubResource("NavigationPolygon_bl6fg")
+
+[node name="Tree" parent="." instance=ExtResource("2_bl6fg")]
+position = Vector2(-643, -188)
+
+[node name="Tree2" parent="." instance=ExtResource("2_bl6fg")]
+position = Vector2(-559, -160)
+scale = Vector2(0.85, 0.85)
+
+[node name="Tree3" parent="." instance=ExtResource("2_bl6fg")]
+position = Vector2(-594, -188)
+scale = Vector2(1.51, 1.51)
+
+[node name="NatureAssets" type="Sprite2D" parent="."]
+position = Vector2(-617, 56)
+scale = Vector2(1.56, 1.56)
+texture = ExtResource("3_f1soq")
+region_enabled = true
+region_rect = Rect2(0, 195.75, 114, 83.25)
+
+[node name="IceDeitySprite" parent="." instance=ExtResource("4_0kev5")]
+position = Vector2(-617, 40)

@@ -27,3 +27,5 @@ polygon = PackedVector2Array(-19, 33, -9, 33, -9, 18, -11, 17, -17, 17, -19, 18,
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="StaticBody2D"]
 vertices = PackedVector2Array(-61.1111, 106.667, -110, 105.556, -113.333, -72.2222, -2.22222, -83.3333, 115.556, -82.2222, 114.444, 61.1111, 17.7778, 60, 17.7778, 103.333, -30, 105.556, -31.1111, 57.7778, -34.4444, 54.4444, -56.6667, 53.3333, -62.2222, 57.7778)
+affect_navigation_mesh = true
+carve_navigation_mesh = true

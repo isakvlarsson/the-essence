@@ -25,15 +25,21 @@ position = Vector2(35, 35)
 position = Vector2(-3, -22)
 polygon = PackedVector2Array(-18, 21, -5, 21, 2, 14, 2, -7, -26, -7, -26, 15)
 
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="StaticBody2D/CollisionPolygon2D"]
+position = Vector2(-32, -13)
+vertices = PackedVector2Array(7, 6, 35, 6, 35, 27, 27, 34, 14, 34, 6, 28)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="NavigationObstacle2D2" type="NavigationObstacle2D" parent="StaticBody2D/CollisionPolygon2D"]
+position = Vector2(-32, -13)
+vertices = PackedVector2Array(43, 8, 42, 24, 50, 32, 60, 32, 68, 25, 69, 8, 66, 5, 44, 5)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
 [node name="EssencePanel" type="Sprite2D" parent="."]
 position = Vector2(21, 19)
 scale = Vector2(2, 2)
 texture = ExtResource("1_tm8k8")
 region_enabled = true
 region_rect = Rect2(366.876, 74.5128, 16.4732, 18.4009)
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-vertices = PackedVector2Array(7, 6, 35, 6, 35, 27, 27, 34, 14, 34, 6, 28)
-
-[node name="NavigationObstacle2D2" type="NavigationObstacle2D" parent="."]
-vertices = PackedVector2Array(43, 8, 42, 24, 50, 32, 60, 32, 68, 25, 69, 8, 66, 5, 44, 5)
