@@ -278,6 +278,11 @@ func interact():
 		if parent.is_in_group("farm_plot") && parent.is_harvestable():
 			harvest_plant(parent)
 			return
+		elif parent.is_in_group("altar"):
+			if parent.try_sacrifice(hud_toolbar.get_current_item_name(), hud_toolbar.get_current_item_amount()):
+				hud_toolbar.set_current_item_amount(hud_toolbar.get_current_item_amount() - parent.current_sacrifice_amount)
+				
+			
 
 func harvest_plant(node: Node2D):
 	var plant_type = node.plant_type

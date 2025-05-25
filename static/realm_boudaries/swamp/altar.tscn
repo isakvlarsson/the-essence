@@ -27,6 +27,7 @@ scale = Vector2(0.170024, 0.191106)
 texture = ExtResource("1_tm8k8")
 
 [node name="InteractionBox" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
 position = Vector2(-0.5, -11.625)
