@@ -14,5 +14,5 @@ position = Vector2(-548, 730)
 position = Vector2(169, -542)
 
 [node name="Altar" parent="." instance=ExtResource("3_763xc")]
-position = Vector2(-623, 792)
+position = Vector2(-450, 868)
 scale = Vector2(2.02, 2.02)
