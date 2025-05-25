@@ -56,7 +56,7 @@ func get_input():
 			$AnimationPlayer.stop()
 
 func _input(event):
-	if Input.is_action_pressed("whack"):
+	if event.is_action_pressed("whack"):
 		if !can_interact or dashing or whacking:
 			return
 		can_interact = false
