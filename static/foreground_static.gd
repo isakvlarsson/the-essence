@@ -5,7 +5,7 @@ extends Node2D
 
 func _ready():
 	#dummy function call just to test the animation
-	icePortalOnSwamp.activate_ice_portal();
+	#icePortalOnSwamp.activate_ice_portal();
 	swampPortalOnIce.activate_swamp_portal();
 	swampPortalOnIce.assign_destination(icePortalOnSwamp);
 	icePortalOnSwamp.assign_destination(swampPortalOnIce);

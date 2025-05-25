@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c343rmto2pgel"]
+[gd_scene load_steps=34 format=3 uid="uid://c343rmto2pgel"]
 
 [ext_resource type="Script" uid="uid://woq4a25e8jqk" path="res://portal/portal.gd" id="1_2e3pj"]
 [ext_resource type="Texture2D" uid="uid://dylgrbqo6fbsa" path="res://assets/portal/deactivated.png" id="2_2e3pj"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cbmrfdp2fg46b" path="res://assets/portal/realm_ice.png" id="3_2e3pj"]
 [ext_resource type="Texture2D" uid="uid://c4mwlx16khxqg" path="res://assets/portal/realm_swamp.png" id="4_vbfxp"]
 [ext_resource type="Texture2D" uid="uid://cni152flgs0i1" path="res://assets/portal/realm_water.png" id="5_m7om1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m2b6j"]
+radius = 30.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbfxp"]
 atlas = ExtResource("2_2e3pj")
@@ -213,11 +216,24 @@ animations = [{
 [node name="Portal" type="Node2D"]
 script = ExtResource("1_2e3pj")
 
+[node name="InteractionBox" type="Area2D" parent="."]
+position = Vector2(-3, -47)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+position = Vector2(3, 47)
+shape = SubResource("CircleShape2D_m2b6j")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-3, -47)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(10, 65, 5, 65, -1, 65, -12, 61, -15, 57, -19, 53, -22, 47, -20, 42, -9, 39, -6, 39, 0, 38, 8, 38, 10, 38, 15, 38, 19, 39, 25, 41, 29, 44, 29, 46, 28, 48, 26, 51, 22, 57, 20, 59, 18, 61, 16, 62)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -47)
 sprite_frames = SubResource("SpriteFrames_de8xe")
-animation = &"fire"
+animation = &"Default"
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(-3, -47)
+vertices = PackedVector2Array(17, 35, -11, 35, -21, 43, -7, 57, 8, 61, 28, 51, 28, 42, 19, 35)

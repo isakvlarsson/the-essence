@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bgq0blanydl4c"
+path="res://.godot/imported/ice_deity.dialogue-163d1d4c0fb0997d0291765eac910226.tres"
+
+[deps]
+
+source_file="res://dialogue/ice_deity.dialogue"
+dest_files=["res://.godot/imported/ice_deity.dialogue-163d1d4c0fb0997d0291765eac910226.tres"]
+
+[params]
+
+defaults=true

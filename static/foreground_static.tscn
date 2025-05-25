@@ -8,11 +8,12 @@
 script = ExtResource("1_jik1x")
 
 [node name="Portal" parent="." instance=ExtResource("5_mhjka")]
-position = Vector2(-265, 159)
+position = Vector2(-661, 1737)
 
 [node name="Portal2" parent="." instance=ExtResource("5_mhjka")]
 position = Vector2(169, -542)
 
-[node name="Altar" parent="." instance=ExtResource("3_763xc")]
-position = Vector2(-333, 236)
+[node name="Altar" parent="." node_paths=PackedStringArray("portal") instance=ExtResource("3_763xc")]
+position = Vector2(-515, 1768)
 scale = Vector2(2.02, 2.02)
+portal = NodePath("../Portal")

@@ -15,15 +15,37 @@ run/main_scene="uid://ckeis5nfy86a0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+
+[dialogue_manager]
+
+runtime/balloon_path="res://dialogue/balloon.tscn"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/resizable=false
+
 [dotnet]
 
 project/assembly_name="The Essence"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/controller_icons/plugin.cfg")
 
 [global_group]
 
 farm_plot=""
 creature_spawn_point="Points in the world where creatures can spawn"
 totem="group for totems"
+player="the player character"
+altar="Altars where sacrifices are made"
+interactible="has \"interact\" function"
 
 [input]
 
@@ -97,6 +119,10 @@ interact={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialogue/ice_deity.dialogue")
 
 [layer_names]
 

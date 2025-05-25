@@ -7,16 +7,20 @@ extends CharacterBody2D
 @onready var totem_scene = preload("res://defences/totem.tscn") 
 @onready var interaction_area: Area2D = $InteractionBox
 @onready var hud_toolbar = %HUD/ToolBar
+@onready var day_night_handler = %DayNightHandler
 
 var can_interact = true
 
 var speed = 400
 var canDash = true
 var dashing = false
+var whacking = false
+var facing
 var dashSpeed = 1200
 var dashDirection = Vector2.ZERO
 var input_direction = Vector2.ZERO
 var last_direction = Vector2.ZERO
+var current_realm: String
 
 # --- FOOTSTEP STUFF ---
 @export var footstep_sounds: Array[AudioStream] = []
@@ -58,24 +62,32 @@ var currentItem = "Stick"
 func _ready():
 	last_position = global_position
 	hud_toolbar.connect("update_selected_item", _on_update_selected_item)
+	current_realm = "swamp"
 
 func get_input():
-	if not dashing:
+	if not dashing and not whacking:
 		input_direction = Input.get_vector("left", "right", "up", "down")
 		if input_direction != Vector2.ZERO:
 			last_direction = input_direction
 		velocity = input_direction * speed
 		dashDirection = input_direction
+		walk()
+		if(velocity.length() == 0 and not whacking):
+			$Animations.play("default")
+			if(last_direction.x > 0  or last_direction.y > 0):
+				$Animations.flip_h = false
+			else:
+				$Animations.flip_h = true
+			$AnimationPlayer.stop()
 
 func _input(event):
-	if Input.is_action_pressed("whack"):
-		if !can_interact:
+	if event.is_action_pressed("whack"):
+		if !can_interact or dashing or whacking:
 			return
 		can_interact = false
 		match currentItem:
 			"stick": 
-				get_node("AnimatedSprite2D").play("whack")
-				play_whack_sound() # Play whack sound when whack animation is triggered
+				whack()
 			"seeds":
 				plant()
 				play_plant_sound()  # Play the plant sound after planting
@@ -100,7 +112,7 @@ func _input(event):
 		hud_toolbar.set_current_slot((hud_toolbar.selectedSlotID + 1)%10)
 	if Input.is_action_pressed("decrement_selected_slot"):
 		hud_toolbar.set_current_slot((hud_toolbar.selectedSlotID + -1)%10)
-	if Input.is_action_pressed("select_toolbar_slot"):
+	if event.is_action_pressed("select_toolbar_slot"):
 		match event.keycode:
 			KEY_1:
 				hud_toolbar.set_current_slot(0)
@@ -129,7 +141,7 @@ func dash():
 		velocity = dashDirection.normalized()*dashSpeed
 		canDash = false
 		dashing = true
-		
+		$Animations.play("dash")
 		#dash for 0.2 seconds
 		await get_tree().create_timer(0.2).timeout 
 		dashing = false
@@ -137,6 +149,27 @@ func dash():
 		#Able to dash again after 1 second
 		await get_tree().create_timer(1.0).timeout
 		canDash = true
+		
+func whack():
+	whacking = true
+	if(last_direction.x > 0 or last_direction.y > 0):
+		$Animations.flip_h = false
+		facing = "R"
+	else:
+		$Animations.flip_h = true
+		facing = "L"
+	velocity = Vector2.ZERO
+	$Animations.play("whack")
+	await get_tree().create_timer(0.3).timeout
+	if facing == "R":
+		$stick/stickShapeR.disabled = false
+	else:
+		$stick/stickShapeL.disabled = false
+	await get_tree().create_timer(0.2).timeout
+	$stick/stickShapeR.disabled = true
+	$stick/stickShapeL.disabled = true
+	whacking = false
+	play_whack_sound() # Play whack sound when whack animation is triggered
 
 func play_footstep():
 	if footstep_sounds.size() == 0:
@@ -230,6 +263,7 @@ func create_soil():
 	get_tree().root.add_child(crop_instance)
 	crop_instance.global_position = pos + Vector2(0.0, 0.0)
 	crop_instance.scale = Vector2(1.0, 1.0)*18
+	crop_instance.realm = current_realm
 
 func plant():
 	var current_amount = hud_toolbar.get_current_item_amount()
@@ -241,11 +275,18 @@ func plant():
 		return
 	var closest_area_parent = closest_area.get_parent()
 	if closest_area_parent.is_in_group("farm_plot") && !closest_area_parent.planted:
-		closest_area_parent.sow()
+		if closest_area_parent.realm == "swamp":
+			closest_area_parent.sow("pumpkin")
+		elif closest_area_parent.realm == "ice":
+			closest_area_parent.sow("iceberg lettuce")
+		
 		hud_toolbar.set_current_item_amount(current_amount-1)
 	
 
 func place_fence():
+	var current_amount = hud_toolbar.get_current_item_amount()
+	if current_amount <= 0:
+		return
 	var pos: Vector2 = global_position
 	var fence: Node2D = fence_sceneLR.instantiate()
 	if last_direction.x != 0:
@@ -258,23 +299,32 @@ func place_fence():
 	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
 	nav_region.add_child(fence)
 	nav_region.bake_navigation_polygon(true)
+	hud_toolbar.set_current_item_amount(current_amount-1)
 	
 func place_trap():
+	var current_amount = hud_toolbar.get_current_item_amount()
+	if current_amount <= 0:
+		return
 	var pos: Vector2 = global_position
 	var trap: Node2D = trap_scene.instantiate()
 	get_tree().root.add_child(trap)
 	trap.global_position = pos + Vector2(0.0, 0.0)
-	trap.scale = Vector2(1.0, 1.0)	
+	trap.scale = Vector2(1.0, 1.0) * 2
+	hud_toolbar.set_current_item_amount(current_amount-1)
 	
 func place_totem():
+	var current_amount = hud_toolbar.get_current_item_amount()
+	if current_amount <= 0:
+		return
 	var pos: Vector2 = global_position
 	var totem: Node2D = totem_scene.instantiate()
 	get_tree().root.add_child(totem)
 	totem.global_position = pos + Vector2(0.0, 0.0)
-	totem.scale = Vector2(1.0, 1.0)*2
+	totem.scale = Vector2(1.0, 1.0) * 3
 	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
 	nav_region.add_child(totem)
 	nav_region.bake_navigation_polygon(true)
+	hud_toolbar.set_current_item_amount(current_amount-1)
 
 func water_plant():
 	var closest_area = get_closest_area()
@@ -314,9 +364,24 @@ func interact():
 		if parent.is_in_group("farm_plot") && parent.is_harvestable():
 			harvest_plant(parent)
 			return
+		elif parent.is_in_group("altar"):
+			if parent.try_sacrifice(hud_toolbar.get_current_item_name(), hud_toolbar.get_current_item_amount()):
+				hud_toolbar.set_current_item_amount(hud_toolbar.get_current_item_amount() - parent.current_sacrifice_amount)
+		elif parent.is_in_group("interactible"):
+			parent.interact(self)
+			
 
 func harvest_plant(node: Node2D):
-	var plant_amount = hud_toolbar.get_item_amount("plant")
-	hud_toolbar.set_item_amount("plant", plant_amount + 1)
+	var plant_type = node.plant_type
+	var plant_amount = hud_toolbar.get_item_amount(plant_type)
+	hud_toolbar.set_item_amount(plant_type, plant_amount + 1)
 	node.harvest()
 	play_harvesting_sound()
+		
+func walk():
+	if(velocity.x < 0 or velocity.y < 0):
+		$Animations.flip_h = false
+	if(velocity.x > 0 or velocity.y > 0):
+		$Animations.flip_h = true
+	$Animations.play("walk")
+	

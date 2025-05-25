@@ -6,7 +6,7 @@
 size = Vector2(32.625, 35.25)
 
 [node name="FenceLR" type="Node2D"]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
 
 [node name="Area2D" type="Area2D" parent="."]
 

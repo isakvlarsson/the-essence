@@ -144,7 +144,7 @@ region_rect = Rect2(72, 72, 48, 56)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-radius = 50.0
+radius = 75.0
 
 [node name="PlantSensor" type="Area2D" parent="."]
 collision_layer = 2

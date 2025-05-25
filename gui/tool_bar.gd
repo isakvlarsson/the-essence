@@ -20,7 +20,9 @@ func _ready() -> void:
 	slots[4].set_item("fence", 5, true)
 	slots[5].set_item("trap", 5, true)
 	slots[6].set_item("totem", 1, true)
-	slots[7].set_item("plant", 0, true)
+	slots[7].set_item("pumpkin", 0, true)
+	slots[8].set_item("ice essence", 0, true)
+	slots[9].set_item("iceberg lettuce", 0, true)
 
 func toolbar_slot_clicked(slot):
 	slots[selectedSlotID].selected = false
@@ -51,3 +53,6 @@ func set_item_amount(item_name: String, amount: int):
 		return i.item == item_name
 	var index = slots.find_custom(is_item)
 	slots[index].set_amount(amount)
+	
+func get_current_item_name() -> String:
+	return slots[selectedSlotID].item

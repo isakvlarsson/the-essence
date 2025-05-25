@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://r575h8g86c54"]
+[gd_scene load_steps=6 format=3 uid="uid://r575h8g86c54"]
 
+[ext_resource type="Script" uid="uid://kj6urey6h8vx" path="res://static/realm_boudaries/swamp/house_1.gd" id="1_5qyaf"]
 [ext_resource type="Texture2D" uid="uid://bumo65j5puh0n" path="res://summer_village_v1.0/assets/houses.png" id="1_tmt7c"]
+[ext_resource type="Texture2D" uid="uid://xe4n818le3p8" path="res://addons/controller_icons/assets/key/e.png" id="3_b7abf"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmt7c"]
+size = Vector2(43.75, 51.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b7abf"]
+font_size = 12
+outline_size = 3
+outline_color = Color(0.172833, 0.172833, 0.172833, 1)
+
+[node name="Node2D" type="Node2D" groups=["interactible"]]
+script = ExtResource("1_5qyaf")
 
 [node name="HouseSprite" type="Sprite2D" parent="."]
 z_index = 10
@@ -24,3 +35,42 @@ polygon = PackedVector2Array(-34, 14, -34, 33, -19, 33, -19, 18, -17, 17, -11, 1
 position = Vector2(-1.11111, 1.11111)
 scale = Vector2(3.12517, 3.13612)
 polygon = PackedVector2Array(-19, 33, -9, 33, -9, 18, -11, 17, -17, 17, -19, 18, -19, 23.616)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="StaticBody2D"]
+vertices = PackedVector2Array(-61.1111, 106.667, -110, 105.556, -113.333, -72.2222, -2.22222, -83.3333, 115.556, -82.2222, 114.444, 61.1111, 17.7778, 60, 17.7778, 103.333, -30, 105.556, -31.1111, 57.7778, -34.4444, 54.4444, -56.6667, 53.3333, -62.2222, 57.7778)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="InteractionBox" type="Area2D" parent="."]
+z_index = 11
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox"]
+position = Vector2(-40.875, 87.25)
+shape = SubResource("RectangleShape2D_tmt7c")
+
+[node name="InteractionText" type="Control" parent="."]
+z_index = 12
+layout_mode = 3
+anchors_preset = 0
+offset_left = -49.0
+offset_top = 25.0
+offset_right = -9.0
+offset_bottom = 65.0
+
+[node name="TextureRect" type="TextureRect" parent="InteractionText"]
+offset_left = -43.0
+offset_top = 1.0
+offset_right = 57.0
+offset_bottom = 101.0
+scale = Vector2(0.23, 0.23)
+texture = ExtResource("3_b7abf")
+
+[node name="Label" type="Label" parent="InteractionText"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = 4.0
+offset_right = 76.0
+offset_bottom = 27.0
+text = "Sleep 1 hour?"
+label_settings = SubResource("LabelSettings_b7abf")

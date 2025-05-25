@@ -112,3 +112,8 @@ frame_progress = 0.181386
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-33, 15, -32, 13, 31, 13, 33, 20, 33, 29, 32, 38, 31, 46, -34, 46, -36, 28)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(-32, 13, -34, 15, -36, 25, -36, 29, -34, 45, 31, 45, 34, 34, 32, 13)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
