@@ -3,7 +3,7 @@ extends CanvasLayer
 @onready var time_label = $TimeLabel
 @onready var day_night_handler = %DayNightHandler
 var current_day = 1
-var current_hour = 0
+var current_hour = 8
 
 func _ready() -> void:
 	day_night_handler.connect("new_day", _on_new_day)
