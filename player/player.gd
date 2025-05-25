@@ -56,7 +56,7 @@ func get_input():
 			$AnimationPlayer.stop()
 
 func _input(event):
-	if Input.is_action_pressed("whack"):
+	if event.is_action_pressed("whack"):
 		if !can_interact or dashing or whacking:
 			return
 		can_interact = false
@@ -210,6 +210,9 @@ func plant():
 	
 
 func place_fence():
+	var current_amount = hud_toolbar.get_current_item_amount()
+	if current_amount <= 0:
+		return
 	var pos: Vector2 = global_position
 	var fence: Node2D = fence_sceneLR.instantiate()
 	if last_direction.x != 0:
@@ -222,15 +225,23 @@ func place_fence():
 	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
 	nav_region.add_child(fence)
 	nav_region.bake_navigation_polygon(true)
+	hud_toolbar.set_current_item_amount(current_amount-1)
 	
 func place_trap():
+	var current_amount = hud_toolbar.get_current_item_amount()
+	if current_amount <= 0:
+		return
 	var pos: Vector2 = global_position
 	var trap: Node2D = trap_scene.instantiate()
 	get_tree().root.add_child(trap)
 	trap.global_position = pos + Vector2(0.0, 0.0)
 	trap.scale = Vector2(1.0, 1.0) * 2
+	hud_toolbar.set_current_item_amount(current_amount-1)
 	
 func place_totem():
+	var current_amount = hud_toolbar.get_current_item_amount()
+	if current_amount <= 0:
+		return
 	var pos: Vector2 = global_position
 	var totem: Node2D = totem_scene.instantiate()
 	get_tree().root.add_child(totem)
@@ -239,6 +250,7 @@ func place_totem():
 	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
 	nav_region.add_child(totem)
 	nav_region.bake_navigation_polygon(true)
+	hud_toolbar.set_current_item_amount(current_amount-1)
 
 func water_plant():
 	var closest_area = get_closest_area()
@@ -278,6 +290,11 @@ func interact():
 		if parent.is_in_group("farm_plot") && parent.is_harvestable():
 			harvest_plant(parent)
 			return
+		elif parent.is_in_group("altar"):
+			if parent.try_sacrifice(hud_toolbar.get_current_item_name(), hud_toolbar.get_current_item_amount()):
+				hud_toolbar.set_current_item_amount(hud_toolbar.get_current_item_amount() - parent.current_sacrifice_amount)
+				
+			
 
 func harvest_plant(node: Node2D):
 	var plant_type = node.plant_type
