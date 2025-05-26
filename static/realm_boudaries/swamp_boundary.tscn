@@ -951,7 +951,7 @@ position = Vector2(-289, 679)
 scale = Vector2(0.09, 0.09)
 
 [node name="Tree11" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
-position = Vector2(-72, 300)
+position = Vector2(-149, 301)
 scale = Vector2(0.09, 0.09)
 
 [node name="Tree8" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
