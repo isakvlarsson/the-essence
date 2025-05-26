@@ -46,6 +46,8 @@ totem="group for totems"
 player="the player character"
 altar="Altars where sacrifices are made"
 interactible="has \"interact\" function"
+ice_deity=""
+villager=""
 
 [input]
 

@@ -392,6 +392,12 @@ func interact():
 				portal_is_activated = true
 		elif parent.is_in_group("interactible"):
 			parent.interact(self)
+		elif parent.is_in_group("ice_deity"):
+			if hud_toolbar.get_current_item_name() == "iceberg lettuce" and hud_toolbar.get_current_item_amount() >= 5:
+				hud_toolbar.set_current_item_amount(hud_toolbar.get_current_item_amount() - 5)
+				hud_toolbar.set_item_amount("totem", 1)
+		elif parent.is_in_group("villager"):
+			hud_toolbar.set_item_amount("seeds", hud_toolbar.get_item_amount("seeds") + 1)
 			
 
 func harvest_plant(node: Node2D):

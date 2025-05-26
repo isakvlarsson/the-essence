@@ -234,7 +234,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_32vuc"]
 radius = 88.084
 
-[node name="IceDeitySprite" type="Sprite2D"]
+[node name="IceDeitySprite" type="Sprite2D" groups=["ice_deity"]]
 script = ExtResource("1_j5cdl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -255,6 +255,8 @@ affect_navigation_mesh = true
 carve_navigation_mesh = true
 
 [node name="Talkable" parent="." instance=ExtResource("3_mhx68")]
+collision_layer = 19
+collision_mask = 3
 dialogue_resource = ExtResource("4_32vuc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Talkable"]
