@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://wbwo13ksvpju" path="res://assets/realm-1/plant/pumpkin.png" id="3_5x6sv"]
 [ext_resource type="Texture2D" uid="uid://bgrvdrqv4es5x" path="res://assets/realm-1/plant/crop-1.png" id="3_kchl1"]
 [ext_resource type="Texture2D" uid="uid://fxhb0f4sdv7c" path="res://assets/realm-1/plant/ice deity crop.png" id="4_5x6sv"]
-[ext_resource type="Texture2D" uid="uid://c81qmqabgkyvb" path="res://summer_village_v1.0/assets/market_assets.png" id="5_qgx74"]
+[ext_resource type="Texture2D" uid="uid://dhqn3aix3flwx" path="res://assets/realm-2/plant/iceberg.png" id="5_qgx74"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kchl1"]
 size = Vector2(6, 6)
@@ -52,10 +52,11 @@ texture = ExtResource("4_5x6sv")
 [node name="IcebergSprite" type="Sprite2D" parent="Plant"]
 visible = false
 position = Vector2(0, -1.49012e-07)
-scale = Vector2(0.1, 0.114)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_qgx74")
 region_enabled = true
-region_rect = Rect2(354.056, 217.145, 17.5364, 15.7599)
+region_rect = Rect2(0, 0, 16, 14)
+region_filter_clip_enabled = true
 
 [node name="Plant3" type="MeshInstance2D" parent="." groups=["Plant"]]
 visible = false
