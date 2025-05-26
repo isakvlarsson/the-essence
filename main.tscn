@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ckeis5nfy86a0"]
+[gd_scene load_steps=25 format=3 uid="uid://ckeis5nfy86a0"]
 
 [ext_resource type="Script" uid="uid://d0egfnddpb8oa" path="res://main.gd" id="1_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://c5nl6472j43m2" path="res://static/background_static.tscn" id="1_7mycd"]
@@ -17,8 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://dfa1v2go21vmf" path="res://farming/farm_plot.tscn" id="12_dg77c"]
 [ext_resource type="AudioStream" uid="uid://c3unp3dypcvtq" path="res://assets/sounds/WATERING.wav" id="13_cegan"]
 [ext_resource type="AudioStream" uid="uid://defcsh0jkm2n3" path="res://assets/sounds/FENCE.wav" id="14_82xsv"]
+[ext_resource type="AudioStream" uid="uid://icus5b1rpord" path="res://assets/sounds/Portal.ogg" id="15_d13ii"]
 [ext_resource type="AudioStream" uid="uid://cqdyctm2mc7e3" path="res://assets/sounds/TOTEM.wav" id="15_getpj"]
 [ext_resource type="AudioStream" uid="uid://c6r0jw00mdo7x" path="res://assets/sounds/The Essence - Main Theme.ogg" id="15_vivmo"]
+[ext_resource type="PackedScene" uid="uid://epksci2ebp7d" path="res://defences/fence_lr.tscn" id="20_getpj"]
+[ext_resource type="PackedScene" uid="uid://b812d52oig4gf" path="res://defences/fence_ud.tscn" id="21_ryguw"]
+[ext_resource type="PackedScene" uid="uid://djfrhnfnqsa40" path="res://defences/trap.tscn" id="22_ryguw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dg77c"]
 vertices = PackedVector2Array(861, -245.602, 861, -36.5625, -512.242, 270.617, 234, -117.898, 830.102, -274, 234, -180, 233, -180, 233, -241, -476.961, -274, 218.797, -241, 218.797, -178.898, 219.797, -178.898, 219.797, -117.898, -155.906, 1502, -162.898, 2237.9, -688.977, 2233.09, -686.008, 277.602, 899.969, 13.4063, 888.07, 1632, 139.773, 1632, 136.773, 1502, -499.102, -252.648)
@@ -74,6 +78,10 @@ volume_db = 3.748
 [node name="TotemPlayer" type="AudioStreamPlayer2D" parent="player"]
 volume_db = 2.811
 
+[node name="PortalSoundPlayer" type="AudioStreamPlayer" parent="player"]
+stream = ExtResource("15_d13ii")
+volume_db = 4.137
+
 [node name="ForegroundStatic" parent="." instance=ExtResource("5_272bh")]
 z_index = 2
 position = Vector2(1, 1)
@@ -96,17 +104,126 @@ stream = ExtResource("15_vivmo")
 volume_db = -23.423
 
 [node name="FarmPlot" parent="." instance=ExtResource("12_dg77c")]
-position = Vector2(92, 224)
+position = Vector2(-201, 107)
+scale = Vector2(18, 18)
+growth_level = 0.8
+planted = true
+plant_type = "pumpkin"
+
+[node name="FarmPlot3" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(-321, 107)
+scale = Vector2(18, 18)
+growth_level = 0.2
+planted = true
+plant_type = "pumpkin"
+
+[node name="FarmPlot4" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(-199, 230)
+scale = Vector2(18, 18)
+growth_level = 0.6
+planted = true
+plant_type = "pumpkin"
+
+[node name="FarmPlot5" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(-195, 355)
+scale = Vector2(18, 18)
+growth_level = 0.6
+planted = true
+plant_type = "pumpkin"
+
+[node name="FarmPlot6" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(-320, 355)
+scale = Vector2(18, 18)
+growth_level = 0.8
+planted = true
+plant_type = "pumpkin"
+
+[node name="FarmPlot7" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(-69, 235)
+scale = Vector2(18, 18)
+growth_level = 0.8
+planted = true
+plant_type = "pumpkin"
+
+[node name="FarmPlot8" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(60, 238)
+scale = Vector2(18, 18)
+growth_level = 0.4
+planted = true
+plant_type = "pumpkin"
+
+[node name="FarmPlot9" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(-67, 356)
+scale = Vector2(18, 18)
+growth_level = 1.0
+planted = true
+plant_type = "pumpkin"
+
+[node name="FarmPlot10" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(64, 355)
 scale = Vector2(18, 18)
 growth_level = 0.8
 planted = true
 plant_type = "pumpkin"
 
 [node name="FarmPlot2" parent="." instance=ExtResource("12_dg77c")]
-position = Vector2(-20, 226)
+position = Vector2(-320, 226)
 scale = Vector2(18, 18)
 growth_level = 1.0
 planted = true
 plant_type = "ice essence"
+
+[node name="FenceLR" parent="." instance=ExtResource("20_getpj")]
+position = Vector2(-321, 412)
+
+[node name="FenceLR2" parent="." instance=ExtResource("20_getpj")]
+position = Vector2(-194, 412)
+
+[node name="FenceLR3" parent="." instance=ExtResource("20_getpj")]
+position = Vector2(-65, 411)
+
+[node name="FenceLR4" parent="." instance=ExtResource("20_getpj")]
+position = Vector2(64, 410)
+
+[node name="FenceLR5" parent="." instance=ExtResource("21_ryguw")]
+position = Vector2(-392, 350)
+
+[node name="FenceLR6" parent="." instance=ExtResource("21_ryguw")]
+position = Vector2(-391, 222)
+
+[node name="FenceLR7" parent="." instance=ExtResource("21_ryguw")]
+position = Vector2(-391, 95)
+
+[node name="FenceLR8" parent="." instance=ExtResource("21_ryguw")]
+position = Vector2(135, 350)
+
+[node name="FenceLR9" parent="." instance=ExtResource("21_ryguw")]
+position = Vector2(134, 226)
+
+[node name="FenceLR10" parent="." instance=ExtResource("20_getpj")]
+position = Vector2(-323, 31)
+
+[node name="FenceLR11" parent="." instance=ExtResource("20_getpj")]
+position = Vector2(-204, 30)
+
+[node name="trap" parent="." instance=ExtResource("22_ryguw")]
+position = Vector2(-93, 9)
+scale = Vector2(2, 2)
+
+[node name="trap2" parent="." instance=ExtResource("22_ryguw")]
+position = Vector2(-296, -21)
+scale = Vector2(2, 2)
+
+[node name="trap3" parent="." instance=ExtResource("22_ryguw")]
+position = Vector2(-453, 237)
+scale = Vector2(2, 2)
+
+[node name="trap4" parent="." instance=ExtResource("22_ryguw")]
+position = Vector2(222, 52)
+scale = Vector2(2, 2)
+
+[node name="trap5" parent="." instance=ExtResource("22_ryguw")]
+position = Vector2(207, 413)
+scale = Vector2(2, 2)
 
 [editable path="player"]

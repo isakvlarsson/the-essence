@@ -59,6 +59,12 @@ var currentItem = "Stick"
 @export var totem_sound: AudioStream  # Declaring AudioStream for the totem to player
 @onready var totem_audio_player := $TotemPlayer  # Audio player for totem
 
+# --- PORTAL SOUND STUFF ---
+@onready var portal_audio_player := $PortalSoundPlayer
+var portal_pos = Vector2(-650, 1700)  # Hardcoded portal position
+var max_portal_distance = 1500.0       # Max distance where sound plays
+var min_portal_distance = 50.0        # Min distance for max volume
+
 func _ready():
 	last_position = global_position
 	hud_toolbar.connect("update_selected_item", _on_update_selected_item)
@@ -233,6 +239,19 @@ func play_totem_sound():
 	totem_audio_player.stream = totem_sound
 	totem_audio_player.pitch_scale = randf_range(0.95, 1.05)  # A small pitch variation
 	totem_audio_player.play()
+
+func update_portal_sound():
+	var dist = global_position.distance_to(portal_pos)
+	
+	if dist < max_portal_distance:
+		if not portal_audio_player.playing:
+			portal_audio_player.play()
+		
+		var volume = 1.0 - clamp((dist - min_portal_distance) / (max_portal_distance - min_portal_distance), 0, 1)
+		portal_audio_player.volume_db = linear_to_db(volume)
+	else:
+		if portal_audio_player.playing:
+			portal_audio_player.stop()
 		
 func _physics_process(delta):
 	get_input()
@@ -247,6 +266,9 @@ func _physics_process(delta):
 		if distance_traveled >= step_distance:
 			play_footstep()
 			distance_traveled = 0.0
+
+	# Update portal sound volume based on distance
+	update_portal_sound()
 
 func _on_stick_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Creature"):

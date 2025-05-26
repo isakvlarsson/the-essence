@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://epksci2ebp7d"]
 
-[ext_resource type="Texture2D" uid="uid://bsve8qqquasvb" path="res://2dvillageassetpackwithoutoutine/props/village0021.png" id="1_gbetf"]
+[ext_resource type="Texture2D" uid="uid://cfvvjmmsnt3ak" path="res://summer_village_v1.0/tiles/wooden_fence.png" id="1_gbetf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upm4a"]
 size = Vector2(32.625, 35.25)
@@ -15,11 +15,12 @@ position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_upm4a")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+scale = Vector2(10, 10)
 texture = ExtResource("1_gbetf")
 region_enabled = true
-region_rect = Rect2(1328.22, 199.334, 626.903, 149.366)
+region_rect = Rect2(-0.0973816, 94.1002, 93.5728, 34.1507)
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-vertices = PackedVector2Array(-311, 70, -311, -72, 310, -72, 310, 70)
+vertices = PackedVector2Array(-406.667, 146.667, -406.667, -126.667, 440, -126.667, 440, 146.667)
 affect_navigation_mesh = true
 carve_navigation_mesh = true
