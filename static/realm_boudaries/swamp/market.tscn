@@ -106,6 +106,7 @@ region_rect = Rect2(96.1161, 3.07906, 87.1805, 102.487)
 script = ExtResource("2_fors5")
 
 [node name="MerchantSprite" type="AnimatedSprite2D" parent="Market"]
+z_index = 10
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_y4fgs")
 frame_progress = 0.181386
