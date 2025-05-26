@@ -1,7 +1,10 @@
 ~ start
-Ice Deity: [[Welcome|Hello|Behold]], seeker of the path unseen, the whispering silence of the frosted realms awaits! [wait=0.5] Step forth upon the ancient ice, and let the silent currents of timeless winds hone your spirit.
+Ice Deity: [[Welcome|Hello|Behold]], seeker of the path unseen, the whispering silence of the frosted realms awaits! ... [next=auto]
+Ice Deity: Step forth upon the ancient ice, and let the silent currents of timeless winds hone your spirit. ... [next=auto]
+- Show Quest => quest_1
+- Exit => END
 => END
 
 ~ quest_1
-Ice Deity: Journey to where the biting chill meets the fading warmth, and bring forth four pumpkins, each rendered into a solid jewel by the deepest frost.
+Ice Deity: Bring forth five ice lettuces, and you shall be rewarded.
 => END

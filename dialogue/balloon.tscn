@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dwqda8jqr8va8" path="res://assets/dialogue/dark_dialogue_balloon.png" id="3_0hx7h"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
 
-[node name="ExampleBalloon" type="CanvasLayer"]
+[node name="DeityBalloon" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_36de5")
 
@@ -67,6 +67,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Dialogue..."
+seconds_per_pause_step = 0.05
 
 [node name="ResponsesMenu" type="VBoxContainer" parent="Balloon" node_paths=PackedStringArray("response_template")]
 unique_name_in_owner = true
@@ -76,10 +77,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -290.5
-offset_top = -35.0
-offset_right = 290.5
-offset_bottom = 35.0
+offset_left = 305.0
+offset_top = -420.822
+offset_right = 886.0
+offset_bottom = -350.822
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
@@ -89,7 +90,6 @@ script = ExtResource("3_72ixx")
 response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/ResponsesMenu"]
-visible = false
 layout_mode = 2
 text = "Response example"
 
