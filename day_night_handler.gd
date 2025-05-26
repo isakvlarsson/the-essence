@@ -32,20 +32,19 @@ func on_new_hour(new_hour: int):
 	if hour == 0 and day%3 == 0:
 		spawn_goblins()
 	
-	if hour == 18:
+	if hour == 22:
+		
 		var tween = create_tween()
-		tween.tween_property($"../CanvasModulate", "color", Color.BLACK, 16)
-		await get_tree().create_timer(8).timeout
+		tween.tween_property($"../CanvasModulate", "color", Color.BLACK, 2)
+		await get_tree().create_timer(1).timeout
 		if tween:
 			tween.kill()
-	if hour == 3:
+	if hour == 6:
 		var tween2 = create_tween()
-		tween2.tween_property($"../CanvasModulate", "color", Color.WHITE, 8)
-		await get_tree().create_timer(8).timeout
+		tween2.tween_property($"../CanvasModulate", "color", Color.WHITE, 1)
+		await get_tree().create_timer(1).timeout
 		if tween2:
 				tween2.kill()
-
-
 		
 func spawn_goblins():
 	var swamp_spawn_point = $"../CreatureSpawnPointSwamp"
@@ -60,13 +59,16 @@ func spawn_goblins():
 	func(plant): 
 		return not plant.is_protected and (plant.realm == "ice")
 	)
-
+	var nav_region = get_tree().root.get_node("Main/NavigationRegion")
+	
 	for i in range(0, floor(swamp_plots.size()/3)):
 		var goblin: CharacterBody2D = goblin_scene.instantiate()
 		goblin.target_to_chase = swamp_plots.pick_random()
 		goblin.position = swamp_spawn_point.position
 		goblin.scale = Vector2(1.0, 1.0)*1.7
 		get_tree().root.add_child(goblin)
+		await get_tree().create_timer(0.3).timeout
+
 	
 	for i in range(0, floor(ice_plots.size()/3)):
 		var goblin: CharacterBody2D = goblin_scene.instantiate()
@@ -74,6 +76,8 @@ func spawn_goblins():
 		goblin.position = ice_spawn_point.position
 		goblin.scale = Vector2(1.0, 1.0)*1.7
 		get_tree().root.add_child(goblin)
+		await get_tree().create_timer(0.3).timeout
+
 		
 func skip_time(hours: int):
 	hour += hours
