@@ -41,7 +41,6 @@ region_rect = Rect2(162.377, 282, 96.623, 140.127)
 region_filter_clip_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 scale = Vector2(0.9, 0.9)
 
 [node name="BaseCollision" type="CollisionPolygon2D" parent="StaticBody2D"]
@@ -60,7 +59,6 @@ affect_navigation_mesh = true
 carve_navigation_mesh = true
 
 [node name="InteractionBox" type="Area2D" parent="."]
-visible = false
 z_index = 11
 collision_layer = 2
 
@@ -69,7 +67,6 @@ position = Vector2(-40.875, 87.25)
 shape = SubResource("RectangleShape2D_tmt7c")
 
 [node name="InteractionText" type="Control" parent="."]
-visible = false
 z_index = 12
 layout_mode = 3
 anchors_preset = 0
