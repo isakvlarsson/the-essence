@@ -83,7 +83,7 @@ unique_name_in_owner = true
 script = ExtResource("6_7mycd")
 
 [node name="CreatureSpawnPointSwamp" type="Node2D" parent="." groups=["creature_spawn_point"]]
-position = Vector2(-613, 1565)
+position = Vector2(-241, 1551)
 
 [node name="CreatureSpawnPointIce" type="Node2D" parent="." groups=["creature_spawn_point"]]
 position = Vector2(-1097, -1613)

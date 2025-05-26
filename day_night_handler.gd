@@ -21,6 +21,14 @@ func _process(delta: float) -> void:
 		new_hour.emit(hour) 
 	
 func on_new_hour(new_hour: int):
+
+	if hour >= 24:
+		hour %= 24
+		day += 1
+		new_day.emit(day)
+		# Find all farm plots and grow them
+		get_tree().call_group("farm_plot", "growth_tick")
+	
 	if hour == 0 and day%3 == 0:
 		spawn_goblins()
 	
@@ -36,12 +44,7 @@ func on_new_hour(new_hour: int):
 		await get_tree().create_timer(8).timeout
 		if tween2:
 				tween2.kill()
-	if hour >= 24:
-		hour %= 24
-		day += 1
-		new_day.emit(day)
-		# Find all farm plots and grow them
-		get_tree().call_group("farm_plot", "growth_tick")
+
 
 		
 func spawn_goblins():
