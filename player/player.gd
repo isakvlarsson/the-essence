@@ -64,7 +64,7 @@ var currentItem = "Stick"
 var portal_pos = Vector2(-650, 1700)  # Hardcoded portal position
 var max_portal_distance = 1500.0       # Max distance where sound plays
 var min_portal_distance = 50.0        # Min distance for max volume
-
+var portal_is_activated = false
 func _ready():
 	last_position = global_position
 	hud_toolbar.connect("update_selected_item", _on_update_selected_item)
@@ -243,7 +243,7 @@ func play_totem_sound():
 func update_portal_sound():
 	var dist = global_position.distance_to(portal_pos)
 	
-	if dist < max_portal_distance:
+	if dist < max_portal_distance and portal_is_activated:
 		if not portal_audio_player.playing:
 			portal_audio_player.play()
 		
@@ -389,6 +389,7 @@ func interact():
 		elif parent.is_in_group("altar"):
 			if parent.try_sacrifice(hud_toolbar.get_current_item_name(), hud_toolbar.get_current_item_amount()):
 				hud_toolbar.set_current_item_amount(hud_toolbar.get_current_item_amount() - parent.current_sacrifice_amount)
+				portal_is_activated = true
 		elif parent.is_in_group("interactible"):
 			parent.interact(self)
 			
