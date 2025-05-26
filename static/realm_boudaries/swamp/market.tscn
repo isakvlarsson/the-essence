@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://vyi8l6qe57f3"]
+[gd_scene load_steps=18 format=3 uid="uid://vyi8l6qe57f3"]
 
 [ext_resource type="Texture2D" uid="uid://c81qmqabgkyvb" path="res://summer_village_v1.0/assets/market_assets.png" id="1_hco2a"]
 [ext_resource type="Script" uid="uid://bxnunl8apyfxt" path="res://static/realm_boudaries/swamp/market.gd" id="2_fors5"]
 [ext_resource type="Texture2D" uid="uid://cntcl4xmgwkrn" path="res://summer_village_v1.0/characters/food_merchant_spritesheet.png" id="3_8dm6e"]
+[ext_resource type="Texture2D" uid="uid://dtpl2qqyc7lvh" path="res://summer_village_v1.0/assets/village_assets.png" id="4_8dm6e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kjo0i"]
 atlas = ExtResource("3_8dm6e")
@@ -99,13 +100,13 @@ animations = [{
 [node name="StaticBody2D" type="StaticBody2D"]
 
 [node name="Market" type="Sprite2D" parent="."]
-z_index = 10
 texture = ExtResource("1_hco2a")
 region_enabled = true
 region_rect = Rect2(96.1161, 3.07906, 87.1805, 102.487)
 script = ExtResource("2_fors5")
 
 [node name="MerchantSprite" type="AnimatedSprite2D" parent="Market"]
+z_index = 10
 position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_y4fgs")
 frame_progress = 0.181386
@@ -117,3 +118,10 @@ polygon = PackedVector2Array(-33, 15, -32, 13, 31, 13, 33, 20, 33, 29, 32, 38, 3
 vertices = PackedVector2Array(-32, 13, -34, 15, -36, 25, -36, 29, -34, 45, 31, 45, 34, 34, 32, 13)
 affect_navigation_mesh = true
 carve_navigation_mesh = true
+
+[node name="VillageAssets" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(0, -11)
+texture = ExtResource("4_8dm6e")
+region_enabled = true
+region_rect = Rect2(98, 108.75, 83.5, 70)

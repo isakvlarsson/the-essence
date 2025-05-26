@@ -16,11 +16,28 @@ outline_color = Color(0.172833, 0.172833, 0.172833, 1)
 script = ExtResource("1_5qyaf")
 
 [node name="HouseSprite" type="Sprite2D" parent="."]
-z_index = 10
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("1_tmt7c")
 region_enabled = true
 region_rect = Rect2(3.70248, 274.155, 276.234, 297.845)
+region_filter_clip_enabled = true
+
+[node name="RoofSprite" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(-41, -44)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("1_tmt7c")
+region_enabled = true
+region_rect = Rect2(27, 282, 138.214, 185.31)
+region_filter_clip_enabled = true
+
+[node name="RoofSprite2" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(63, -64.35)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("1_tmt7c")
+region_enabled = true
+region_rect = Rect2(162.377, 282, 96.623, 140.127)
 region_filter_clip_enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -59,6 +76,7 @@ offset_right = -9.0
 offset_bottom = 65.0
 
 [node name="TextureRect" type="TextureRect" parent="InteractionText"]
+layout_mode = 0
 offset_left = -43.0
 offset_top = 1.0
 offset_right = 57.0
