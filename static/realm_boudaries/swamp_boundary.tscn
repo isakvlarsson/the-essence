@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dipoxbiuglrr2"]
+[gd_scene load_steps=15 format=4 uid="uid://dipoxbiuglrr2"]
 
 [ext_resource type="Texture2D" uid="uid://boocyynjv2yef" path="res://assets/environment/swamp_tiles.png" id="1_n3gyf"]
 [ext_resource type="Texture2D" uid="uid://credconplf6mr" path="res://assets/environment/ice_tiles.png" id="2_m26ng"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://vyi8l6qe57f3" path="res://static/realm_boudaries/swamp/market.tscn" id="7_21jix"]
 [ext_resource type="PackedScene" uid="uid://xnwbmpwqxoll" path="res://static/realm_boudaries/swamp/bushes.tscn" id="8_c2ly3"]
 [ext_resource type="PackedScene" uid="uid://doiouqckanyn4" path="res://static/realm_boudaries/swamp/barrel.tscn" id="9_roons"]
+[ext_resource type="PackedScene" uid="uid://ncxholi3v1ku" path="res://static/realm_boudaries/swamp/rock.tscn" id="10_c2ly3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2xuy8"]
 texture = ExtResource("1_n3gyf")
@@ -891,76 +892,106 @@ scale = Vector2(0.9, 0.9)
 [node name="Market" parent="." instance=ExtResource("7_21jix")]
 position = Vector2(186, 112)
 
-[node name="Bushes" parent="." instance=ExtResource("8_c2ly3")]
-position = Vector2(-205, 626)
-
-[node name="Bushes3" parent="." instance=ExtResource("8_c2ly3")]
-position = Vector2(-195, -9)
-
-[node name="Bushes4" parent="." instance=ExtResource("8_c2ly3")]
-position = Vector2(-147, -50)
-
-[node name="Bushes5" parent="." instance=ExtResource("8_c2ly3")]
-position = Vector2(-285, 820)
-
-[node name="Bushes6" parent="." instance=ExtResource("8_c2ly3")]
-position = Vector2(-347, 741)
-
-[node name="Bushes7" parent="." instance=ExtResource("8_c2ly3")]
-position = Vector2(194, 656)
-
-[node name="Bushes8" parent="." instance=ExtResource("8_c2ly3")]
-position = Vector2(150, -34)
-
-[node name="Bushes9" parent="." instance=ExtResource("8_c2ly3")]
-position = Vector2(150, -34)
-
 [node name="Barrel" parent="." instance=ExtResource("9_roons")]
 position = Vector2(234, 139)
 
-[node name="Bushes2" parent="." instance=ExtResource("8_c2ly3")]
+[node name="BushesGroup" type="Node2D" parent="."]
+
+[node name="Bushes" parent="BushesGroup" instance=ExtResource("8_c2ly3")]
+position = Vector2(-205, 626)
+
+[node name="Bushes3" parent="BushesGroup" instance=ExtResource("8_c2ly3")]
+position = Vector2(-195, -9)
+
+[node name="Bushes4" parent="BushesGroup" instance=ExtResource("8_c2ly3")]
+position = Vector2(-147, -50)
+
+[node name="Bushes5" parent="BushesGroup" instance=ExtResource("8_c2ly3")]
+position = Vector2(-285, 820)
+
+[node name="Bushes6" parent="BushesGroup" instance=ExtResource("8_c2ly3")]
+position = Vector2(-347, 741)
+
+[node name="Bushes7" parent="BushesGroup" instance=ExtResource("8_c2ly3")]
+position = Vector2(194, 656)
+
+[node name="Bushes8" parent="BushesGroup" instance=ExtResource("8_c2ly3")]
+position = Vector2(150, -34)
+
+[node name="Bushes9" parent="BushesGroup" instance=ExtResource("8_c2ly3")]
+position = Vector2(150, -34)
+
+[node name="Bushes2" parent="BushesGroup" instance=ExtResource("8_c2ly3")]
 position = Vector2(-413, 688)
 
-[node name="Tree4" parent="." instance=ExtResource("4_ju2sv")]
+[node name="TreeGroup" type="Node2D" parent="."]
+
+[node name="Tree4" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
 position = Vector2(-406, 592)
 scale = Vector2(0.068, 0.068)
 
-[node name="Tree5" parent="." instance=ExtResource("4_ju2sv")]
+[node name="Tree5" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
 position = Vector2(-349, 615)
 scale = Vector2(0.126, 0.126)
 
-[node name="Tree6" parent="." instance=ExtResource("4_ju2sv")]
+[node name="Tree6" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
 position = Vector2(271, 648)
 scale = Vector2(0.126, 0.126)
 
-[node name="Tree7" parent="." instance=ExtResource("4_ju2sv")]
+[node name="Tree7" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
 position = Vector2(-380, 1009)
 scale = Vector2(0.126, 0.126)
 
-[node name="Tree2" parent="." instance=ExtResource("4_ju2sv")]
+[node name="Tree2" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
 position = Vector2(114, -64)
 scale = Vector2(0.07, 0.07)
 
-[node name="Tree3" parent="." instance=ExtResource("4_ju2sv")]
+[node name="Tree3" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
 position = Vector2(-289, 679)
 scale = Vector2(0.09, 0.09)
 
-[node name="Tree11" parent="." instance=ExtResource("4_ju2sv")]
+[node name="Tree11" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
 position = Vector2(-72, 300)
 scale = Vector2(0.09, 0.09)
 
-[node name="Tree8" parent="." instance=ExtResource("4_ju2sv")]
+[node name="Tree8" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
 position = Vector2(-228, 983)
 scale = Vector2(0.09, 0.09)
 
-[node name="Tree9" parent="." instance=ExtResource("4_ju2sv")]
+[node name="Tree9" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
 position = Vector2(17, 742)
 scale = Vector2(0.09, 0.09)
 
-[node name="Tree10" parent="." instance=ExtResource("4_ju2sv")]
+[node name="Tree10" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
 position = Vector2(-245, -110)
 scale = Vector2(0.09, 0.09)
 
-[node name="Tree" parent="." instance=ExtResource("4_ju2sv")]
+[node name="Tree" parent="TreeGroup" instance=ExtResource("4_ju2sv")]
 position = Vector2(-227, 770)
 scale = Vector2(0.09, 0.09)
+
+[node name="RockGroup" type="Node2D" parent="."]
+
+[node name="Rock" parent="RockGroup" instance=ExtResource("10_c2ly3")]
+position = Vector2(-322, 80)
+
+[node name="Rock2" parent="RockGroup" instance=ExtResource("10_c2ly3")]
+position = Vector2(294, 335)
+
+[node name="Rock3" parent="RockGroup" instance=ExtResource("10_c2ly3")]
+position = Vector2(-299, -70)
+
+[node name="Rock4" parent="RockGroup" instance=ExtResource("10_c2ly3")]
+position = Vector2(-28, 364)
+
+[node name="Rock5" parent="RockGroup" instance=ExtResource("10_c2ly3")]
+position = Vector2(-243, 1093)
+
+[node name="Rock6" parent="RockGroup" instance=ExtResource("10_c2ly3")]
+position = Vector2(282, 761)
+
+[node name="Rock7" parent="RockGroup" instance=ExtResource("10_c2ly3")]
+position = Vector2(248, -95)
+
+[node name="Rock8" parent="RockGroup" instance=ExtResource("10_c2ly3")]
+position = Vector2(-422, 195)

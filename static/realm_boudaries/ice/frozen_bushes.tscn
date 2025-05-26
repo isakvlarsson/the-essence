@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8h7p4pwfjboq"]
+
+[ext_resource type="Texture2D" uid="uid://5hgy2sre0m3h" path="res://summer_village_v1.0/assets/nature_assets.png" id="1_v72ud"]
+
+[node name="FrozenBushes" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(7, -7, 4, -10, 2, -10, 0, -8, -6, -8, -7, -6, -9, -5, -12, -2, -13, 2, -12, 7, -10, 10, -8, 11, -6, 11, -3, 12, 1, 12, 4, 11, 8, 11, 11, 8, 13, 4, 11, -1, 9, -5)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="StaticBody2D"]
+vertices = PackedVector2Array(-9, 11, -5, 11, -3, 12, -1, 12, 2, 12, 4, 11, 8, 11, 11, 8, 13, 4, 9, -5, 4, -10, 2, -10, 0, -8, -6, -8, -7, -6, -10, -4, -10, -3, -12, -2, -13, 2, -12, 7)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+
+[node name="BushesSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("1_v72ud")
+region_enabled = true
+region_rect = Rect2(256.524, 137.232, 38.7577, 35.0529)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(-9, 11, -5, 11, -3, 12, -1, 12, 2, 12, 4, 11, 8, 11, 11, 8, 13, 4, 9, -5, 4, -10, 2, -10, 0, -8, -6, -8, -7, -6, -10, -4, -10, -3, -12, -2, -13, 2, -12, 7)
+affect_navigation_mesh = true
+carve_navigation_mesh = true
