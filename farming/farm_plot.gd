@@ -19,7 +19,6 @@ var is_protected := false
 func _ready() -> void:
 	await get_tree().process_frame
 	check_overlapping()
-	$Plant/IcebergSprite.self_modulate = Color(0, 255, 255)
 
 	if planted && plant_type != "":
 		plant.visible = true

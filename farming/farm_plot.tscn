@@ -52,7 +52,7 @@ texture = ExtResource("4_5x6sv")
 [node name="IcebergSprite" type="Sprite2D" parent="Plant"]
 visible = false
 position = Vector2(0, -1.49012e-07)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("5_qgx74")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 14)
